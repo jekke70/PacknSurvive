@@ -1,4 +1,4 @@
-const CACHE_NAME = 'crazy-camper-offline-v2';
+const CACHE_NAME = 'packa-overlev-offline-v3';
 const REQUIRED_ASSETS = ['./', './index.html', './manifest.json'];
 const OPTIONAL_ASSETS = [
   './icon.svg',

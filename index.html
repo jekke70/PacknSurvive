@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crazy Camper: Packa &amp; Överlev</title>
+    <title>Packa &amp; Överlev</title>
     <meta
       name="description"
       content="Packa husbilen smart och klara riktiga väderhändelser på campingresmål i Sverige och Europa. Ett 2D-pusselspel från Crazy Camper."
     />
-    <meta property="og:title" content="Crazy Camper: Packa &amp; Överlev" />
+    <meta property="og:title" content="Packa &amp; Överlev" />
     <meta
       property="og:description"
       content="Packa husbilen smart och klara riktiga väderhändelser på campingresmål i Sverige och Europa."
@@ -17,11 +17,11 @@
     <meta property="og:url" content="https://packnsurvive.crazycamper.org/" />
     <link rel="canonical" href="https://packnsurvive.crazycamper.org/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#1f4a2e" />
+    <meta name="theme-color" content="#163e24" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Crazy Camper" />
+    <meta name="apple-mobile-web-app-title" content="Packa &amp; Överlev" />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" type="image/svg+xml" href="./icon.svg" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
@@ -251,6 +251,159 @@
       }
 
       .btn-install-header[hidden] {
+        display: none;
+      }
+
+      /* GOOGLE AUTH & USER IN HEADER */
+      .header-auth-wrap {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .btn-google-header {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 12px;
+        border-radius: var(--radius-sm);
+        background: #ffffff;
+        color: #1f2937;
+        border: 1px solid #d1d5db;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        transition: all 0.15s ease;
+        flex-shrink: 0;
+      }
+
+      .btn-google-header:hover {
+        background: #f9fafb;
+        border-color: #9ca3af;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      }
+
+      .btn-google-header .google-icon {
+        flex-shrink: 0;
+      }
+
+      .btn-google-header .auth-btn-label-short {
+        display: none;
+      }
+
+      .header-auth-user {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+
+      .header-auth-user[hidden] {
+        display: none !important;
+      }
+
+      .header-user-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px 4px 5px;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--border-hairline);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        max-width: 160px;
+        user-select: none;
+      }
+
+      .header-avatar {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .header-initial {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--brand-forest);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-transform: uppercase;
+      }
+
+      .header-user-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--brand-ink);
+      }
+
+      .btn-signout-header {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: var(--radius-sm);
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.15s ease;
+      }
+
+      .btn-signout-header:hover {
+        background: #fee2e2;
+        color: #b91c1c;
+        border-color: #fca5a5;
+      }
+
+      /* GOLDEN ADMIN BUTTON IN HEADER */
+      .btn-admin-header {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 12px;
+        border-radius: var(--radius-sm);
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        color: #92400e;
+        border: 1.5px solid #f59e0b;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        box-shadow: 0 1px 3px rgba(217, 119, 6, 0.2), 0 0 10px rgba(245, 158, 11, 0.25);
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        flex-shrink: 0;
+      }
+
+      .btn-admin-header:hover {
+        background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+        box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3), 0 0 14px rgba(245, 158, 11, 0.45);
+        transform: translateY(-1px);
+      }
+
+      .btn-admin-header:active {
+        transform: translateY(0);
+      }
+
+      .btn-admin-header[hidden] {
+        display: none !important;
+      }
+
+      .btn-admin-header .admin-label-short {
         display: none;
       }
 
@@ -990,6 +1143,9 @@
 
       /* Campervan Cargo Bay Stage */
       .bay-stage {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-lg);
         padding: 22px;
         background:
           radial-gradient(circle at 12% 18%, rgba(191, 227, 180, 0.25) 0%, transparent 46%),
@@ -999,6 +1155,209 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
+        min-height: 540px;
+        transition: background-color 0.5s ease;
+      }
+
+      /* Scenic Vector Backdrop behind cargo bay */
+      .scenic-backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+        border-radius: inherit;
+      }
+
+      .scenic-svg-wrap {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: filter 0.8s ease, transform 1.2s ease, opacity 0.5s ease;
+      }
+
+      .scenic-svg-wrap svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Subtle perimeter vignette - keeps SVG landscape 100% visible, vibrant & crisp */
+      .scenic-overlay-scrim {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.22) 100%);
+        pointer-events: none;
+        transition: background 0.8s ease, opacity 0.8s ease;
+      }
+
+      /* Weather Mood Overlay for simulation */
+      .scenic-weather-overlay {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.8s ease, background 0.8s ease;
+        z-index: 2;
+      }
+
+      /* Atmospheric scenic stage badge */
+      .scenic-stage-badge {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 999px;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--text-primary);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        pointer-events: auto;
+        transition: all 0.3s ease;
+        max-width: calc(100% - 24px);
+      }
+
+      .scenic-tag-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .scenic-weather-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 10.5px;
+        font-weight: 700;
+        background: rgba(16, 185, 129, 0.12);
+        color: #065f46;
+        transition: all 0.4s ease;
+        white-space: nowrap;
+      }
+
+      .scenic-weather-pill.rain {
+        background: rgba(59, 130, 246, 0.15);
+        color: #1d4ed8;
+      }
+
+      .scenic-weather-pill.storm {
+        background: rgba(147, 51, 234, 0.18);
+        color: #6b21a8;
+      }
+
+      .scenic-weather-pill.sun {
+        background: rgba(245, 158, 11, 0.18);
+        color: #b45309;
+      }
+
+      .scenic-weather-pill.snow,
+      .scenic-weather-pill.winter {
+        background: rgba(14, 165, 233, 0.16);
+        color: #0369a1;
+      }
+
+      .scenic-weather-pill.fire {
+        background: rgba(239, 68, 68, 0.18);
+        color: #b91c1c;
+      }
+
+      .scenic-weather-pill.night {
+        background: rgba(99, 102, 241, 0.18);
+        color: #3730a3;
+      }
+
+      /* Weather mood reactions on .bay-stage */
+      .bay-stage[data-weather-mood='rain'] .scenic-weather-overlay {
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(30, 41, 59, 0.35) 0%, rgba(15, 23, 42, 0.45) 100%),
+                    repeating-linear-gradient(105deg, transparent, transparent 18px, rgba(147, 197, 253, 0.22) 19px, transparent 20px);
+        animation: rainShift 0.4s linear infinite;
+      }
+      .bay-stage[data-weather-mood='rain'] .scenic-svg-wrap {
+        filter: brightness(0.85) contrast(1.05) saturate(0.85);
+      }
+
+      .bay-stage[data-weather-mood='storm'] .scenic-weather-overlay {
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.7) 100%),
+                    repeating-linear-gradient(115deg, transparent, transparent 14px, rgba(224, 242, 254, 0.3) 15px, transparent 16px);
+        animation: stormPulse 2.8s ease-in-out infinite;
+      }
+      .bay-stage[data-weather-mood='storm'] .scenic-svg-wrap {
+        filter: brightness(0.65) contrast(1.2) saturate(0.7);
+      }
+
+      .bay-stage[data-weather-mood='sun'] .scenic-weather-overlay {
+        opacity: 1;
+        background: radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.3) 0%, rgba(245, 158, 11, 0.12) 50%, transparent 80%);
+      }
+      .bay-stage[data-weather-mood='sun'] .scenic-svg-wrap {
+        filter: brightness(1.08) saturate(1.15);
+      }
+
+      .bay-stage[data-weather-mood='snow'] .scenic-weather-overlay {
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(224, 242, 254, 0.25) 0%, rgba(241, 245, 249, 0.4) 100%),
+                    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.7) 2px, transparent 3px),
+                    radial-gradient(circle at 60% 70%, rgba(255,255,255,0.7) 2.5px, transparent 3.5px),
+                    radial-gradient(circle at 80% 40%, rgba(255,255,255,0.6) 1.5px, transparent 2.5px);
+        background-size: 100% 100%, 120px 120px, 160px 160px, 90px 90px;
+        animation: snowDrift 8s linear infinite;
+      }
+      .bay-stage[data-weather-mood='snow'] .scenic-svg-wrap {
+        filter: brightness(1.12) contrast(0.95) saturate(0.7);
+      }
+
+      .bay-stage[data-weather-mood='fire'] .scenic-weather-overlay {
+        opacity: 1;
+        background: radial-gradient(circle at 50% 85%, rgba(239, 68, 68, 0.35) 0%, rgba(185, 28, 28, 0.2) 60%, transparent 90%);
+        animation: fireGlow 2.4s ease-in-out infinite alternate;
+      }
+      .bay-stage[data-weather-mood='fire'] .scenic-svg-wrap {
+        filter: brightness(0.85) contrast(1.25) saturate(1.4);
+      }
+
+      .bay-stage[data-weather-mood='night'] .scenic-weather-overlay {
+        opacity: 1;
+        background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0.5) 100%);
+      }
+      .bay-stage[data-weather-mood='night'] .scenic-svg-wrap {
+        filter: brightness(0.68) contrast(1.15) saturate(0.85);
+      }
+
+      @keyframes rainShift {
+        0% { background-position: 0 0, 0 0; }
+        100% { background-position: 0 0, 30px 60px; }
+      }
+      @keyframes snowDrift {
+        0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+        100% { background-position: 0 0, 20px 120px, -30px 160px, 15px 90px; }
+      }
+      @keyframes stormPulse {
+        0%, 100% { opacity: 0.85; }
+        48% { opacity: 0.85; }
+        50% { opacity: 0.2; }
+        52% { opacity: 0.95; }
+      }
+      @keyframes fireGlow {
+        0% { opacity: 0.7; }
+        100% { opacity: 1; }
       }
 
       /* Active Selection Banner inside stage */
@@ -1006,7 +1365,9 @@
         width: 100%;
         max-width: 520px;
         min-height: 44px;
-        background: var(--bg-surface);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         border: 1px solid var(--border-hairline);
         border-radius: var(--radius-sm);
         padding: 8px 14px;
@@ -1016,6 +1377,9 @@
         gap: 12px;
         font-size: 13px;
         color: var(--text-secondary);
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       }
 
       .selection-hint strong {
@@ -1054,23 +1418,31 @@
       .camper-frame {
         width: 100%;
         max-width: 480px;
-        background: var(--bg-surface);
-        border: 2px solid #cbd6ce;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 2.5px solid rgba(255, 255, 255, 0.85);
         border-radius: 22px 22px 16px 16px;
         padding: 16px 18px 18px;
-        box-shadow: 0 8px 24px rgba(21, 28, 23, 0.08);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.6);
         position: relative;
+        z-index: 2;
       }
 
       .camper-cab-bar {
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        border-radius: 12px;
+        padding: 8px 14px;
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: 12px;
-        margin-bottom: 12px;
-        border-bottom: 1px solid var(--border-hairline);
-        font-size: 12.5px;
-        color: var(--text-secondary);
+        font-size: 13px;
+        color: #0f172a;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       }
 
       .camper-cab-title {
@@ -1094,36 +1466,40 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 6px;
-        background: var(--bg-subtle);
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
         padding: 8px;
         border-radius: var(--radius-md);
-        border: 1px solid var(--border-hairline);
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.14);
         position: relative;
       }
 
       .grid-cell {
         aspect-ratio: 1 / 1;
         min-height: 48px;
-        background: var(--bay-cell);
-        border: 1px solid var(--bay-cell-border);
+        background: rgba(255, 255, 255, 0.32);
+        border: 1.5px dashed rgba(15, 23, 42, 0.4);
         border-radius: 8px;
         position: relative;
         transition: background-color 110ms var(--ease-out), border-color 110ms var(--ease-out);
+        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
       }
 
       .grid-cell.pro-row {
-        background: #f5fbf7;
-        border-color: #c7e0ce;
+        background: rgba(230, 245, 235, 0.42);
+        border-color: rgba(16, 185, 129, 0.65);
       }
 
       .grid-cell.preview-valid {
-        background: #d7f0df !important;
+        background: rgba(215, 240, 223, 0.9) !important;
         border-color: var(--brand-forest) !important;
         box-shadow: inset 0 0 0 1px var(--brand-forest);
       }
 
       .grid-cell.preview-invalid {
-        background: #fee2e2 !important;
+        background: rgba(254, 226, 226, 0.9) !important;
         border-color: var(--danger) !important;
         box-shadow: inset 0 0 0 1px var(--danger);
       }
@@ -1242,13 +1618,19 @@
 
       .camper-rear-bar {
         margin-top: 12px;
-        padding-top: 10px;
-        border-top: 1px dashed var(--border-strong);
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.68);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 12px;
-        color: var(--text-muted);
+        font-weight: 600;
+        color: #1e293b;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
       }
 
       /* Launch Footer inside Workspace */
@@ -1638,6 +2020,98 @@
       }
       .sim-step-bar.fail .sim-step-label {
         color: var(--danger);
+      }
+
+      /* Simulation Scenic Vector Viewport */
+      .sim-scenic-viewport {
+        position: relative;
+        height: 124px;
+        width: 100%;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--border-hairline);
+        background: #0f172a;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+        margin-bottom: 14px;
+      }
+
+      .sim-scenic-svg-wrap {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transition: filter 0.6s ease;
+      }
+
+      .sim-scenic-svg-wrap svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .sim-scenic-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.65) 100%);
+        pointer-events: none;
+      }
+
+      .sim-scenic-badge {
+        position: absolute;
+        bottom: 8px;
+        left: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        z-index: 2;
+        color: #ffffff;
+      }
+
+      .sim-scenic-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .sim-scenic-mood-pill {
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        font-weight: 700;
+        font-size: 11px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        white-space: nowrap;
+        transition: all 0.3s ease;
+      }
+
+      .sim-scenic-viewport[data-sim-mood='storm'] .sim-scenic-svg-wrap {
+        filter: brightness(0.6) contrast(1.2) hue-rotate(-10deg);
+      }
+      .sim-scenic-viewport[data-sim-mood='rain'] .sim-scenic-svg-wrap {
+        filter: brightness(0.78) contrast(1.05);
+      }
+      .sim-scenic-viewport[data-sim-mood='sun'] .sim-scenic-svg-wrap {
+        filter: brightness(1.15) saturate(1.2);
+      }
+      .sim-scenic-viewport[data-sim-mood='snow'] .sim-scenic-svg-wrap {
+        filter: brightness(1.2) contrast(0.9) saturate(0.6);
+      }
+      .sim-scenic-viewport[data-sim-mood='fire'] .sim-scenic-svg-wrap {
+        filter: brightness(0.85) contrast(1.3) saturate(1.5);
+      }
+      .sim-scenic-viewport[data-sim-mood='night'] .sim-scenic-svg-wrap {
+        filter: brightness(0.7) contrast(1.15);
       }
 
       .sim-events-list {
@@ -3127,6 +3601,38 @@
         .btn-install-header span.install-label-long {
           display: none;
         }
+        .btn-google-header {
+          padding: 6px 9px;
+          font-size: 12px;
+          gap: 5px;
+        }
+        .btn-google-header .auth-btn-label-long {
+          display: none;
+        }
+        .btn-google-header .auth-btn-label-short {
+          display: inline;
+        }
+        .header-user-pill {
+          max-width: 90px;
+          padding: 3px 6px 3px 3px;
+        }
+        .header-user-name {
+          font-size: 11.5px;
+        }
+        .btn-signout-header {
+          padding: 5px 7px;
+          font-size: 11px;
+        }
+        .btn-admin-header {
+          padding: 6px 9px;
+          font-size: 12px;
+        }
+        .btn-admin-header .admin-label-long {
+          display: none;
+        }
+        .btn-admin-header .admin-label-short {
+          display: inline;
+        }
         .segmented-bar {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -3183,6 +3689,51 @@
         </nav>
 
         <div class="topbar-action">
+          <!-- Golden Admin Button (shown only when admin is logged in) -->
+          <button
+            type="button"
+            class="btn-admin-header"
+            id="headerAdminBtn"
+            title="Öppna adminpanelen för att hantera Pro-kunder och inställningar"
+            hidden
+          >
+            <span aria-hidden="true">🛡️</span>
+            <span class="admin-label-long">Adminpanel</span>
+            <span class="admin-label-short">Admin</span>
+          </button>
+
+          <!-- Google Auth Signed Out State -->
+          <div id="headerSignedOutWrap" class="header-auth-wrap">
+            <button
+              type="button"
+              class="btn-google-header"
+              id="headerSignInBtn"
+              title="Logga in med Google för att koppla eller återställa dina Pro-köp och rekord"
+            >
+              <svg class="google-icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span class="auth-btn-label-long">Logga in med Google</span>
+              <span class="auth-btn-label-short">Logga in</span>
+            </button>
+          </div>
+
+          <!-- Google Auth Signed In State -->
+          <div id="headerSignedInWrap" class="header-auth-user" hidden>
+            <div class="header-user-pill" id="headerUserPill" title="">
+              <img id="headerUserAvatar" class="header-avatar" src="" alt="Profilbild" hidden />
+              <div id="headerUserInitial" class="header-initial" aria-hidden="true">U</div>
+              <span id="headerUserName" class="header-user-name"></span>
+            </div>
+            <button type="button" class="btn-signout-header" id="headerSignOutBtn" title="Logga ut från Google-kontot">
+              Logga ut
+            </button>
+          </div>
+
+          <!-- PWA Install Button -->
           <button type="button" class="btn-install-header" id="pwaInstallBtn" title="Spara spelet på hemskärmen för offline-spel">
             <svg
               width="14"
@@ -3426,7 +3977,18 @@
         </div>
 
         <!-- INTERACTIVE CAMPERVAN GRID -->
-        <div class="bay-stage">
+        <div class="bay-stage" id="bayStage">
+          <div class="scenic-backdrop" id="scenicBackdrop" aria-hidden="true">
+            <div class="scenic-svg-wrap" id="scenicSvgWrap"></div>
+            <div class="scenic-overlay-scrim"></div>
+            <div class="scenic-weather-overlay" id="scenicWeatherOverlay"></div>
+            <div class="scenic-stage-badge" id="scenicStageBadge">
+              <span id="scenicTagIcon">🌲</span>
+              <span class="scenic-tag-label" id="scenicTagLabel">Svensk skog</span>
+              <span class="scenic-weather-pill" id="scenicWeatherPill">☀️ Klart väder</span>
+            </div>
+          </div>
+
           <div class="selection-hint" id="selectionHint">
             <span>Välj utrustning i listan eller dra direkt in i husbilen.</span>
           </div>
@@ -3857,7 +4419,7 @@
         </div>
         <div class="modal-body">
           <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">
-            Installera <strong>Crazy Camper: Packa &amp; Överlev</strong> på din telefon eller dator för att spela helt utan täckning i husbilen eller på fjället.
+            Installera <strong>Packa &amp; Överlev</strong> på din telefon eller dator för att spela helt utan täckning i husbilen eller på fjället.
           </p>
           <ul class="pro-perks">
             <li class="pro-perk-item">
@@ -4261,7 +4823,7 @@
 
     <script type="module">
       import * as fb from './src/firebase.ts';
-
+      import * as scenic from './src/scenicBackdrops.ts';
 
       (function () {
         'use strict';
@@ -6425,7 +6987,7 @@
             ],
           },
           {
-            id: 'transylvania',
+            id: 'dracula_castle',
             name: 'Draculas slott · Transsylvanien',
             shortName: 'Transsylvanien',
             region: 'Karpaterna · Skräckriket',
@@ -7239,6 +7801,14 @@
           proUnlockedBanner: document.getElementById('proUnlockedBanner'),
           helpModal: document.getElementById('helpModal'),
           toast: document.getElementById('toast'),
+          bayStage: document.getElementById('bayStage'),
+          scenicBackdrop: document.getElementById('scenicBackdrop'),
+          scenicSvgWrap: document.getElementById('scenicSvgWrap'),
+          scenicWeatherOverlay: document.getElementById('scenicWeatherOverlay'),
+          scenicStageBadge: document.getElementById('scenicStageBadge'),
+          scenicTagIcon: document.getElementById('scenicTagIcon'),
+          scenicTagLabel: document.getElementById('scenicTagLabel'),
+          scenicWeatherPill: document.getElementById('scenicWeatherPill'),
         };
 
         let toastTimer = null;
@@ -7775,8 +8345,92 @@
           }
         }
 
+        /* ===================== SCENIC BACKDROPS & WEATHER DYNAMICS ===================== */
+        function renderScenicBackdrop(dest, moodOverride = null) {
+          if (!dest) return;
+          const meta = scenic.getScenicMeta(dest);
+          const activeMood = moodOverride || meta.defaultMood || 'default';
+
+          if (dom.bayStage) {
+            dom.bayStage.setAttribute('data-weather-mood', activeMood);
+          }
+
+          if (dom.scenicSvgWrap) {
+            dom.scenicSvgWrap.innerHTML = scenic.getScenicSVG(dest);
+          }
+
+          if (dom.scenicTagIcon) dom.scenicTagIcon.textContent = meta.icon;
+          if (dom.scenicTagLabel) dom.scenicTagLabel.textContent = meta.label;
+
+          updateScenicWeatherPill(activeMood);
+        }
+
+        function updateScenicWeatherPill(mood) {
+          if (!dom.scenicWeatherPill) return;
+          const moodLabels = {
+            default: { text: '☀️ Klart väder', cls: 'default' },
+            sun: { text: '☀️ Gyllene solsken', cls: 'sun' },
+            rain: { text: '🌧️ Ihållande regn', cls: 'rain' },
+            storm: { text: '⛈️ Storm & blixtar', cls: 'storm' },
+            snow: { text: '❄️ Snöstorm & isvind', cls: 'snow' },
+            fire: { text: '🔥 Extremhetta & glöd', cls: 'fire' },
+            night: { text: '🌌 Stjärnklar natt', cls: 'night' },
+            sunset: { text: '🌅 Solnedgång', cls: 'sun' },
+            winter: { text: '🏔️ Isande polarluft', cls: 'snow' },
+            day: { text: '🌲 Frisk dagsluft', cls: 'default' },
+            desert: { text: '🏜️ Dammtorr hetta', cls: 'sun' },
+          };
+          const info = moodLabels[mood] || { text: '☀️ Klart väder', cls: 'default' };
+          dom.scenicWeatherPill.textContent = info.text;
+          dom.scenicWeatherPill.className = `scenic-weather-pill ${info.cls}`;
+        }
+
+        function setSimulationWeather(eventOrMood) {
+          if (!eventOrMood) return;
+          let mood = 'default';
+          let label = 'Klart väder';
+          let icon = '☀️';
+
+          if (typeof eventOrMood === 'string') {
+            mood = eventOrMood;
+            if (mood === 'sun') {
+              label = 'Strålande sol & målgång!';
+              icon = '☀️';
+            } else if (mood === 'storm') {
+              label = 'Ovädret fällde resan';
+              icon = '⛈️';
+            } else {
+              label = 'Väderomslag';
+              icon = '🌦️';
+            }
+          } else {
+            const info = scenic.getEventWeatherMood(eventOrMood);
+            mood = info.mood;
+            label = info.label;
+            icon = info.icon;
+          }
+
+          if (dom.bayStage) dom.bayStage.setAttribute('data-weather-mood', mood);
+          updateScenicWeatherPill(mood);
+
+          const viewport = document.getElementById('simScenicViewport');
+          if (viewport) {
+            viewport.setAttribute('data-sim-mood', mood);
+            const pill = document.getElementById('simScenicMoodPill');
+            if (pill) {
+              pill.textContent = `${icon} ${label}`;
+            }
+          }
+        }
+
+        function resetScenicWeather() {
+          const dest = getDestById(state.activeDestId);
+          renderScenicBackdrop(dest);
+        }
+
         function renderWorkspaceHeader() {
           const dest = getDestById(state.activeDestId);
+          renderScenicBackdrop(dest);
           const evalRes = evaluatePackForDestination(dest);
 
           dom.activeDestHeading.textContent = dest.name;
@@ -8775,8 +9429,17 @@
           const showSeparateOverweight =
             overweight && !(dest.specialRule && dest.specialRule.type === 'weightLimit');
 
+          const meta = scenic.getScenicMeta(dest);
           dom.simModalTitle.textContent = `Roadtrip: ${dest.name} · Seed #${runSeed}`;
           dom.simModalBody.innerHTML = `
+            <div class="sim-scenic-viewport" id="simScenicViewport" data-sim-mood="${meta.defaultMood || 'default'}">
+              <div class="sim-scenic-svg-wrap">${scenic.getScenicSVG(dest)}</div>
+              <div class="sim-scenic-overlay"></div>
+              <div class="sim-scenic-badge">
+                <span class="sim-scenic-title">${meta.icon} ${dest.name}</span>
+                <span class="sim-scenic-mood-pill" id="simScenicMoodPill">☀️ Startar roadtrippen</span>
+              </div>
+            </div>
             <div class="sim-progress" id="simProgress">
               <div class="sim-step-bar active" id="simBar0">
                 <div class="sim-step-track"><div class="sim-step-fill"></div></div>
@@ -8811,6 +9474,7 @@
           results.forEach((res, index) => {
             const delay = 450 + index * 1250;
             const timer = setTimeout(() => {
+              setSimulationWeather(res.ev);
               const bar = document.getElementById(`simBar${index}`);
               const nextBar = document.getElementById(`simBar${index + 1}`);
               if (bar) {
@@ -8863,6 +9527,11 @@
                 const outcomeTimer = setTimeout(() => {
                   const passedCount = results.filter((r) => r.passed).length;
                   const won = passedCount === 3;
+                  if (won) {
+                    setSimulationWeather('sun');
+                  } else {
+                    setSimulationWeather('storm');
+                  }
                   const runScore = calculateTripScore(
                     dest,
                     results,
@@ -9098,7 +9767,10 @@
 
         function closeModal(el) {
           el.classList.remove('open');
-          if (el === dom.simModal) clearSimTimers();
+          if (el === dom.simModal) {
+            clearSimTimers();
+            resetScenicWeather();
+          }
         }
 
         function openProModal() {
@@ -9407,7 +10079,7 @@
         window.addEventListener('appinstalled', () => {
           deferredInstallPrompt = null;
           if (pwaInstallBtnEl) pwaInstallBtnEl.hidden = true;
-          showToast('✓ Crazy Camper installerat på hemskärmen!');
+          showToast('✓ Packa & Överlev har sparats på hemskärmen!');
         });
 
         if (pwaInstallBtnEl) {
@@ -9807,7 +10479,97 @@
 
           renderProHeader();
           renderAdminModalState();
+          renderHeaderAuth(user);
         });
+
+        const headerAdminBtnEl = document.getElementById('headerAdminBtn');
+        const headerSignedOutWrapEl = document.getElementById('headerSignedOutWrap');
+        const headerSignedInWrapEl = document.getElementById('headerSignedInWrap');
+        const headerSignInBtnEl = document.getElementById('headerSignInBtn');
+        const headerSignOutBtnEl = document.getElementById('headerSignOutBtn');
+        const headerUserPillEl = document.getElementById('headerUserPill');
+        const headerUserAvatarEl = document.getElementById('headerUserAvatar');
+        const headerUserInitialEl = document.getElementById('headerUserInitial');
+        const headerUserNameEl = document.getElementById('headerUserName');
+
+        function renderHeaderAuth(user) {
+          const isAdmin = fb.isAdminUser(user);
+          if (headerAdminBtnEl) {
+            headerAdminBtnEl.hidden = !isAdmin;
+          }
+
+          if (user) {
+            if (headerSignedOutWrapEl) headerSignedOutWrapEl.hidden = true;
+            if (headerSignedInWrapEl) headerSignedInWrapEl.hidden = false;
+
+            const displayName = (user.displayName || user.email?.split('@')[0] || 'Spelare').trim();
+            if (headerUserNameEl) headerUserNameEl.textContent = displayName;
+            if (headerUserPillEl) {
+              headerUserPillEl.title = `Inloggad som ${user.email || displayName}${isAdmin ? ' (Admin)' : ''}`;
+            }
+
+            if (user.photoURL && headerUserAvatarEl && headerUserInitialEl) {
+              headerUserAvatarEl.src = user.photoURL;
+              headerUserAvatarEl.hidden = false;
+              headerUserInitialEl.hidden = true;
+              headerUserAvatarEl.onerror = () => {
+                headerUserAvatarEl.hidden = true;
+                headerUserInitialEl.hidden = false;
+              };
+            } else if (headerUserAvatarEl && headerUserInitialEl) {
+              headerUserAvatarEl.hidden = true;
+              headerUserInitialEl.hidden = false;
+              headerUserInitialEl.textContent = (displayName.charAt(0) || 'U').toUpperCase();
+            }
+          } else {
+            if (headerSignedOutWrapEl) headerSignedOutWrapEl.hidden = false;
+            if (headerSignedInWrapEl) headerSignedInWrapEl.hidden = true;
+          }
+        }
+
+        renderHeaderAuth(null);
+
+        if (headerAdminBtnEl) {
+          headerAdminBtnEl.addEventListener('click', () => {
+            if (adminAuthErrorEl) adminAuthErrorEl.textContent = '';
+            renderAdminModalState();
+            openModal(adminModalEl);
+          });
+        }
+
+        if (headerSignInBtnEl) {
+          headerSignInBtnEl.addEventListener('click', async () => {
+            if (!navigator.onLine) {
+              showToast('📴 Du är offline. Google-inloggning kräver internetanslutning.');
+              return;
+            }
+            try {
+              const user = await fb.signInWithGooglePopup();
+              if (fb.isAdminUser(user)) {
+                showToast('🛡️ Inloggad som administratör.');
+              } else {
+                const name = user.displayName || user.email || 'Spelare';
+                showToast(`✓ Inloggad som ${name}`);
+              }
+            } catch (err) {
+              const msg = err instanceof Error ? err.message : String(err);
+              if (!msg.includes('popup-closed-by-user')) {
+                showToast('Kunde inte logga in med Google. Försök igen.');
+              }
+            }
+          });
+        }
+
+        if (headerSignOutBtnEl) {
+          headerSignOutBtnEl.addEventListener('click', async () => {
+            try {
+              await fb.signOutFirebase();
+              showToast('Utloggad från Google.');
+            } catch (_) {
+              showToast('Kunde inte logga ut.');
+            }
+          });
+        }
 
         if (footerAdminLinkEl) {
           footerAdminLinkEl.addEventListener('click', () => {

@@ -119,11 +119,10 @@ const VALID_SOURCES: PurchaseSource[] = ['stripe', 'code', 'admin_grant', 'manua
 const VALID_STATUSES: PurchaseStatus[] = ['active', 'revoked'];
 
 export function isAdminUser(user: User | null): boolean {
-  return Boolean(
-    user &&
-      user.emailVerified === true &&
-      (user.email || '').trim().toLowerCase() === ADMIN_EMAIL
-  );
+  if (!user || !user.email) return false;
+  const emailMatch = user.email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase();
+  const isVerified = user.emailVerified || user.providerData.some((p) => p.providerId === 'google.com');
+  return Boolean(emailMatch && isVerified);
 }
 
 export async function signInWithGooglePopup(): Promise<User> {

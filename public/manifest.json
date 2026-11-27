@@ -1,14 +1,14 @@
 {
   "id": "https://packnsurvive.crazycamper.org/",
-  "name": "Crazy Camper: Packa & Överlev",
-  "short_name": "Crazy Camper",
+  "name": "Packa & Överlev",
+  "short_name": "Packa & Överlev",
   "description": "Packa husbilen smart och klara 40 campingresmål i Sverige och Europa — även helt offline i flygplansläge.",
   "start_url": "https://packnsurvive.crazycamper.org/",
   "scope": "https://packnsurvive.crazycamper.org/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#f5f6f4",
-  "theme_color": "#1f4a2e",
+  "background_color": "#163e24",
+  "theme_color": "#163e24",
   "lang": "sv",
   "categories": ["games", "puzzle", "travel"],
   "icons": [
