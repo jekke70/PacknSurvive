@@ -1899,230 +1899,6 @@
         }
       }
 
-      /* ===================== GOOGLE MAPS QUOTA BANNER & STÄLLPLATSKARTA ===================== */
-      .gmp-quota-banner {
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        background: #fffbeb;
-        border-bottom: 1px solid #fde68a;
-        color: #78350f;
-        padding: 10px 16px;
-        font-size: 13px;
-        text-align: center;
-      }
-
-      .gmp-quota-banner a {
-        color: #451a03;
-        font-weight: 700;
-        text-decoration: underline;
-      }
-
-      .modal-card.map-modal-card {
-        max-width: 1040px;
-      }
-
-      .map-controls-bar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .map-dest-tabs {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: 4px;
-        background: var(--bg-subtle);
-        border-radius: 10px;
-        flex-wrap: wrap;
-      }
-
-      .map-dest-tab {
-        padding: 7px 12px;
-        border-radius: 7px;
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--text-secondary);
-        white-space: nowrap;
-      }
-
-      .map-dest-tab:hover {
-        color: var(--text-primary);
-      }
-
-      .map-dest-tab.active {
-        background: var(--bg-surface);
-        color: var(--text-primary);
-        box-shadow: 0 1px 3px rgba(21, 28, 23, 0.08);
-      }
-
-      .map-search-form {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex: 1;
-        min-width: 240px;
-        max-width: 420px;
-      }
-
-      .map-search-input {
-        flex: 1;
-        padding: 9px 13px;
-        border: 1px solid var(--border-strong);
-        border-radius: var(--radius-sm);
-        font-size: 13.5px;
-        background: var(--bg-surface);
-        color: var(--text-primary);
-      }
-
-      .map-split {
-        display: grid;
-        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
-        gap: 16px;
-        align-items: stretch;
-      }
-
-      .camp-map-wrap {
-        position: relative;
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        border: 1px solid var(--border-hairline);
-        background: var(--map-water);
-        min-height: 400px;
-        height: 430px;
-      }
-
-      .camp-map-canvas {
-        width: 100%;
-        height: 100%;
-        min-height: 400px;
-      }
-
-      .map-places-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        height: 430px;
-        overflow-y: auto;
-        padding-right: 4px;
-      }
-
-      .map-place-card {
-        text-align: left;
-        background: var(--bg-surface);
-        border: 1px solid var(--border-hairline);
-        border-radius: var(--radius-sm);
-        padding: 12px 14px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .map-place-card:hover {
-        border-color: var(--border-strong);
-        background: #fafcfa;
-      }
-
-      .map-place-card.active {
-        border-color: var(--brand-forest);
-        background: var(--brand-forest-soft);
-      }
-
-      .map-place-name {
-        font-family: var(--font-display);
-        font-size: 14px;
-        font-weight: 700;
-        color: var(--text-primary);
-      }
-
-      .map-place-addr {
-        font-size: 12.5px;
-        color: var(--text-secondary);
-        line-height: 1.35;
-      }
-
-      .map-place-foot {
-        margin-top: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        font-size: 12px;
-        color: var(--text-muted);
-      }
-
-      .map-place-link {
-        color: var(--brand-forest);
-        font-weight: 600;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-
-      .map-place-link:hover {
-        text-decoration: underline;
-      }
-
-      .map-status-msg {
-        padding: 18px 14px;
-        border-radius: var(--radius-sm);
-        background: var(--bg-subtle);
-        border: 1px solid var(--border-hairline);
-        color: var(--text-secondary);
-        font-size: 13.5px;
-        text-align: center;
-      }
-
-      .map-modal-footer {
-        padding-top: 12px;
-        border-top: 1px solid var(--border-hairline);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-        font-size: 13px;
-        color: var(--text-secondary);
-      }
-
-      .camp-pin {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 999px;
-        background: #1f4a2e;
-        color: #ffffff;
-        border: 2px solid #ffffff;
-        box-shadow: 0 3px 10px rgba(21, 28, 23, 0.28);
-        font-size: 15px;
-        cursor: pointer;
-        transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out);
-      }
-
-      .camp-pin:hover,
-      .camp-pin.active {
-        transform: scale(1.14);
-        background: #141a17;
-      }
-
-      @media (max-width: 860px) {
-        .map-split {
-          grid-template-columns: 1fr;
-        }
-        .camp-map-wrap,
-        .camp-map-canvas {
-          height: 300px;
-          min-height: 300px;
-        }
-        .map-places-panel {
-          height: auto;
-          max-height: 280px;
-        }
-      }
 
       /* ===================== CHALLENGE BANNER & LEADERBOARD (MINA REKORD) ===================== */
       .challenge-banner {
@@ -3160,20 +2936,6 @@
     </style>
   </head>
   <body>
-    <!-- GOOGLE MAPS DEMO QUOTA BANNER (HIDDEN UNLESS QUOTA REACHED) -->
-    <div id="gmpQuotaBanner" class="gmp-quota-banner" role="alert" hidden>
-      <span>
-        Google Maps Platform quota reached. If you are the app owner, visit
-        <a
-          href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          maps developer site
-        </a>
-        for instructions to update your account.
-      </span>
-    </div>
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -3199,7 +2961,17 @@
           <button type="button" class="nav-btn active" id="navPackBtn">Packa &amp; Överlev</button>
           <button type="button" class="nav-btn" id="navDestBtn">Destinationer</button>
           <button type="button" class="nav-btn" id="navRecordsBtn">Mina rekord</button>
-          <button type="button" class="nav-btn" id="navMapBtn">Ställplatskarta</button>
+          <a
+            href="https://app.crazycamper.org/?lat=56.66&lng=16.63&zoom=9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-btn js-online-only-link"
+            id="navMapLink"
+            data-online-label="Ställplatskarta ↗"
+            style="text-decoration: none;"
+          >
+            Ställplatskarta ↗
+          </a>
           <button type="button" class="nav-btn" id="navHelpBtn">Så spelar du</button>
         </nav>
 
@@ -3501,9 +3273,6 @@
         </span>
       </div>
       <div class="footer-links">
-        <button type="button" class="footer-link" id="footerMapLink">
-          Hitta riktiga ställplatser
-        </button>
         <a
           href="https://app.crazycamper.org"
           target="_blank"
@@ -3777,56 +3546,6 @@
       </div>
     </div>
 
-    <!-- REAL CAMPSITES MAP MODAL (GOOGLE MAPS PLATFORM) -->
-    <div class="modal-backdrop" id="mapModal" role="dialog" aria-modal="true" aria-labelledby="mapModalTitle">
-      <div class="modal-card map-modal-card">
-        <div class="modal-head">
-          <h3 class="modal-title" id="mapModalTitle">Hitta riktiga ställplatser &amp; camping</h3>
-          <button type="button" class="modal-close" id="closeMapModalBtn" aria-label="Stäng">×</button>
-        </div>
-        <div class="modal-body">
-          <div class="map-controls-bar">
-            <select id="mapDestSelect" class="dest-select" aria-label="Välj destination på kartan"></select>
-            <form class="map-search-form" id="mapSearchForm">
-              <input
-                type="text"
-                id="mapSearchInput"
-                class="map-search-input"
-                placeholder="Sök camping, ställplats eller ort..."
-                autocomplete="off"
-              />
-              <button type="submit" class="btn-mint" style="min-height: 38px;">
-                Sök
-              </button>
-            </form>
-          </div>
-
-          <div class="map-split">
-            <div class="camp-map-wrap">
-              <div id="campMapCanvas" class="camp-map-canvas" aria-label="Karta över ställplatser och campingar"></div>
-            </div>
-            <div class="map-places-panel" id="mapPlacesList" aria-live="polite">
-              <div class="map-status-msg">Laddar riktiga ställplatser från Google Maps...</div>
-            </div>
-          </div>
-
-          <div class="map-modal-footer">
-            <span>Riktiga ställplatser och campingar hämtade live via Google Maps.</span>
-            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-              <a
-                href="https://app.crazycamper.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="footer-link js-online-only-link"
-                data-online-label="Öppna app.crazycamper.org ↗"
-              >
-                Öppna app.crazycamper.org ↗
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- RECORDS MODAL (MINA REKORD) -->
     <div class="modal-backdrop" id="recordsModal" role="dialog" aria-modal="true" aria-labelledby="recordsModalTitle">
@@ -3954,8 +3673,9 @@
               <p>
                 Väderhändelser, utrustningsvikter, poäng och packningstips i spelet är skapade enbart för
                 spelglädje och ersätter aldrig verklig reseplanering, fordonets tillåtna maxlast, trafikregler
-                eller officiella vädervarningar. Information om riktiga ställplatser i kartfunktionen hämtas från
-                tredjepartskällor (Google Maps) och kan ändras utan förvarning.
+                eller officiella vädervarningar. Riktiga ställplatser och campingplatser utforskas via vår
+                externa webbapp på
+                <a href="https://app.crazycamper.org" target="_blank" rel="noopener noreferrer">app.crazycamper.org</a>.
               </p>
             </div>
 
@@ -3963,7 +3683,7 @@
               <h4>4. Tillgänglighet &amp; offline-läge</h4>
               <p>
                 Spelet kan installeras som webbapp (PWA) för att fungera i flygplansläge. Vissa funktioner –
-                såsom Ställplatskartan, betalning via Stripe samt länkar till app.crazycamper.org – kräver aktiv
+                såsom betalning via Stripe samt länkar till app.crazycamper.org – kräver aktiv
                 internetuppkoppling. Vi strävar efter hög driftsäkerhet men kan inte garantera avbrottsfri drift.
               </p>
             </div>
@@ -4047,13 +3767,12 @@
             </div>
 
             <div class="legal-section">
-              <h4>4. Karttjänster (Google Maps)</h4>
+              <h4>4. Extern ställplatsapp (app.crazycamper.org)</h4>
               <p>
-                När du aktivt öppnar <em>Ställplatskartan</em> i spelet hämtas kartdata och närliggande
-                campingplatser via Google Maps Platform. Vid användning av kartan kan Google behandla tekniska
-                uppgifter (t.ex. IP-adress) i enlighet med
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Googles integritetspolicy</a>.
-                Kartan laddas inte när du spelar offline.
+                När du klickar på länken för att hitta riktiga ställplatser öppnas
+                <a href="https://app.crazycamper.org" target="_blank" rel="noopener noreferrer">app.crazycamper.org</a>
+                i en ny flik med destinationens GPS-koordinater och zoom-nivå i webbadressen. Ingen personlig
+                information skickas med i länken.
               </p>
             </div>
 
@@ -4247,33 +3966,6 @@
     <script type="module">
       import * as fb from './src/firebase.ts';
 
-      // Tier 1 Demo Key Quota Defense (early global registration)
-      window.gm_authFailure = () => {
-        window.dispatchEvent(new CustomEvent('gmp-quota-exceeded'));
-      };
-      const origConsoleError = console.error;
-      console.error = (...args) => {
-        origConsoleError.apply(console, args);
-        const msg = args.map((a) => String(a)).join(' ');
-        if (msg.includes('OverQuotaMapError') || msg.includes('QuotaExceededError')) {
-          window.dispatchEvent(new CustomEvent('gmp-quota-exceeded'));
-        }
-      };
-
-      let MAPS_API_KEY = '';
-      try {
-        MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
-      } catch (_) {
-        MAPS_API_KEY = '';
-      }
-      const GMP_ATTRIBUTION_IDS = ['gmp_mcp_codeassist_v1_aistudio'];
-      let gmpLoaderPromise = null;
-      function loadGmpApiLoader() {
-        if (!gmpLoaderPromise) {
-          gmpLoaderPromise = import('@googlemaps/js-api-loader');
-        }
-        return gmpLoaderPromise;
-      }
 
       (function () {
         'use strict';
@@ -4605,10 +4297,10 @@
             tier: 'easy',
             difficulty: 'Lätt',
             proOnly: false,
-            lat: 56.75,
-            lng: 16.65,
+            lat: 56.66,
+            lng: 16.63,
             zoom: 9,
-            mapCenter: { lat: 56.75, lng: 16.65 },
+            mapCenter: { lat: 56.66, lng: 16.63 },
             mapZoom: 9,
             mapRegion: 'SE',
             mapQuery: 'ställplats camping husbil Öland Sverige',
@@ -6830,6 +6522,10 @@
               : tierGroups.filter((g) => g.tier === state.destTierFilter);
 
           const activeDest = getDestById(state.activeDestId);
+          const navMapLinkEl = document.getElementById('navMapLink');
+          if (navMapLinkEl && activeDest) {
+            navMapLinkEl.href = `${CAMPSITE_APP_URL}/?lat=${activeDest.lat}&lng=${activeDest.lng}&zoom=${activeDest.zoom}`;
+          }
           const activeInFiltered = visibleGroups.some((g) => g.tier === activeDest.tier);
           const previewDest =
             !activeInFiltered && state.destTierFilter !== 'all'
@@ -8197,23 +7893,15 @@
                           Du är offline. Länken kopieras nu så du kan klistra in och skicka den via SMS/chatt när du får täckning.
                         </div>
                         <div class="copy-confirm-inline" id="simCopyConfirm" role="status"></div>
-                        <button
-                          type="button"
-                          class="btn-primary js-online-only-link"
-                          id="simOpenMapBtn"
-                          data-online-label="🗺️ Hitta riktiga ställplatser i ${dest.shortName}"
-                        >
-                          🗺️ Hitta riktiga ställplatser i ${dest.shortName}
-                        </button>
                         <a
-                          href="${CAMPSITE_APP_URL}/?lat=${dest.lat}&lng=${dest.lng}&zoom=${dest.zoom}"
+                          href="https://app.crazycamper.org/?lat=${dest.lat}&lng=${dest.lng}&zoom=${dest.zoom}"
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="btn-mint js-online-only-link"
-                          data-online-label="Öppna hela Crazy Camper-appen (app.crazycamper.org) ↗"
+                          class="btn-primary js-online-only-link"
+                          data-online-label="🗺️ Hitta riktiga ställplatser i ${dest.shortName} (app.crazycamper.org) ↗"
                           style="justify-content: center; text-decoration: none;"
                         >
-                          Öppna hela Crazy Camper-appen (app.crazycamper.org) ↗
+                          🗺️ Hitta riktiga ställplatser i ${dest.shortName} (app.crazycamper.org) ↗
                         </a>
                         <div class="sim-secondary-row">
                           <button type="button" class="btn-secondary" id="simRetryBtn" style="justify-content: center;">
@@ -8257,10 +7945,6 @@
 
                   bindRecordChallengeButtons(document.getElementById('simRecordsSection'));
 
-                  document.getElementById('simOpenMapBtn').addEventListener('click', () => {
-                    closeModal(dom.simModal);
-                    openStallplatsMapModal(dest.id);
-                  });
 
                   document.getElementById('simRetryBtn').addEventListener('click', () => {
                     closeModal(dom.simModal);
@@ -8301,39 +7985,6 @@
           });
         }
 
-        /* ===================== GOOGLE MAPS STÄLLPLATSKARTA ===================== */
-        const mapModalEl = document.getElementById('mapModal');
-        const mapModalTitleEl = document.getElementById('mapModalTitle');
-        const mapDestSelectEl = document.getElementById('mapDestSelect');
-        const mapSearchFormEl = document.getElementById('mapSearchForm');
-        const mapSearchInputEl = document.getElementById('mapSearchInput');
-        const mapCanvasEl = document.getElementById('campMapCanvas');
-        const mapPlacesListEl = document.getElementById('mapPlacesList');
-        const gmpQuotaBannerEl = document.getElementById('gmpQuotaBanner');
-
-        window.addEventListener('gmp-quota-exceeded', () => {
-          if (gmpQuotaBannerEl) gmpQuotaBannerEl.hidden = false;
-        });
-
-        let gmpOptionsConfigured = false;
-        let gmpMap = null;
-        let gmpInfoWindow = null;
-        let gmpMarkers = [];
-        let gmpActiveDestId = 'oland';
-
-        function isQuotaError(err) {
-          const msg = String(err?.message || err || '');
-          const code = String(err?.code || err?.status || '');
-          return (
-            msg.includes('RESOURCE_EXHAUSTED') ||
-            msg.includes('OVER_QUERY_LIMIT') ||
-            msg.includes('Quota') ||
-            msg.includes('429') ||
-            code === 'RESOURCE_EXHAUSTED' ||
-            code === 'OVER_QUERY_LIMIT'
-          );
-        }
-
         function escapeHtml(str) {
           return String(str || '')
             .replace(/&/g, '&amp;')
@@ -8341,250 +7992,6 @@
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;');
         }
-
-        function clearMapMarkers() {
-          for (const entry of gmpMarkers) {
-            entry.marker.map = null;
-          }
-          gmpMarkers = [];
-        }
-
-        function renderMapDestTabs() {
-          populateGroupedDestSelect(mapDestSelectEl, gmpActiveDestId);
-        }
-
-        mapDestSelectEl.addEventListener('change', () => {
-          const nextDest = getDestById(mapDestSelectEl.value);
-          gmpActiveDestId = nextDest.id;
-          mapSearchInputEl.value = '';
-          void searchCampsitesForDestination(nextDest);
-        });
-
-        async function ensureGoogleMapReady(dest) {
-          if (!MAPS_API_KEY) {
-            throw new Error('MISSING_API_KEY');
-          }
-          const { setOptions, importLibrary } = await loadGmpApiLoader();
-          if (!gmpOptionsConfigured) {
-            setOptions({
-              key: MAPS_API_KEY,
-              v: 'weekly',
-              language: 'sv',
-              region: 'SE',
-            });
-            gmpOptionsConfigured = true;
-          }
-
-          const { Map, InfoWindow } = await importLibrary('maps');
-
-          if (!gmpMap) {
-            gmpMap = new Map(mapCanvasEl, {
-              center: dest.mapCenter,
-              zoom: dest.mapZoom,
-              mapId: 'DEMO_MAP_ID',
-              mapTypeControl: false,
-              streetViewControl: false,
-              gestureHandling: 'greedy',
-              internalUsageAttributionIds: GMP_ATTRIBUTION_IDS,
-            });
-            gmpInfoWindow = new InfoWindow();
-          } else {
-            gmpMap.setCenter(dest.mapCenter);
-            gmpMap.setZoom(dest.mapZoom);
-          }
-          return importLibrary;
-        }
-
-        async function searchCampsitesForDestination(dest, customQuery = '') {
-          mapModalTitleEl.textContent = `Riktiga ställplatser · ${dest.shortName}`;
-          mapPlacesListEl.innerHTML =
-            '<div class="map-status-msg">Söker riktiga ställplatser och campingar via Google Maps...</div>';
-
-          try {
-            const importLibrary = await ensureGoogleMapReady(dest);
-            const [{ Place }, { AdvancedMarkerElement }, { LatLngBounds }] = await Promise.all([
-              importLibrary('places'),
-              importLibrary('marker'),
-              importLibrary('core'),
-            ]);
-
-            const query = customQuery.trim()
-              ? `${customQuery.trim()} camping ställplats`
-              : dest.mapQuery;
-
-            const request = {
-              textQuery: query,
-              fields: [
-                'displayName',
-                'location',
-                'formattedAddress',
-                'rating',
-                'userRatingCount',
-                'googleMapsURI',
-              ],
-              locationBias: dest.mapCenter,
-              maxResultCount: 10,
-              language: 'sv',
-              region: dest.mapRegion || 'SE',
-              internalUsageAttributionIds: GMP_ATTRIBUTION_IDS,
-            };
-
-            const response = await Place.searchByText(request);
-            const places = response?.places || [];
-
-            clearMapMarkers();
-            if (gmpInfoWindow) gmpInfoWindow.close();
-
-            if (!places.length) {
-              mapPlacesListEl.innerHTML =
-                '<div class="map-status-msg">Inga ställplatser hittades för den sökningen. Prova ett annat ortnamn.</div>';
-              return;
-            }
-
-            const bounds = new LatLngBounds();
-            mapPlacesListEl.innerHTML = '';
-
-            places.forEach((place, idx) => {
-              const name = place.displayName || 'Camping / Ställplats';
-              const addr = place.formattedAddress || dest.region;
-              const ratingText =
-                typeof place.rating === 'number'
-                  ? `★ ${place.rating.toFixed(1)}${place.userRatingCount ? ` (${place.userRatingCount})` : ''}`
-                  : 'Inget betyg än';
-              const mapsUrl =
-                place.googleMapsURI ||
-                `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + addr)}`;
-
-              const pinEl = document.createElement('div');
-              pinEl.className = 'camp-pin';
-              pinEl.textContent = '🚐';
-              pinEl.title = name;
-
-              const marker = new AdvancedMarkerElement({
-                map: gmpMap,
-                position: place.location,
-                title: name,
-              });
-              marker.append(pinEl);
-
-              const card = document.createElement('button');
-              card.type = 'button';
-              card.className = 'map-place-card';
-              card.innerHTML = `
-                <div class="map-place-name">${escapeHtml(name)}</div>
-                <div class="map-place-addr">${escapeHtml(addr)}</div>
-                <div class="map-place-foot tabular">
-                  <span>${escapeHtml(ratingText)}</span>
-                  <a
-                    href="${escapeHtml(mapsUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="map-place-link"
-                  >
-                    Google Maps ↗
-                  </a>
-                </div>
-              `;
-
-              const linkEl = card.querySelector('.map-place-link');
-              linkEl.addEventListener('click', (ev) => ev.stopPropagation());
-
-              const selectPlace = () => {
-                gmpMarkers.forEach((m) => {
-                  m.pinEl.classList.remove('active');
-                  m.card.classList.remove('active');
-                });
-                pinEl.classList.add('active');
-                card.classList.add('active');
-                if (place.location) {
-                  gmpMap.panTo(place.location);
-                  if ((gmpMap.getZoom() || 9) < 11) gmpMap.setZoom(11);
-                }
-                const infoContent = document.createElement('div');
-                infoContent.style.maxWidth = '240px';
-                infoContent.style.fontFamily = 'var(--font-body)';
-                infoContent.innerHTML = `
-                  <div style="font-weight:700;font-size:14px;color:#151c17;margin-bottom:4px;">${escapeHtml(name)}</div>
-                  <div style="font-size:12.5px;color:#536058;margin-bottom:6px;">${escapeHtml(addr)}</div>
-                  <div style="font-size:12px;color:#1f4a2e;font-weight:600;margin-bottom:6px;">${escapeHtml(ratingText)}</div>
-                  <a href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer" style="font-size:12.5px;font-weight:700;color:#1f4a2e;text-decoration:underline;">Visa vägbeskrivning i Google Maps ↗</a>
-                `;
-                gmpInfoWindow.setContent(infoContent);
-                gmpInfoWindow.open({ map: gmpMap, anchor: marker, shouldFocus: false });
-              };
-
-              marker.addListener('click', selectPlace);
-              card.addEventListener('click', selectPlace);
-
-              gmpMarkers.push({ marker, pinEl, card, place });
-              mapPlacesListEl.appendChild(card);
-
-              if (place.location) {
-                bounds.extend(place.location);
-              }
-              if (idx === 0) {
-                // Keep overview bounds visible first
-              }
-            });
-
-            if (places.length > 1) {
-              gmpMap.fitBounds(bounds, 48);
-            } else if (places[0].location) {
-              gmpMap.setCenter(places[0].location);
-              gmpMap.setZoom(12);
-            }
-          } catch (err) {
-            if (isQuotaError(err)) {
-              window.dispatchEvent(new CustomEvent('gmp-quota-exceeded'));
-              mapPlacesListEl.innerHTML =
-                '<div class="map-status-msg">Google Maps-kvoten är nådd för tillfället. Du kan ändå utforska platser direkt på app.crazycamper.org.</div>';
-            } else if (err?.message === 'MISSING_API_KEY') {
-              mapPlacesListEl.innerHTML =
-                '<div class="map-status-msg">Google Maps API-nyckel saknas i miljön. Öppna app.crazycamper.org för hela kartan.</div>';
-            } else {
-              console.error('Google Maps error:', err);
-              mapPlacesListEl.innerHTML =
-                '<div class="map-status-msg">Kunde inte hämta ställplatser just nu. Kontrollera anslutningen och försök igen.</div>';
-            }
-          }
-        }
-
-        function openStallplatsMapModal(destId = state.activeDestId) {
-          const dest = getDestById(destId);
-          gmpActiveDestId = dest.id;
-          mapSearchInputEl.value = '';
-          renderMapDestTabs();
-          openModal(mapModalEl);
-          updateOnlineStatusUI();
-          if (!state.isOnline) {
-            mapPlacesListEl.innerHTML =
-              '<div class="map-status-msg">📴 Du är offline just nu. Ställplatskartan kräver internetuppkoppling, men du kan fortsätta packa och spela helt offline!</div>';
-            return;
-          }
-          // Slight delay ensures modal layout has painted non-zero dimensions before map bounds fit
-          setTimeout(() => {
-            void searchCampsitesForDestination(dest);
-          }, 80);
-        }
-
-        mapSearchFormEl.addEventListener('submit', (ev) => {
-          ev.preventDefault();
-          const dest = getDestById(gmpActiveDestId);
-          void searchCampsitesForDestination(dest, mapSearchInputEl.value);
-        });
-
-        document.getElementById('closeMapModalBtn').addEventListener('click', () => {
-          closeModal(mapModalEl);
-        });
-        document.getElementById('navMapBtn').addEventListener('click', () => {
-          openStallplatsMapModal(state.activeDestId);
-        });
-        document.getElementById('footerMapLink').addEventListener('click', () => {
-          openStallplatsMapModal(state.activeDestId);
-        });
-        mapModalEl.addEventListener('click', (ev) => {
-          if (ev.target === mapModalEl) closeModal(mapModalEl);
-        });
 
         /* ===================== MODAL HELPERS ===================== */
         function openModal(el) {
@@ -8817,7 +8224,7 @@
         window.addEventListener('online', () => {
           state.isOnline = true;
           updateOnlineStatusUI();
-          showToast('🌐 Du är online igen! Ställplatskartan och app.crazycamper.org är tillgängliga.');
+          showToast('🌐 Du är online igen! app.crazycamper.org och molnfunktioner är tillgängliga.');
         });
 
         window.addEventListener('offline', () => {
@@ -9427,7 +8834,6 @@
             closeModal(dom.simModal);
             closeModal(dom.proModal);
             closeModal(dom.helpModal);
-            closeModal(mapModalEl);
             closeModal(recordsModalEl);
             closeModal(iosInstallModalEl);
             closeModal(proCongratsModalEl);
