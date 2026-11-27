@@ -1,0 +1,181 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 1 / Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ===================== GLOBAL HELPER PRIMITIVES =====================
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isBootstrappedAdmin() {
+      return isVerifiedUser() && request.auth.token.email == 'jerker70@gmail.com';
+    }
+
+    function isAdmin() {
+      return isBootstrappedAdmin() ||
+        (isVerifiedUser() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() >= 3 &&
+        email.size() <= 160 &&
+        email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // ===================== VALIDATION BLUEPRINTS =====================
+    function isValidProPurchase(data) {
+      return data.keys().hasAll([
+          'customerName',
+          'customerEmail',
+          'source',
+          'status',
+          'amountSek',
+          'bonusCode',
+          'note',
+          'createdByUid',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'customerName',
+          'customerEmail',
+          'source',
+          'status',
+          'amountSek',
+          'bonusCode',
+          'note',
+          'createdByUid',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        data.customerName is string &&
+        data.customerName.size() >= 1 &&
+        data.customerName.size() <= 120 &&
+        isValidEmail(data.customerEmail) &&
+        data.source is string &&
+        data.source.size() <= 24 &&
+        data.source in ['stripe', 'code', 'admin_grant', 'manual'] &&
+        data.status is string &&
+        data.status.size() <= 16 &&
+        data.status in ['active', 'revoked'] &&
+        data.amountSek is number &&
+        data.amountSek >= 0 &&
+        data.amountSek <= 9999 &&
+        data.bonusCode is string &&
+        data.bonusCode.size() <= 40 &&
+        data.note is string &&
+        data.note.size() <= 400 &&
+        isValidId(data.createdByUid) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidAdminUser(data) {
+      return data.keys().hasAll(['email', 'role', 'createdAt']) &&
+        data.keys().hasOnly(['email', 'role', 'createdAt']) &&
+        isValidEmail(data.email) &&
+        data.role is string &&
+        data.role.size() <= 16 &&
+        data.role == 'admin' &&
+        data.createdAt is timestamp;
+    }
+
+    // ===================== COLLECTION: /pro_purchases/{purchaseId} =====================
+    // Contains buyer PII (customerName, customerEmail). Strictly isolated to verified admin or creator.
+    match /pro_purchases/{purchaseId} {
+      // Single-document read: Admin or verified creator
+      allow get: if isValidId(purchaseId) &&
+        isVerifiedUser() &&
+        (isAdmin() || existing().createdByUid == request.auth.uid);
+
+      // List query (Pillar 8: zero get()/exists() inside list; rule enforces boundary directly)
+      allow list: if isBootstrappedAdmin() ||
+        (isVerifiedUser() && existing().createdByUid == request.auth.uid);
+
+      // Create: Verified admin can record any Pro purchase/grant; verified buyer can record own Stripe/code purchase
+      allow create: if isValidId(purchaseId) &&
+        isVerifiedUser() &&
+        isValidProPurchase(incoming()) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time &&
+        incoming().createdByUid == request.auth.uid &&
+        (
+          isAdmin() ||
+          (
+            incoming().status == 'active' &&
+            incoming().source in ['stripe', 'code'] &&
+            incoming().customerEmail == request.auth.token.email
+          )
+        );
+
+      // Update: Strictly admin-only, preserving immutable createdAt & createdByUid and enforcing server timestamp
+      allow update: if isValidId(purchaseId) &&
+        isVerifiedUser() &&
+        isValidProPurchase(incoming()) &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().createdByUid == existing().createdByUid &&
+        incoming().updatedAt == request.time &&
+        (
+          isAdmin() &&
+          incoming().diff(existing()).affectedKeys().hasOnly([
+            'customerName',
+            'customerEmail',
+            'source',
+            'status',
+            'amountSek',
+            'bonusCode',
+            'note',
+            'updatedAt'
+          ])
+        );
+
+      // Delete: Strictly admin-only
+      allow delete: if isValidId(purchaseId) && isAdmin();
+    }
+
+    // ===================== COLLECTION: /admins/{adminUid} =====================
+    // Trusted admin roster. Only bootstrapped verified admin can manage entries.
+    match /admins/{adminUid} {
+      allow get: if isValidId(adminUid) &&
+        isVerifiedUser() &&
+        (isBootstrappedAdmin() || request.auth.uid == adminUid);
+
+      allow list: if isBootstrappedAdmin();
+
+      allow create: if isValidId(adminUid) &&
+        isBootstrappedAdmin() &&
+        isValidAdminUser(incoming()) &&
+        incoming().createdAt == request.time;
+
+      allow update: if isValidId(adminUid) &&
+        isBootstrappedAdmin() &&
+        isValidAdminUser(incoming()) &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['email', 'role']);
+
+      allow delete: if isValidId(adminUid) && isBootstrappedAdmin();
+    }
+  }
+}

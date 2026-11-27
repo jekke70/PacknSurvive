@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "ProPurchase": {
+      "title": "ProPurchase",
+      "description": "A recorded Packa & Överlev Pro purchase or admin grant.",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "Display name or buyer name.",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "customerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Buyer email address.",
+          "minLength": 3,
+          "maxLength": 160,
+          "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+        },
+        "source": {
+          "type": "string",
+          "description": "Origin of the Pro entitlement.",
+          "enum": ["stripe", "code", "admin_grant", "manual"],
+          "maxLength": 24
+        },
+        "status": {
+          "type": "string",
+          "description": "Current entitlement status.",
+          "enum": ["active", "revoked"],
+          "maxLength": 16
+        },
+        "amountSek": {
+          "type": "number",
+          "description": "Purchase amount in SEK (e.g., 29 for Stripe checkout, 0 for admin grant)."
+        },
+        "bonusCode": {
+          "type": "string",
+          "description": "Campsite Swe bonus coupon code associated with the purchase.",
+          "maxLength": 40
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional admin or purchase note (e.g., Stripe receipt reference).",
+          "maxLength": 400
+        },
+        "createdByUid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the user or admin who created the record.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the record was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the record was last updated."
+        }
+      },
+      "required": [
+        "customerName",
+        "customerEmail",
+        "source",
+        "status",
+        "amountSek",
+        "bonusCode",
+        "note",
+        "createdByUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized admin record keyed by Firebase Auth UID.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Admin email address.",
+          "minLength": 3,
+          "maxLength": 160,
+          "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+        },
+        "role": {
+          "type": "string",
+          "description": "Admin role identifier.",
+          "enum": ["admin"],
+          "maxLength": 16
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when admin access was recorded."
+        }
+      },
+      "required": ["email", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/pro_purchases/{purchaseId}": {
+      "schema": { "$ref": "#/entities/ProPurchase" },
+      "description": "Stores Packa & Överlev Pro purchases and admin-managed grants."
+    },
+    "/admins/{adminUid}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Stores authorized admin UIDs for role-based access control."
+    }
+  }
+}

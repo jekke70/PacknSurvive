@@ -367,52 +367,103 @@
         box-shadow: 0 1px 3px rgba(21, 28, 23, 0.08);
       }
 
-      .dest-submenu-tools {
+      .dest-dropdown-row {
         display: flex;
         align-items: center;
-        gap: 8px;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 10px 12px;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-hairline);
+        border-radius: var(--radius-md);
+      }
+
+      .dest-dropdown-main {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1 1 360px;
+        min-width: 0;
         flex-wrap: wrap;
       }
 
-      .dest-search-input {
-        padding: 7px 12px;
-        border: 1px solid var(--border-hairline);
-        border-radius: var(--radius-sm);
+      .dest-dropdown-label {
         font-size: 13px;
-        background: var(--bg-surface);
+        font-weight: 700;
         color: var(--text-primary);
-        min-width: 190px;
+        white-space: nowrap;
       }
 
-      .dest-search-input:focus {
-        outline: 2px solid var(--brand-forest-border);
+      .dest-dropdown-control {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex: 1 1 260px;
+        min-width: 0;
+      }
+
+      .dest-select-main {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        padding: 10px 36px 10px 13px;
+        border: 1.5px solid var(--border-strong);
+        border-radius: var(--radius-sm);
+        background-color: var(--bg-surface);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231f4a2e' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 11px center;
+        background-size: 16px 16px;
+        appearance: none;
+        -webkit-appearance: none;
+        color: var(--text-primary);
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .dest-select-main:hover {
         border-color: var(--brand-forest);
       }
 
-      .dest-cards {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        max-height: 360px;
-        overflow-y: auto;
-        padding-right: 4px;
+      .dest-select-main:focus {
+        outline: none;
+        border-color: var(--brand-forest);
+        box-shadow: 0 0 0 3px var(--brand-forest-soft);
       }
 
-      .dest-cards.expanded {
-        max-height: none;
-        overflow-y: visible;
-        padding-right: 0;
+      .dest-step-btns {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
       }
 
-      .dest-cards-empty {
-        grid-column: 1 / -1;
-        padding: 20px;
-        text-align: center;
-        font-size: 13.5px;
+      .dest-step-btn {
+        min-width: 38px;
+        height: 40px;
+        padding: 0 10px;
+        font-size: 18px;
+        line-height: 1;
+        justify-content: center;
+      }
+
+      .dest-dropdown-summary {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-size: 12.5px;
+        font-weight: 600;
         color: var(--text-secondary);
-        background: var(--bg-subtle);
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--border-hairline);
+      }
+
+      .dest-summary-status {
+        color: var(--brand-forest);
+        font-weight: 700;
       }
 
       .dest-card {
@@ -1786,16 +1837,15 @@
         .dest-strip {
           padding: 14px;
         }
-        .dest-cards {
-          grid-template-columns: 1fr;
-          max-height: 320px;
+        .dest-dropdown-row {
+          padding: 10px;
         }
-        .dest-search-input {
-          width: 100%;
-          min-width: 0;
+        .dest-dropdown-main {
+          flex-basis: 100%;
         }
-        .dest-submenu-tools {
+        .dest-dropdown-summary {
           width: 100%;
+          justify-content: space-between;
         }
         .active-dest-brief {
           padding: 12px 16px;
@@ -2674,6 +2724,419 @@
         text-underline-offset: 2px;
       }
 
+      /* ===================== SINGLE ACTIVE DESTINATION CARD ===================== */
+      .active-dest-showcase {
+        background: var(--brand-forest-soft);
+        border: 1.5px solid var(--brand-forest);
+        border-radius: var(--radius-md);
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        box-shadow: 0 2px 8px rgba(31, 74, 46, 0.08);
+      }
+
+      .active-dest-showcase-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .active-dest-showcase-heading {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .active-dest-step-tag {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--brand-forest);
+        background: var(--bg-surface);
+        border: 1px solid var(--brand-forest-border);
+        border-radius: 6px;
+        padding: 2px 8px;
+      }
+
+      .active-dest-showcase-name {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 16.5px;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .active-dest-showcase-desc {
+        margin: 0;
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.45;
+      }
+
+      .active-dest-showcase-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding-top: 8px;
+        border-top: 1px solid rgba(31, 74, 46, 0.14);
+        font-size: 12.5px;
+        color: var(--text-secondary);
+      }
+
+      .active-dest-progress-hint {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--brand-forest);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .next-dest-unlocked-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: var(--radius-sm);
+        background: #ecfdf3;
+        border: 1.5px solid var(--brand-forest-border);
+        color: var(--brand-forest);
+        font-size: 13.5px;
+        font-weight: 700;
+        margin: 4px 0 6px;
+      }
+
+      /* ===================== OPTIONAL BUYER PRO GOOGLE SYNC ===================== */
+      .pro-sync-box {
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .pro-sync-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .pro-sync-desc {
+        margin: 0;
+        font-size: 12.5px;
+        line-height: 1.45;
+        color: var(--text-secondary);
+      }
+
+      .pro-sync-status {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--brand-forest);
+      }
+
+      /* ===================== ADMIN PANEL MODAL ===================== */
+      .admin-modal-card {
+        max-width: 780px;
+      }
+
+      .admin-auth-box {
+        padding: 20px;
+        border-radius: var(--radius-md);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .admin-denied-box {
+        padding: 18px;
+        border-radius: var(--radius-md);
+        background: var(--danger-bg);
+        border: 1px solid var(--danger-border);
+        color: var(--danger);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        font-size: 13.5px;
+      }
+
+      .admin-header-strip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 10px 14px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-hairline);
+        font-size: 13px;
+      }
+
+      .admin-pro-card {
+        padding: 14px 16px;
+        border-radius: var(--radius-md);
+        background: var(--brand-forest-soft);
+        border: 1.5px solid var(--brand-forest-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .admin-pro-card-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .admin-pro-card-title {
+        font-family: var(--font-display);
+        font-size: 14.5px;
+        font-weight: 800;
+        color: var(--brand-forest);
+      }
+
+      .admin-pro-card-sub {
+        font-size: 12.5px;
+        color: var(--text-secondary);
+      }
+
+      .admin-kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .admin-kpi-box {
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-surface);
+        border: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .admin-kpi-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .admin-kpi-val {
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .admin-form-box {
+        padding: 14px;
+        border-radius: var(--radius-md);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .admin-section-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .admin-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .admin-input,
+      .admin-select {
+        width: 100%;
+        padding: 9px 11px;
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--bg-surface);
+        color: var(--text-primary);
+        font-size: 13px;
+        font-family: var(--font-body);
+      }
+
+      .admin-input:focus,
+      .admin-select:focus {
+        outline: none;
+        border-color: var(--brand-forest);
+        box-shadow: 0 0 0 2px var(--brand-forest-soft);
+      }
+
+      .admin-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .admin-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-height: 320px;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+
+      .admin-row {
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-surface);
+        border: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .admin-row.is-revoked {
+        background: #faf9f8;
+        opacity: 0.85;
+      }
+
+      .admin-row-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .admin-row-buyer {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .admin-row-name {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--text-primary);
+      }
+
+      .admin-row-email {
+        font-size: 12.5px;
+        color: var(--text-secondary);
+      }
+
+      .admin-row-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .admin-badge {
+        font-size: 11.5px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+        border: 1px solid var(--border-hairline);
+        background: var(--bg-subtle);
+        color: var(--text-secondary);
+      }
+
+      .admin-badge.active {
+        background: #ecfdf3;
+        border-color: var(--brand-forest-border);
+        color: var(--brand-forest);
+      }
+
+      .admin-badge.revoked {
+        background: var(--danger-bg);
+        border-color: var(--danger-border);
+        color: var(--danger);
+      }
+
+      .admin-row-meta {
+        font-size: 12px;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .admin-row-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .admin-btn-sm {
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 6px;
+        border: 1px solid var(--border-strong);
+        background: var(--bg-surface);
+        color: var(--text-primary);
+        cursor: pointer;
+      }
+
+      .admin-btn-sm:hover {
+        background: var(--bg-subtle);
+      }
+
+      .admin-btn-sm.danger {
+        color: var(--danger);
+        border-color: var(--danger-border);
+        background: var(--danger-bg);
+      }
+
+      .admin-note-edit-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .admin-empty {
+        padding: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-secondary);
+        background: var(--bg-subtle);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-hairline);
+      }
+
+      @media (max-width: 640px) {
+        .admin-kpi-grid,
+        .admin-form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 760px) {
         .topbar-offline-bar {
           padding: 7px 14px;
@@ -2841,23 +3304,39 @@
               Svår / Expert · Pro (0/20)
             </button>
           </div>
-
-          <div class="dest-submenu-tools">
-            <input
-              type="search"
-              id="destSearchInput"
-              class="dest-search-input"
-              placeholder="Sök bana eller område..."
-              autocomplete="off"
-              aria-label="Sök destination"
-            />
-            <button type="button" class="btn-secondary" id="toggleDestExpandBtn">
-              Visa alla rader
-            </button>
-          </div>
         </div>
 
-        <div class="dest-cards" id="destinationCards"></div>
+        <div class="dest-dropdown-row">
+          <div class="dest-dropdown-main">
+            <label for="destinationSelect" class="dest-dropdown-label">🗺️ Välj resmål:</label>
+            <div class="dest-dropdown-control">
+              <select id="destinationSelect" class="dest-select-main" aria-label="Välj destination"></select>
+              <div class="dest-step-btns">
+                <button
+                  type="button"
+                  class="btn-secondary dest-step-btn"
+                  id="prevDestBtn"
+                  title="Föregående destination"
+                  aria-label="Föregående destination"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  class="btn-secondary dest-step-btn"
+                  id="nextDestBtn"
+                  title="Nästa destination"
+                  aria-label="Nästa destination"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="dest-dropdown-summary tabular" id="destDropdownSummary"></div>
+        </div>
+
+        <div id="activeDestShowcase" class="active-dest-showcase" aria-live="polite"></div>
       </section>
 
       <!-- LEFT COLUMN: CAMPERVAN CARGO GRID & METERS -->
@@ -3043,6 +3522,9 @@
         <button type="button" class="footer-link" id="footerPrivacyLink">
           Integritetspolicy
         </button>
+        <button type="button" class="footer-link" id="footerAdminLink">
+          Admin
+        </button>
       </div>
     </footer>
 
@@ -3173,6 +3655,17 @@
               </a>
             </div>
           </div>
+
+          <div id="proSyncBox" class="pro-sync-box" style="display: none;">
+            <div class="pro-sync-title">☁️ Säkerhetskopiera ditt Pro-köp (valfritt)</div>
+            <p class="pro-sync-desc">
+              Koppla ditt köp till ditt Google-konto så kan du återställa Pro på nya enheter.
+            </p>
+            <button type="button" class="btn-secondary js-sync-pro-google" data-feedback-target="proSyncFeedback" style="width: 100%; justify-content: center;">
+              Koppla Pro-köp med Google-konto
+            </button>
+            <div class="pro-sync-status" id="proSyncFeedback" role="status"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -3219,6 +3712,17 @@
                 Öppna Campsite Swe (app.crazycamper.org) ↗
               </a>
             </div>
+          </div>
+
+          <div class="pro-sync-box">
+            <div class="pro-sync-title">☁️ Registrera &amp; spara ditt Pro-köp på Google (valfritt)</div>
+            <p class="pro-sync-desc">
+              Vill du kunna återställa Pro på mobil eller ny dator? Koppla ditt köp till ditt Google-konto med ett klick.
+            </p>
+            <button type="button" class="btn-secondary js-sync-pro-google" data-feedback-target="congratsSyncFeedback" style="width: 100%; justify-content: center;">
+              Koppla Pro-köp med Google-konto
+            </button>
+            <div class="pro-sync-status" id="congratsSyncFeedback" role="status"></div>
           </div>
 
           <button type="button" class="btn-secondary" id="closeProCongratsPlayBtn" style="width: 100%; justify-content: center;">
@@ -3582,10 +4086,167 @@
       </div>
     </div>
 
+    <!-- ADMIN PANEL MODAL (ENDEST FÖR ÄGAREN) -->
+    <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+      <div class="modal-card admin-modal-card">
+        <div class="modal-head">
+          <div class="modal-title-wrap">
+            <span class="modal-icon-badge" style="background: var(--brand-forest-soft); color: var(--brand-forest);">🛡️</span>
+            <div>
+              <h3 class="modal-title" id="adminModalTitle">Adminpanel · Packa &amp; Överlev</h3>
+              <p class="modal-subtitle">Hantera Pro-köpare &amp; egen gratis Pro-åtkomst</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close" id="closeAdminModalBtn" aria-label="Stäng">×</button>
+        </div>
+        <div class="modal-body">
+          <!-- STATE 1: NOT SIGNED IN -->
+          <div id="adminSignedOutView" class="admin-auth-box">
+            <div style="font-size: 32px; line-height: 1;">🔐</div>
+            <div style="font-weight: 700; font-size: 15px; color: var(--text-primary);">
+              Logga in som administratör
+            </div>
+            <p style="margin: 0; font-size: 13px; color: var(--text-secondary); max-width: 420px;">
+              Adminpanelen är låst till ditt ägarkonto och skyddad av Firebase Authentication samt Firestore-säkerhetsregler.
+            </p>
+            <button type="button" class="btn-primary" id="adminSignInBtn">
+              Logga in med Google
+            </button>
+            <div id="adminAuthError" class="code-feedback error" role="alert"></div>
+          </div>
+
+          <!-- STATE 2: SIGNED IN AS NON-ADMIN -->
+          <div id="adminDeniedView" class="admin-denied-box" style="display: none;">
+            <div style="font-size: 28px; line-height: 1;">⛔</div>
+            <strong>Åtkomst nekad</strong>
+            <p id="adminDeniedEmailText" style="margin: 0;"></p>
+            <button type="button" class="btn-secondary" id="adminDeniedSignOutBtn">
+              Logga ut &amp; byt konto
+            </button>
+          </div>
+
+          <!-- STATE 3: VERIFIED ADMIN DASHBOARD -->
+          <div id="adminDashboardView" style="display: none; flex-direction: column; gap: 14px;">
+            <div class="admin-header-strip">
+              <span>✓ Inloggad som <strong id="adminEmailDisplay"></strong></span>
+              <button type="button" class="admin-btn-sm" id="adminSignOutBtn">Logga ut</button>
+            </div>
+
+            <!-- FREE ADMIN PRO ACCESS TOGGLE -->
+            <div class="admin-pro-card">
+              <div class="admin-pro-card-info">
+                <span class="admin-pro-card-title" id="adminProStatusTitle">Gratis Pro-åtkomst för admin</span>
+                <span class="admin-pro-card-sub" id="adminProStatusSub">
+                  Aktivera Pro-versionen direkt utan att betala (alla 20 Europa-banor &amp; 6×5 lastutrymme).
+                </span>
+              </div>
+              <button type="button" class="btn-primary" id="adminToggleProBtn">
+                Aktivera Pro gratis
+              </button>
+            </div>
+
+            <!-- LIVE KPIS -->
+            <div class="admin-kpi-grid tabular">
+              <div class="admin-kpi-box">
+                <span class="admin-kpi-label">Totalt registrerade</span>
+                <span class="admin-kpi-val" id="adminKpiTotal">0</span>
+              </div>
+              <div class="admin-kpi-box">
+                <span class="admin-kpi-label">Aktiva Pro-licenser</span>
+                <span class="admin-kpi-val" id="adminKpiActive" style="color: var(--brand-forest);">0</span>
+              </div>
+              <div class="admin-kpi-box">
+                <span class="admin-kpi-label">Registrerad intäkt</span>
+                <span class="admin-kpi-val" id="adminKpiRevenue">0 kr</span>
+              </div>
+            </div>
+
+            <!-- ADD / REGISTER PRO BUYER FORM -->
+            <form class="admin-form-box" id="adminAddPurchaseForm">
+              <h4 class="admin-section-title">➕ Registrera Pro-köp / ge Pro-åtkomst</h4>
+              <div class="admin-form-grid">
+                <input
+                  type="text"
+                  id="adminNewName"
+                  class="admin-input"
+                  placeholder="Kundens namn *"
+                  maxlength="120"
+                  required
+                />
+                <input
+                  type="email"
+                  id="adminNewEmail"
+                  class="admin-input"
+                  placeholder="Kundens e-post *"
+                  maxlength="160"
+                  required
+                />
+                <select id="adminNewSource" class="admin-select" aria-label="Källa">
+                  <option value="stripe">Stripe-köp (29 kr)</option>
+                  <option value="admin_grant">Admin-gåva / gratis (0 kr)</option>
+                  <option value="code">Upplåsningskod</option>
+                  <option value="manual">Manuell registrering</option>
+                </select>
+                <input
+                  type="number"
+                  id="adminNewAmount"
+                  class="admin-input"
+                  placeholder="Belopp (kr)"
+                  min="0"
+                  max="9999"
+                  value="29"
+                  required
+                />
+              </div>
+              <input
+                type="text"
+                id="adminNewNote"
+                class="admin-input"
+                placeholder="Valfri anteckning (t.ex. Stripe-kvittonummer eller kommentar)"
+                maxlength="400"
+              />
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <span id="adminFormFeedback" class="code-feedback" role="status"></span>
+                <button type="submit" class="btn-primary" id="adminAddSubmitBtn">
+                  Spara Pro-kund
+                </button>
+              </div>
+            </form>
+
+            <!-- PRO BUYERS LIST -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <h4 class="admin-section-title">👥 Pro-köpare &amp; licenser (realtid)</h4>
+                <div class="admin-toolbar">
+                  <input
+                    type="search"
+                    id="adminSearchInput"
+                    class="admin-input"
+                    placeholder="Sök namn, e-post eller anteckning..."
+                    style="width: 220px;"
+                  />
+                  <select id="adminStatusFilter" class="admin-select" style="width: auto;">
+                    <option value="all">Alla statusar</option>
+                    <option value="active">Endast aktiva</option>
+                    <option value="revoked">Endast återkallade</option>
+                  </select>
+                </div>
+              </div>
+              <div id="adminPurchasesList" class="admin-list" aria-live="polite">
+                <div class="admin-empty">Laddar Pro-köpare från Firestore...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- TOAST -->
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script type="module">
+      import * as fb from './src/firebase.ts';
+
       // Tier 1 Demo Key Quota Defense (early global registration)
       window.gm_authFailure = () => {
         window.dispatchEvent(new CustomEvent('gmp-quota-exceeded'));
@@ -5867,7 +6528,9 @@
 
         /* ===================== DOM REFERENCES ===================== */
         const dom = {
-          destCards: document.getElementById('destinationCards'),
+          destinationSelect: document.getElementById('destinationSelect'),
+          destDropdownSummary: document.getElementById('destDropdownSummary'),
+          activeDestShowcase: document.getElementById('activeDestShowcase'),
           activeDestHeading: document.getElementById('activeDestHeading'),
           activeDestMeta: document.getElementById('activeDestMeta'),
           gridDimensionsLabel: document.getElementById('gridDimensionsLabel'),
@@ -5931,8 +6594,8 @@
         const tierTabEasyEl = document.getElementById('tierTabEasy');
         const tierTabMediumEl = document.getElementById('tierTabMedium');
         const tierTabHardEl = document.getElementById('tierTabHard');
-        const destSearchInputEl = document.getElementById('destSearchInput');
-        const toggleDestExpandBtnEl = document.getElementById('toggleDestExpandBtn');
+        const prevDestBtnEl = document.getElementById('prevDestBtn');
+        const nextDestBtnEl = document.getElementById('nextDestBtn');
         const activeDestDescEl = document.getElementById('activeDestDesc');
         const activeRuleBoxEl = document.getElementById('activeRuleBox');
         const activeRuleTitleEl = document.getElementById('activeRuleTitle');
@@ -6060,15 +6723,19 @@
 
         const proStripeCheckoutBtnEl = document.getElementById('proStripeCheckoutBtn');
         const proBonusBoxEl = document.getElementById('proBonusBox');
+        const proSyncBoxEl = document.getElementById('proSyncBox');
         const proCongratsModalEl = document.getElementById('proCongratsModal');
 
         function renderProHeader() {
           if (state.isPro) {
             dom.openProBtn.classList.add('unlocked');
-            dom.proBtnLabelLong.textContent = 'Packa & Överlev Pro · Aktiv';
-            dom.proBtnLabelShort.textContent = 'Pro · Aktiv';
+            dom.proBtnLabelLong.textContent = state.isAdminAuth
+              ? 'Packa & Överlev Pro · Admin'
+              : 'Packa & Överlev Pro · Aktiv';
+            dom.proBtnLabelShort.textContent = state.isAdminAuth ? 'Pro · Admin' : 'Pro · Aktiv';
             dom.proUnlockedBanner.style.display = 'block';
             if (proBonusBoxEl) proBonusBoxEl.style.display = 'flex';
+            if (proSyncBoxEl) proSyncBoxEl.style.display = 'flex';
             if (proStripeCheckoutBtnEl) proStripeCheckoutBtnEl.style.display = 'none';
             if (dom.proCodeForm) dom.proCodeForm.style.display = 'none';
           } else {
@@ -6077,9 +6744,58 @@
             dom.proBtnLabelShort.textContent = 'Packa & Överlev Pro (29 kr)';
             dom.proUnlockedBanner.style.display = 'none';
             if (proBonusBoxEl) proBonusBoxEl.style.display = 'none';
+            if (proSyncBoxEl) proSyncBoxEl.style.display = 'none';
             if (proStripeCheckoutBtnEl) proStripeCheckoutBtnEl.style.display = 'inline-flex';
             if (dom.proCodeForm) dom.proCodeForm.style.display = 'flex';
           }
+        }
+
+        function getNextUncompletedDest(fromDestId = null) {
+          const unlocked = DESTINATIONS.filter((d) => !d.proOnly || state.isPro);
+          if (unlocked.length === 0) return null;
+          if (fromDestId) {
+            const startIdx = unlocked.findIndex((d) => d.id === fromDestId);
+            if (startIdx >= 0) {
+              for (let offset = 1; offset < unlocked.length; offset++) {
+                const candidate = unlocked[(startIdx + offset) % unlocked.length];
+                if (!state.completed[candidate.id]) return candidate;
+              }
+            }
+          }
+          return unlocked.find((d) => d.id !== fromDestId && !state.completed[d.id]) || null;
+        }
+
+        function getFirstUncompletedInTier(tier) {
+          const list = DESTINATIONS.filter((d) => d.tier === tier);
+          if (list.length === 0) return null;
+          return list.find((d) => !state.completed[d.id]) || list[0];
+        }
+
+        function selectDestinationById(destId) {
+          const d = DESTINATIONS.find((x) => x.id === destId);
+          if (!d) return false;
+          const isChallengedDest =
+            state.activeChallenge && state.activeChallenge.destId === d.id;
+          const isLocked = d.proOnly && !state.isPro && !isChallengedDest;
+
+          if (isLocked) {
+            openProModal();
+            showToast('Lås upp Packa & Överlev Pro för att spela de 20 Pro-banorna i Europa.');
+            renderDestinations();
+            return false;
+          }
+          if (state.activeChallenge && state.activeChallenge.destId !== d.id) {
+            state.activeChallenge = null;
+            clearChallengeUrlParams();
+            showToast('Utmaningen avslutades när du bytte destination.');
+          }
+          state.activeDestId = d.id;
+          if (state.draftMode) {
+            generateDraftSelection(d, true);
+          }
+          SFX.rotate();
+          renderAll();
+          return true;
         }
 
         function renderDestinations() {
@@ -6098,101 +6814,200 @@
             tab.setAttribute('aria-selected', isSel ? 'true' : 'false');
           });
 
-          dom.destCards.classList.toggle('expanded', state.destListExpanded);
-          toggleDestExpandBtnEl.textContent = state.destListExpanded
-            ? 'Kompakt vy'
-            : 'Visa alla rader';
+          const selectEl = dom.destinationSelect;
+          if (!selectEl) return;
+          selectEl.innerHTML = '';
 
-          const q = (state.destSearchQuery || '').trim().toLowerCase();
-          const filtered = DESTINATIONS.filter((d) => {
-            if (state.destTierFilter !== 'all' && d.tier !== state.destTierFilter) return false;
-            if (!q) return true;
-            const hay = `${d.name} ${d.shortName} ${d.region} ${d.difficulty} ${d.description} ${d.specialRule?.label || ''}`.toLowerCase();
-            return hay.includes(q);
-          });
+          const tierGroups = [
+            { tier: 'easy', label: `Lätt · Gratis – Sverige & Danmark (${counts.easy}/${easyTotal})` },
+            { tier: 'medium', label: `Medel · Gratis – Norden & Nordeuropa (${counts.medium}/${mediumTotal})` },
+            { tier: 'hard', label: `Svår / Expert · Pro – Europa & Extremväder (${counts.hard}/${hardTotal})` },
+          ];
 
-          dom.destCards.innerHTML = '';
-          if (filtered.length === 0) {
-            dom.destCards.innerHTML =
-              '<div class="dest-cards-empty">Inga destinationer matchade din sökning. Prova ett annat sökord eller byt flik.</div>';
-            return;
+          const visibleGroups =
+            state.destTierFilter === 'all'
+              ? tierGroups
+              : tierGroups.filter((g) => g.tier === state.destTierFilter);
+
+          const activeDest = getDestById(state.activeDestId);
+          const activeInFiltered = visibleGroups.some((g) => g.tier === activeDest.tier);
+          const previewDest =
+            !activeInFiltered && state.destTierFilter !== 'all'
+              ? getFirstUncompletedInTier(state.destTierFilter) || activeDest
+              : activeDest;
+          const displayId = previewDest.id;
+
+          for (const g of visibleGroups) {
+            const og = document.createElement('optgroup');
+            og.label = g.label;
+            for (const d of DESTINATIONS.filter((x) => x.tier === g.tier)) {
+              const isChallengedDest =
+                state.activeChallenge && state.activeChallenge.destId === d.id;
+              const isLocked = d.proOnly && !state.isPro && !isChallengedDest;
+              const done = state.completed[d.id];
+              const bestRec =
+                Array.isArray(state.records[d.id]) && state.records[d.id].length > 0
+                  ? state.records[d.id][0]
+                  : null;
+
+              const opt = document.createElement('option');
+              opt.value = d.id;
+
+              const prefix = isLocked
+                ? '🔒 '
+                : isChallengedDest
+                  ? '🏆 '
+                  : done
+                    ? '✓ '
+                    : '';
+              const suffix = isLocked
+                ? ' · Pro'
+                : bestRec
+                  ? ` (★ ${bestRec.score} p)`
+                  : '';
+
+              opt.textContent = `${prefix}${d.name} — ${d.region}${suffix}`;
+              if (d.id === displayId) opt.selected = true;
+              og.appendChild(opt);
+            }
+            selectEl.appendChild(og);
           }
 
-          for (const d of filtered) {
-            const isChallengedDest =
-              state.activeChallenge && state.activeChallenge.destId === d.id;
-            const isLocked = d.proOnly && !state.isPro && !isChallengedDest;
-            const isActive = d.id === state.activeDestId;
-            const done = state.completed[d.id];
-            const bestRec =
-              Array.isArray(state.records[d.id]) && state.records[d.id].length > 0
-                ? state.records[d.id][0]
-                : null;
+          selectEl.value = displayId;
 
-            const card = document.createElement('button');
-            card.type = 'button';
-            card.className =
-              'dest-card' + (isActive ? ' active' : '') + (isLocked ? ' locked' : '');
-            card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          const showcaseDest = previewDest;
+          const isChallengedShowcase =
+            state.activeChallenge && state.activeChallenge.destId === showcaseDest.id;
+          const isShowcaseLocked =
+            showcaseDest.proOnly && !state.isPro && !isChallengedShowcase;
+          const doneShowcase = Boolean(state.completed[showcaseDest.id]);
+          const bestShowcase =
+            Array.isArray(state.records[showcaseDest.id]) &&
+            state.records[showcaseDest.id].length > 0
+              ? state.records[showcaseDest.id][0]
+              : null;
 
-            let statusHtml = '';
-            if (isLocked) {
-              statusHtml = '<span class="dest-status-text locked-label">🔒 Pro</span>';
-            } else if (isChallengedDest) {
-              statusHtml = '<span class="dest-status-text">🏆 Utmaning</span>';
-            } else if (done && bestRec) {
-              statusHtml = `<span class="dest-status-text tabular">✓ ★ ${bestRec.score} p</span>`;
-            } else if (bestRec) {
-              statusHtml = `<span class="dest-status-text tabular">★ ${bestRec.score} p</span>`;
-            } else if (done) {
-              statusHtml = '<span class="dest-status-text">✓ Klarad</span>';
-            } else if (isActive) {
-              statusHtml = '<span class="dest-status-text">Vald bana</span>';
+          // Compact status & target summary next to dropdown
+          if (dom.destDropdownSummary) {
+            let statusLabel = showcaseDest.difficulty;
+            if (isShowcaseLocked) {
+              statusLabel = '🔒 Pro-bana';
+            } else if (isChallengedShowcase) {
+              statusLabel = '🏆 Utmaning';
+            } else if (doneShowcase && bestShowcase) {
+              statusLabel = `✓ Klarad · ★ ${bestShowcase.score} p`;
+            } else if (bestShowcase) {
+              statusLabel = `★ ${bestShowcase.score} p`;
+            } else if (doneShowcase) {
+              statusLabel = '✓ Klarad';
+            }
+            dom.destDropdownSummary.innerHTML = `
+              <span class="dest-summary-status">${statusLabel}</span>
+              <span aria-hidden="true">·</span>
+              <span>🔥 ${showcaseDest.targets.warmth}</span>
+              <span>🍲 ${showcaseDest.targets.food}</span>
+              <span>🛡️ ${showcaseDest.targets.shelter}</span>
+            `;
+          }
+
+          // Render single featured active destination card (auto-advances when completed)
+          if (dom.activeDestShowcase) {
+            const destIdx = DESTINATIONS.findIndex((d) => d.id === showcaseDest.id);
+            const nextQueued = getNextUncompletedDest(showcaseDest.id);
+
+            let badgeText = 'Aktuell bana';
+            if (isShowcaseLocked) {
+              badgeText = '🔒 Packa & Överlev Pro';
+            } else if (isChallengedShowcase) {
+              badgeText = '🏆 Aktiv utmaning';
+            } else if (doneShowcase && bestShowcase) {
+              badgeText = `✓ Avklarad · ★ ${bestShowcase.score} p`;
+            } else if (bestShowcase) {
+              badgeText = `★ Bästa: ${bestShowcase.score} p`;
+            } else if (doneShowcase) {
+              badgeText = '✓ Avklarad';
             }
 
-            card.innerHTML = `
-              <div class="dest-card-top">
-                <span class="dest-name">${d.name}</span>
-                ${statusHtml}
+            let progressFooterHtml = '';
+            if (isShowcaseLocked) {
+              progressFooterHtml = `
+                <span class="active-dest-progress-hint">
+                  <span>Förhandsvisning av Pro-bana:</span>
+                  <button type="button" class="btn-primary" id="showcaseUnlockProBtn" style="padding: 6px 12px; font-size: 12px;">
+                    Lås upp Packa &amp; Överlev Pro (29 kr) →
+                  </button>
+                </span>
+              `;
+            } else if (doneShowcase && nextQueued) {
+              progressFooterHtml = `
+                <span class="active-dest-progress-hint">
+                  <span>✓ Klarad! Nästa oavklarade bana:</span>
+                  <button type="button" class="btn-mint" id="showcaseGoNextBtn" style="padding: 5px 11px; font-size: 12px;">
+                    Nästa: ${nextQueued.name} →
+                  </button>
+                </span>
+              `;
+            } else if (nextQueued) {
+              progressFooterHtml = `
+                <span class="active-dest-progress-hint">
+                  🎯 Klara den här destinationen så kommer <strong>${nextQueued.name}</strong> upp automatiskt
+                </span>
+              `;
+            } else if (!state.isPro) {
+              progressFooterHtml = `
+                <span class="active-dest-progress-hint">
+                  <span>🏆 Alla 20 gratisbanor klara!</span>
+                  <button type="button" class="btn-mint" id="showcaseUnlockProBtn" style="padding: 5px 11px; font-size: 12px;">
+                    Lås upp 20 Pro-banor →
+                  </button>
+                </span>
+              `;
+            } else {
+              progressFooterHtml = `
+                <span class="active-dest-progress-hint">
+                  🏆 Fantastiskt! Alla 40 destinationer är avklarade!
+                </span>
+              `;
+            }
+
+            dom.activeDestShowcase.style.borderStyle = isShowcaseLocked ? 'dashed' : 'solid';
+            dom.activeDestShowcase.innerHTML = `
+              <div class="active-dest-showcase-top">
+                <div class="active-dest-showcase-heading">
+                  <span class="active-dest-step-tag tabular">Destination ${destIdx + 1} av ${DESTINATIONS.length}</span>
+                  <h2 class="active-dest-showcase-name">${showcaseDest.name}</h2>
+                </div>
+                <span class="dest-status-text tabular">${badgeText}</span>
               </div>
               <div class="dest-meta">
-                <span>${d.difficulty}</span>
+                <span>${showcaseDest.difficulty}</span>
                 <span aria-hidden="true">·</span>
-                <span>${d.region}</span>
+                <span>${showcaseDest.region}</span>
               </div>
-              <div class="dest-risk">${d.description}</div>
+              <p class="active-dest-showcase-desc">${showcaseDest.description}</p>
               ${
-                d.specialRule
-                  ? `<div class="dest-rule-line">${d.specialRule.label}</div>`
+                showcaseDest.specialRule
+                  ? `<div class="dest-rule-line">${showcaseDest.specialRule.label}</div>`
                   : ''
               }
-              <div class="dest-reqs tabular">
-                <span>🔥 ${d.targets.warmth}</span>
-                <span>🍲 ${d.targets.food}</span>
-                <span>🛡️ ${d.targets.shelter}</span>
+              <div class="active-dest-showcase-foot">
+                <div class="dest-reqs tabular" style="margin: 0; padding: 0; border: 0;">
+                  <span>🔥 Värme ${showcaseDest.targets.warmth}</span>
+                  <span>🍲 Mat ${showcaseDest.targets.food}</span>
+                  <span>🛡️ Skydd ${showcaseDest.targets.shelter}</span>
+                </div>
+                ${progressFooterHtml}
               </div>
             `;
 
-            card.addEventListener('click', () => {
-              if (isLocked) {
-                openProModal();
-                showToast('Lås upp Packa & Överlev Pro för att spela de 20 Pro-banorna i Europa.');
-                return;
-              }
-              if (state.activeChallenge && state.activeChallenge.destId !== d.id) {
-                state.activeChallenge = null;
-                clearChallengeUrlParams();
-                showToast('Utmaningen avslutades när du bytte destination.');
-              }
-              state.activeDestId = d.id;
-              if (state.draftMode) {
-                generateDraftSelection(d, true);
-              }
-              SFX.rotate();
-              renderAll();
-            });
-
-            dom.destCards.appendChild(card);
+            const goNextBtn = document.getElementById('showcaseGoNextBtn');
+            if (goNextBtn && nextQueued) {
+              goNextBtn.addEventListener('click', () => selectDestinationById(nextQueued.id));
+            }
+            const unlockProBtn = document.getElementById('showcaseUnlockProBtn');
+            if (unlockProBtn) {
+              unlockProBtn.addEventListener('click', openProModal);
+            }
           }
         }
 
@@ -7308,7 +8123,18 @@
                     state.completed[dest.id] = true;
                     saveCompleted(state.completed);
                   }
-                  renderDestinations();
+
+                  const nextDest = getNextUncompletedDest(dest.id);
+                  const autoAdvanced = Boolean(won && nextDest && !activeChallenge);
+                  if (autoAdvanced && nextDest) {
+                    state.activeDestId = nextDest.id;
+                    if (state.draftMode) {
+                      generateDraftSelection(nextDest, true);
+                    }
+                    renderAll();
+                  } else {
+                    renderDestinations();
+                  }
 
                   let challengeResultHtml = '';
                   if (activeChallenge) {
@@ -7321,10 +8147,6 @@
                       challengeResultHtml = `<div class="challenge-result-box tabular">🏆 Utmaning (#${runSeed}): Du fick ${runScore} p — ${Math.abs(diff)} p från att slå rekordet på ${activeChallenge.targetScore} p.</div>`;
                     }
                   }
-
-                  const nextDest = DESTINATIONS.find(
-                    (d) => d.id !== dest.id && (!d.proOnly || state.isPro) && !state.completed[d.id]
-                  );
 
                   outcomeSlot.innerHTML = `
                     <div class="sim-outcome-box ${won ? 'win' : 'lose'}">
@@ -7344,6 +8166,11 @@
                             : `Du klarade ${passedCount} av 3 händelser under ${dest.name}. Justera din packning och ge dig ut igen!`
                         }
                       </p>
+                      ${
+                        autoAdvanced && nextDest
+                          ? `<div class="next-dest-unlocked-banner">✨ Ny destination framme: ${nextDest.name} (${nextDest.region})!</div>`
+                          : ''
+                      }
 
                       <div class="score-summary-strip tabular">
                         <div class="score-cell">
@@ -7390,12 +8217,12 @@
                         </a>
                         <div class="sim-secondary-row">
                           <button type="button" class="btn-secondary" id="simRetryBtn" style="justify-content: center;">
-                            ${activeChallenge ? 'Försök igen i samma väder' : won ? 'Packa igen' : 'Packa om & försök igen'}
+                            ${activeChallenge ? 'Försök igen i samma väder' : won ? `Spela ${dest.shortName} igen` : 'Packa om & försök igen'}
                           </button>
                           <button type="button" class="btn-secondary" id="simNextBtn" style="justify-content: center;">
                             ${
                               nextDest
-                                ? `Nästa: ${nextDest.name}`
+                                ? `Fortsätt: ${nextDest.name} →`
                                 : state.isPro
                                   ? 'Byt destination'
                                   : 'Lås upp Europa (Pro)'
@@ -7437,6 +8264,10 @@
 
                   document.getElementById('simRetryBtn').addEventListener('click', () => {
                     closeModal(dom.simModal);
+                    if (state.activeDestId !== dest.id) {
+                      state.activeDestId = dest.id;
+                      renderAll();
+                    }
                   });
 
                   document.getElementById('simNextBtn').addEventListener('click', () => {
@@ -7446,12 +8277,14 @@
                         state.activeChallenge = null;
                         clearChallengeUrlParams();
                       }
-                      state.activeDestId = nextDest.id;
-                      if (state.draftMode) {
-                        generateDraftSelection(nextDest, true);
+                      if (state.activeDestId !== nextDest.id) {
+                        state.activeDestId = nextDest.id;
+                        if (state.draftMode) {
+                          generateDraftSelection(nextDest, true);
+                        }
+                        renderAll();
                       }
-                      renderAll();
-                      showToast(`Bytte bana till ${nextDest.name}.`);
+                      showToast(`🚐 Ny destination redo: ${nextDest.name}!`);
                     } else if (!state.isPro) {
                       openProModal();
                     } else {
@@ -7879,24 +8712,61 @@
           renderRecordsModal();
         });
 
-        // Destination submenu tier tabs, search & expand toggle
+        // Destination submenu tier tabs, dropdown & prev/next steppers
         document.querySelectorAll('.dest-tier-tab').forEach((tab) => {
           tab.addEventListener('click', () => {
-            state.destTierFilter = tab.dataset.tier || 'all';
+            const tier = tab.dataset.tier || 'all';
+            state.destTierFilter = tier;
+
+            if (tier !== 'all') {
+              const target = getFirstUncompletedInTier(tier);
+              if (target) {
+                const isChallengedTarget =
+                  state.activeChallenge && state.activeChallenge.destId === target.id;
+                const isLockedTarget = target.proOnly && !state.isPro && !isChallengedTarget;
+                if (!isLockedTarget && state.activeDestId !== target.id) {
+                  selectDestinationById(target.id);
+                  return;
+                }
+              }
+            }
+
             SFX.rotate();
             renderDestinations();
           });
         });
 
-        destSearchInputEl.addEventListener('input', () => {
-          state.destSearchQuery = destSearchInputEl.value;
-          renderDestinations();
-        });
+        if (dom.destinationSelect) {
+          dom.destinationSelect.addEventListener('change', () => {
+            if (dom.destinationSelect.value) {
+              selectDestinationById(dom.destinationSelect.value);
+            }
+          });
+        }
 
-        toggleDestExpandBtnEl.addEventListener('click', () => {
-          state.destListExpanded = !state.destListExpanded;
-          renderDestinations();
-        });
+        function stepDestination(delta) {
+          const pool = DESTINATIONS.filter((d) => {
+            if (state.destTierFilter !== 'all' && d.tier !== state.destTierFilter) return false;
+            const isChallengedDest =
+              state.activeChallenge && state.activeChallenge.destId === d.id;
+            return !d.proOnly || state.isPro || isChallengedDest;
+          });
+          if (pool.length === 0) {
+            openProModal();
+            showToast('Lås upp Packa & Överlev Pro för att spela de 20 Pro-banorna i Europa.');
+            return;
+          }
+          const idx = pool.findIndex((d) => d.id === state.activeDestId);
+          const nextIdx = idx === -1 ? 0 : (idx + delta + pool.length) % pool.length;
+          selectDestinationById(pool[nextIdx].id);
+        }
+
+        if (prevDestBtnEl) {
+          prevDestBtnEl.addEventListener('click', () => stepDestination(-1));
+        }
+        if (nextDestBtnEl) {
+          nextDestBtnEl.addEventListener('click', () => stepDestination(1));
+        }
 
         document.getElementById('exitChallengeBtn').addEventListener('click', () => {
           state.activeChallenge = null;
@@ -8062,6 +8932,435 @@
         if (closePrivacyModalBtn) closePrivacyModalBtn.addEventListener('click', () => closeModal(privacyModalEl));
         if (closePrivacyDoneBtn) closePrivacyDoneBtn.addEventListener('click', () => closeModal(privacyModalEl));
 
+        // ===================== ADMIN PANEL & FIREBASE PRO PURCHASES =====================
+        const adminModalEl = document.getElementById('adminModal');
+        const footerAdminLinkEl = document.getElementById('footerAdminLink');
+        const adminSignedOutViewEl = document.getElementById('adminSignedOutView');
+        const adminDeniedViewEl = document.getElementById('adminDeniedView');
+        const adminDeniedEmailTextEl = document.getElementById('adminDeniedEmailText');
+        const adminDashboardViewEl = document.getElementById('adminDashboardView');
+        const adminEmailDisplayEl = document.getElementById('adminEmailDisplay');
+        const adminAuthErrorEl = document.getElementById('adminAuthError');
+        const adminProStatusTitleEl = document.getElementById('adminProStatusTitle');
+        const adminProStatusSubEl = document.getElementById('adminProStatusSub');
+        const adminToggleProBtnEl = document.getElementById('adminToggleProBtn');
+        const adminKpiTotalEl = document.getElementById('adminKpiTotal');
+        const adminKpiActiveEl = document.getElementById('adminKpiActive');
+        const adminKpiRevenueEl = document.getElementById('adminKpiRevenue');
+        const adminAddPurchaseFormEl = document.getElementById('adminAddPurchaseForm');
+        const adminNewNameEl = document.getElementById('adminNewName');
+        const adminNewEmailEl = document.getElementById('adminNewEmail');
+        const adminNewSourceEl = document.getElementById('adminNewSource');
+        const adminNewAmountEl = document.getElementById('adminNewAmount');
+        const adminNewNoteEl = document.getElementById('adminNewNote');
+        const adminFormFeedbackEl = document.getElementById('adminFormFeedback');
+        const adminSearchInputEl = document.getElementById('adminSearchInput');
+        const adminStatusFilterEl = document.getElementById('adminStatusFilter');
+        const adminPurchasesListEl = document.getElementById('adminPurchasesList');
+
+        state.authUser = null;
+        state.isAdminAuth = false;
+        let adminPurchases = [];
+        let unsubAdminPurchases = null;
+        let unsubOwnPurchases = null;
+        let editingNoteId = null;
+        let pendingDeleteId = null;
+        let pendingStripeLog = false;
+
+        function formatPurchaseSource(src) {
+          if (src === 'stripe') return '💳 Stripe';
+          if (src === 'admin_grant') return '🛡️ Admin-gåva';
+          if (src === 'code') return '🔑 Kod';
+          return '📝 Manuell';
+        }
+
+        function formatPurchaseDate(ts) {
+          if (!ts || typeof ts.toDate !== 'function') return 'Just nu';
+          const d = ts.toDate();
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, '0');
+          const day = String(d.getDate()).padStart(2, '0');
+          const hh = String(d.getHours()).padStart(2, '0');
+          const mm = String(d.getMinutes()).padStart(2, '0');
+          return `${y}-${m}-${day} ${hh}:${mm}`;
+        }
+
+        function renderAdminProToggleCard() {
+          if (!adminToggleProBtnEl) return;
+          if (state.isPro) {
+            adminProStatusTitleEl.textContent = '✓ Pro-versionen är aktiv (Gratis admin-åtkomst)';
+            adminProStatusSubEl.textContent =
+              'Du har tillgång till alla 20 Europa-banor och 6×5 lastutrymme utan kostnad.';
+            adminToggleProBtnEl.textContent = 'Byt till Gratis-läge (testa)';
+            adminToggleProBtnEl.className = 'btn-secondary';
+          } else {
+            adminProStatusTitleEl.textContent = 'Gratis-läge aktivt';
+            adminProStatusSubEl.textContent =
+              'Aktivera Pro-versionen direkt utan att betala (alla 20 Europa-banor & 6×5 lastutrymme).';
+            adminToggleProBtnEl.textContent = 'Aktivera Pro gratis (Admin)';
+            adminToggleProBtnEl.className = 'btn-primary';
+          }
+        }
+
+        function renderAdminPurchasesList() {
+          if (!adminPurchasesListEl) return;
+          const total = adminPurchases.length;
+          const activeRows = adminPurchases.filter((r) => r.status === 'active');
+          const revenue = activeRows.reduce((sum, r) => sum + (Number(r.amountSek) || 0), 0);
+
+          if (adminKpiTotalEl) adminKpiTotalEl.textContent = String(total);
+          if (adminKpiActiveEl) adminKpiActiveEl.textContent = String(activeRows.length);
+          if (adminKpiRevenueEl) adminKpiRevenueEl.textContent = `${revenue} kr`;
+
+          const q = (adminSearchInputEl?.value || '').trim().toLowerCase();
+          const statusFilter = adminStatusFilterEl?.value || 'all';
+          const filtered = adminPurchases.filter((r) => {
+            if (statusFilter !== 'all' && r.status !== statusFilter) return false;
+            if (!q) return true;
+            const hay = `${r.customerName} ${r.customerEmail} ${r.note} ${r.source} ${r.bonusCode}`.toLowerCase();
+            return hay.includes(q);
+          });
+
+          if (filtered.length === 0) {
+            adminPurchasesListEl.innerHTML =
+              total === 0
+                ? '<div class="admin-empty">Inga Pro-köp registrerade ännu. Köp som kopplas av spelare eller läggs till ovan visas direkt här i realtid.</div>'
+                : '<div class="admin-empty">Inga Pro-köpare matchade din filtrering.</div>';
+            return;
+          }
+
+          adminPurchasesListEl.innerHTML = '';
+          for (const rec of filtered) {
+            const row = document.createElement('div');
+            row.className = 'admin-row' + (rec.status === 'revoked' ? ' is-revoked' : '');
+            const isActive = rec.status === 'active';
+            const isEditing = editingNoteId === rec.id;
+            const isConfirmDel = pendingDeleteId === rec.id;
+
+            row.innerHTML = `
+              <div class="admin-row-top">
+                <div class="admin-row-buyer">
+                  <span class="admin-row-name">${escapeHtml(rec.customerName)}</span>
+                  <span class="admin-row-email">${escapeHtml(rec.customerEmail)}</span>
+                </div>
+                <div class="admin-row-badges tabular">
+                  <span class="admin-badge">${formatPurchaseSource(rec.source)}</span>
+                  <span class="admin-badge">${rec.amountSek} kr</span>
+                  <span class="admin-badge ${isActive ? 'active' : 'revoked'}">${isActive ? '✓ Aktiv' : '✕ Återkallad'}</span>
+                </div>
+              </div>
+              <div class="admin-row-meta tabular">
+                <span>📅 ${formatPurchaseDate(rec.createdAt)}</span>
+                ${rec.bonusCode ? `<span>🎁 Bonus: ${escapeHtml(rec.bonusCode)}</span>` : ''}
+                ${rec.note ? `<span>📝 ${escapeHtml(rec.note)}</span>` : ''}
+              </div>
+              ${
+                isEditing
+                  ? `<div class="admin-note-edit-row">
+                      <input type="text" class="admin-input js-edit-note-input" value="${escapeHtml(rec.note)}" maxlength="400" placeholder="Anteckning..." style="flex: 1;" />
+                      <button type="button" class="admin-btn-sm js-save-note-btn">Spara</button>
+                      <button type="button" class="admin-btn-sm js-cancel-note-btn">Avbryt</button>
+                    </div>`
+                  : ''
+              }
+              <div class="admin-row-actions">
+                <button type="button" class="admin-btn-sm js-toggle-status-btn">
+                  ${isActive ? 'Återkalla Pro' : 'Återaktivera Pro'}
+                </button>
+                <button type="button" class="admin-btn-sm js-edit-note-btn">
+                  ${isEditing ? 'Stäng anteckning' : 'Ändra anteckning'}
+                </button>
+                <button type="button" class="admin-btn-sm danger js-delete-btn">
+                  ${isConfirmDel ? 'Bekräfta borttagning?' : 'Ta bort'}
+                </button>
+              </div>
+            `;
+
+            row.querySelector('.js-toggle-status-btn').addEventListener('click', async () => {
+              try {
+                await fb.updateProPurchase(rec.id, {
+                  status: isActive ? 'revoked' : 'active',
+                });
+                showToast(
+                  isActive
+                    ? `Pro återkallades för ${rec.customerName}.`
+                    : `Pro återaktiverades för ${rec.customerName}.`
+                );
+              } catch (err) {
+                showToast(err instanceof Error ? err.message : 'Kunde inte uppdatera status.');
+              }
+            });
+
+            row.querySelector('.js-edit-note-btn').addEventListener('click', () => {
+              editingNoteId = isEditing ? null : rec.id;
+              renderAdminPurchasesList();
+            });
+
+            if (isEditing) {
+              const noteInput = row.querySelector('.js-edit-note-input');
+              row.querySelector('.js-save-note-btn').addEventListener('click', async () => {
+                try {
+                  await fb.updateProPurchase(rec.id, { note: noteInput.value });
+                  editingNoteId = null;
+                  showToast('✓ Anteckning uppdaterad.');
+                } catch (err) {
+                  showToast(err instanceof Error ? err.message : 'Kunde inte spara anteckning.');
+                }
+              });
+              row.querySelector('.js-cancel-note-btn').addEventListener('click', () => {
+                editingNoteId = null;
+                renderAdminPurchasesList();
+              });
+            }
+
+            row.querySelector('.js-delete-btn').addEventListener('click', async () => {
+              if (pendingDeleteId !== rec.id) {
+                pendingDeleteId = rec.id;
+                renderAdminPurchasesList();
+                return;
+              }
+              try {
+                pendingDeleteId = null;
+                await fb.deleteProPurchase(rec.id);
+                showToast(`Tog bort post för ${rec.customerName}.`);
+              } catch (err) {
+                showToast(err instanceof Error ? err.message : 'Kunde inte ta bort posten.');
+              }
+            });
+
+            adminPurchasesListEl.appendChild(row);
+          }
+        }
+
+        function renderAdminModalState() {
+          const user = state.authUser;
+          if (footerAdminLinkEl) {
+            footerAdminLinkEl.textContent = state.isAdminAuth ? '🛡️ Admin' : 'Admin';
+          }
+          if (!user) {
+            adminSignedOutViewEl.style.display = 'flex';
+            adminDeniedViewEl.style.display = 'none';
+            adminDashboardViewEl.style.display = 'none';
+          } else if (!state.isAdminAuth) {
+            adminSignedOutViewEl.style.display = 'none';
+            adminDeniedViewEl.style.display = 'flex';
+            adminDashboardViewEl.style.display = 'none';
+            adminDeniedEmailTextEl.textContent = `Kontot ${user.email || '(okänd e-post)'} saknar administratörsbehörighet.`;
+          } else {
+            adminSignedOutViewEl.style.display = 'none';
+            adminDeniedViewEl.style.display = 'none';
+            adminDashboardViewEl.style.display = 'flex';
+            adminEmailDisplayEl.textContent = user.email || fb.ADMIN_EMAIL;
+            renderAdminProToggleCard();
+            renderAdminPurchasesList();
+          }
+        }
+
+        function detachFirestoreListeners() {
+          if (unsubAdminPurchases) {
+            unsubAdminPurchases();
+            unsubAdminPurchases = null;
+          }
+          if (unsubOwnPurchases) {
+            unsubOwnPurchases();
+            unsubOwnPurchases = null;
+          }
+        }
+
+        async function recordCurrentUserStripePurchase(source = 'stripe', amountSek = 29, note = 'Registrerat via Packa & Överlev Pro') {
+          const user = state.authUser;
+          if (!user || !user.emailVerified || !user.email) return false;
+          const docId = `${source}_${user.uid}`.slice(0, 128);
+          await fb.createProPurchase({
+            id: docId,
+            customerName: user.displayName || user.email.split('@')[0],
+            customerEmail: user.email,
+            source,
+            status: 'active',
+            amountSek,
+            bonusCode: CAMPSITE_SWE_BONUS_CODE,
+            note,
+          });
+          return true;
+        }
+
+        fb.subscribeAuth((user) => {
+          detachFirestoreListeners();
+          state.authUser = user;
+          state.isAdminAuth = fb.isAdminUser(user);
+
+          if (state.isAdminAuth) {
+            unsubAdminPurchases = fb.subscribeAllProPurchases(
+              (records) => {
+                adminPurchases = records;
+                renderAdminPurchasesList();
+              },
+              () => {
+                if (adminPurchasesListEl) {
+                  adminPurchasesListEl.innerHTML =
+                    '<div class="admin-empty">Kunde inte läsa Pro-köpare från Firestore. Kontrollera internetanslutningen.</div>';
+                }
+              }
+            );
+          } else if (user && user.emailVerified) {
+            unsubOwnPurchases = fb.subscribeOwnProPurchases(
+              user.uid,
+              (records) => {
+                const hasActive = records.some((r) => r.status === 'active');
+                if (hasActive && !state.isPro) {
+                  state.isPro = true;
+                  saveProStatus(true);
+                  renderAll();
+                  showToast('✓ Ditt Pro-köp återställdes automatiskt från ditt Google-konto!');
+                }
+              },
+              () => {}
+            );
+
+            if (pendingStripeLog) {
+              pendingStripeLog = false;
+              void recordCurrentUserStripePurchase('stripe', 29, 'Automatiskt registrerad efter Stripe-betalning').catch(() => {});
+            }
+          } else {
+            adminPurchases = [];
+          }
+
+          renderProHeader();
+          renderAdminModalState();
+        });
+
+        if (footerAdminLinkEl) {
+          footerAdminLinkEl.addEventListener('click', () => {
+            if (adminAuthErrorEl) adminAuthErrorEl.textContent = '';
+            renderAdminModalState();
+            openModal(adminModalEl);
+          });
+        }
+
+        const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+        if (closeAdminModalBtn) {
+          closeAdminModalBtn.addEventListener('click', () => closeModal(adminModalEl));
+        }
+
+        const adminSignInBtn = document.getElementById('adminSignInBtn');
+        if (adminSignInBtn) {
+          adminSignInBtn.addEventListener('click', async () => {
+            if (adminAuthErrorEl) adminAuthErrorEl.textContent = '';
+            try {
+              const user = await fb.signInWithGooglePopup();
+              if (fb.isAdminUser(user)) {
+                showToast('🛡️ Inloggad som administratör.');
+              }
+            } catch (err) {
+              if (adminAuthErrorEl) {
+                adminAuthErrorEl.textContent =
+                  err instanceof Error ? err.message : 'Kunde inte logga in med Google.';
+              }
+            }
+          });
+        }
+
+        const handleAdminSignOut = async () => {
+          try {
+            await fb.signOutFirebase();
+            showToast('Utloggad från administratörskontot.');
+          } catch (_) {}
+        };
+        document.getElementById('adminSignOutBtn')?.addEventListener('click', handleAdminSignOut);
+        document.getElementById('adminDeniedSignOutBtn')?.addEventListener('click', handleAdminSignOut);
+
+        if (adminToggleProBtnEl) {
+          adminToggleProBtnEl.addEventListener('click', () => {
+            if (!state.isAdminAuth) return;
+            state.isPro = !state.isPro;
+            saveProStatus(state.isPro);
+            if (!state.isPro && getDestById(state.activeDestId).proOnly) {
+              state.activeDestId = 'oland';
+            }
+            renderAll();
+            renderAdminProToggleCard();
+            showToast(
+              state.isPro
+                ? '🛡️ Pro-versionen aktiverad gratis (Admin-åtkomst)!'
+                : 'Bytte tillbaka till Gratis-läge för testning.'
+            );
+          });
+        }
+
+        if (adminNewSourceEl && adminNewAmountEl) {
+          adminNewSourceEl.addEventListener('change', () => {
+            if (adminNewSourceEl.value === 'stripe') adminNewAmountEl.value = '29';
+            else if (adminNewSourceEl.value === 'admin_grant') adminNewAmountEl.value = '0';
+          });
+        }
+
+        if (adminAddPurchaseFormEl) {
+          adminAddPurchaseFormEl.addEventListener('submit', async (ev) => {
+            ev.preventDefault();
+            if (!state.isAdminAuth) return;
+            if (adminFormFeedbackEl) {
+              adminFormFeedbackEl.textContent = '';
+              adminFormFeedbackEl.className = 'code-feedback';
+            }
+            try {
+              await fb.createProPurchase({
+                customerName: adminNewNameEl.value,
+                customerEmail: adminNewEmailEl.value,
+                source: adminNewSourceEl.value,
+                status: 'active',
+                amountSek: Number(adminNewAmountEl.value) || 0,
+                bonusCode: CAMPSITE_SWE_BONUS_CODE,
+                note: adminNewNoteEl.value,
+              });
+              adminAddPurchaseFormEl.reset();
+              adminNewAmountEl.value = '29';
+              if (adminFormFeedbackEl) {
+                adminFormFeedbackEl.textContent = '✓ Pro-kund sparad i Firestore!';
+                adminFormFeedbackEl.className = 'code-feedback success';
+              }
+              showToast('✓ Pro-kund registrerad i databasen.');
+            } catch (err) {
+              if (adminFormFeedbackEl) {
+                adminFormFeedbackEl.textContent =
+                  err instanceof Error ? err.message : 'Kunde inte spara kunden.';
+                adminFormFeedbackEl.className = 'code-feedback error';
+              }
+            }
+          });
+        }
+
+        if (adminSearchInputEl) {
+          adminSearchInputEl.addEventListener('input', renderAdminPurchasesList);
+        }
+        if (adminStatusFilterEl) {
+          adminStatusFilterEl.addEventListener('change', renderAdminPurchasesList);
+        }
+
+        // Optional buyer Google backup buttons in Pro modals
+        document.querySelectorAll('.js-sync-pro-google').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            const targetId = btn.dataset.feedbackTarget;
+            const feedbackEl = targetId ? document.getElementById(targetId) : null;
+            try {
+              let user = state.authUser;
+              if (!user) {
+                user = await fb.signInWithGooglePopup();
+                state.authUser = user;
+              }
+              await recordCurrentUserStripePurchase('stripe', 29, 'Kopplat av kund efter Pro-köp');
+              if (feedbackEl) {
+                feedbackEl.textContent = `✓ Ditt Pro-köp är sparat på ${user.email}!`;
+              }
+              showToast(`✓ Pro-köp sparat på ${user.email}!`);
+            } catch (err) {
+              if (feedbackEl) {
+                feedbackEl.textContent =
+                  err instanceof Error ? err.message : 'Kunde inte koppla Google-konto.';
+              }
+            }
+          });
+        });
+
         // Close modals on backdrop click
         [
           dom.simModal,
@@ -8072,6 +9371,7 @@
           proCongratsModalEl,
           termsModalEl,
           privacyModalEl,
+          adminModalEl,
         ].forEach((backdrop) => {
           backdrop.addEventListener('click', (ev) => {
             if (ev.target === backdrop) closeModal(backdrop);
@@ -8101,7 +9401,7 @@
 
         // Keyboard shortcuts: R to rotate, Esc to cancel/close
         window.addEventListener('keydown', (ev) => {
-          if (ev.target && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA')) {
+          if (ev.target && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT')) {
             return;
           }
           if (ev.key === 'r' || ev.key === 'R') {
@@ -8133,6 +9433,7 @@
             closeModal(proCongratsModalEl);
             closeModal(termsModalEl);
             closeModal(privacyModalEl);
+            closeModal(adminModalEl);
             state.selectedCatalogId = null;
             state.selectedPlacedId = null;
             state.hoverCell = null;
@@ -8145,10 +9446,19 @@
 
         /* ===================== INITIALIZE ===================== */
         const unlockedFromUrl = checkUrlProUnlock();
+        if (unlockedFromUrl) {
+          pendingStripeLog = true;
+        }
         const urlChallenge = parseChallengeFromUrl();
         if (urlChallenge) {
           state.activeChallenge = urlChallenge;
           state.activeDestId = urlChallenge.destId;
+        } else {
+          // Automatically start on the next uncompleted destination so progression feels seamless
+          const nextToPlay = getNextUncompletedDest();
+          if (nextToPlay) {
+            state.activeDestId = nextToPlay.id;
+          }
         }
         renderAll();
         updateOnlineStatusUI();
