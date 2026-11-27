@@ -1351,3 +1351,171 @@ export function getScenicSVG(dest: { id: string; tier?: string }): string {
       return drawSwedishForestLake();
   }
 }
+
+/**
+ * 4x2 Theme Grid Sprite mapping (/backgrounds/themes-grid.jpg)
+ * background-size: 400% 200%
+ */
+export interface ThemeGridTile {
+  index: number;
+  id: string;
+  name: string;
+  x: string;
+  y: string;
+  bgPosition: string;
+}
+
+export const THEME_GRID_TILES: Record<number, ThemeGridTile> = {
+  1: {
+    index: 1,
+    id: 'castle',
+    name: 'Mystiskt slott i fullmåne',
+    x: '0%',
+    y: '0%',
+    bgPosition: '0% 0%',
+  },
+  2: {
+    index: 2,
+    id: 'western',
+    name: 'Vilda västern & öken',
+    x: '33.333%',
+    y: '0%',
+    bgPosition: '33.333% 0%',
+  },
+  3: {
+    index: 3,
+    id: 'jungle',
+    name: 'Förhistorisk djungel & vattenfall',
+    x: '66.667%',
+    y: '0%',
+    bgPosition: '66.667% 0%',
+  },
+  4: {
+    index: 4,
+    id: 'volcano',
+    name: 'Vulkan & glödande lava',
+    x: '100%',
+    y: '0%',
+    bgPosition: '100% 0%',
+  },
+  5: {
+    index: 5,
+    id: 'nordic_forest',
+    name: 'Svensk barrskog & spegelblank sjö',
+    x: '0%',
+    y: '100%',
+    bgPosition: '0% 100%',
+  },
+  6: {
+    index: 6,
+    id: 'winter_aurora',
+    name: 'Snöiga berg, stuga & norrsken',
+    x: '33.333%',
+    y: '100%',
+    bgPosition: '33.333% 100%',
+  },
+  7: {
+    index: 7,
+    id: 'sunny_coast',
+    name: 'Solig kust, hav & gröna kullar',
+    x: '66.667%',
+    y: '100%',
+    bgPosition: '66.667% 100%',
+  },
+  8: {
+    index: 8,
+    id: 'moon_space',
+    name: 'Månyta, rymdbas & framtidsmiljö',
+    x: '100%',
+    y: '100%',
+    bgPosition: '100% 100%',
+  },
+};
+
+/**
+ * Exact mapping of all 40 ordinary + 20 legendary bonus destinations to the 8 tiles
+ */
+const DEST_TO_GRID_INDEX: Record<string, number> = {
+  // --- RUTA 1 · Mystiskt slott i fullmåne (0% 0%) ---
+  hogwarts: 1,
+  dracula_castle: 1,
+  mount_olympus: 1,
+  highlands: 1,
+  transylvania: 1,
+  ardennes: 1,
+
+  // --- RUTA 2 · Vilda västern & öken (33.33% 0%) ---
+  high_chaparral: 2,
+  wild_west_town: 2,
+  area_51: 2,
+
+  // --- RUTA 3 · Förhistorisk djungel & vattenfall (66.66% 0%) ---
+  jurassic_park: 3,
+  el_dorado: 3,
+  neverland: 3,
+
+  // --- RUTA 4 · Vulkan & glödande lava (100% 0%) ---
+  mordor: 4,
+  iceland: 4,
+
+  // --- RUTA 5 · Svensk barrskog & spegelblank sjö (0% 100%) ---
+  sherwood: 5,
+  nangijala: 5,
+  smaland: 5,
+  siljan: 5,
+  vattern: 5,
+  dalsland: 5,
+  fulufjallet: 5,
+  saimen: 5,
+  harz: 5,
+
+  // --- RUTA 6 · Snöiga berg, stuga & norrsken (33.33% 100%) ---
+  north_pole: 6,
+  narnia: 6,
+  jamtland: 6,
+  hardangervidda: 6,
+  lofoten: 6,
+  alps: 6,
+  dolomites: 6,
+  lappland: 6,
+  nordkap: 6,
+  tatras: 6,
+  swissalps: 6,
+  julianalps: 6,
+  durmitor: 6,
+  senja: 6,
+  inari: 6,
+
+  // --- RUTA 7 · Solig kust, hav & gröna kullar (66.66% 100%) ---
+  atlantis: 7,
+  bermuda_triangle: 7,
+  pirate_cove: 7,
+  oland: 7,
+  gotland: 7,
+  skane: 7,
+  bohuslan: 7,
+  halland: 7,
+  bornholm: 7,
+  skagen: 7,
+  hogakusten: 7,
+  ostsee: 7,
+  rugen: 7,
+  pyrenees: 7,
+  corsica: 7,
+  faroe: 7,
+  picos: 7,
+  wildatlantic: 7,
+  sardinia: 7,
+
+  // --- RUTA 8 · Månyta, rymdbas & framtidsmiljö (100% 100%) ---
+  moon_base: 8,
+  mars_colony: 8,
+  cyberpunk_2099: 8,
+};
+
+export function getThemeGridTile(destOrId: string | { id: string } | null | undefined): ThemeGridTile {
+  const id = typeof destOrId === 'string' ? destOrId : destOrId?.id || 'oland';
+  const tileIndex = DEST_TO_GRID_INDEX[id] || 5;
+  return THEME_GRID_TILES[tileIndex];
+}
+

@@ -1164,7 +1164,7 @@
         transition: background-color 0.5s ease;
       }
 
-      /* Scenic Vector Backdrop behind cargo bay */
+      /* Scenic Photo Grid Backdrop (/backgrounds/themes-grid.jpg 4x2) */
       .scenic-backdrop {
         position: absolute;
         inset: 0;
@@ -1172,6 +1172,17 @@
         pointer-events: none;
         overflow: hidden;
         border-radius: inherit;
+      }
+
+      .scenic-photo-layer {
+        position: absolute;
+        inset: -6px; /* slight bleed to eliminate subpixel seam lines */
+        background-image: url('/backgrounds/themes-grid.jpg');
+        background-size: 400% 200%;
+        background-repeat: no-repeat;
+        background-position: 0% 100%;
+        transition: background-position 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
+        z-index: 1;
       }
 
       .scenic-svg-wrap {
@@ -1182,7 +1193,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        opacity: 0.16;
+        mix-blend-mode: overlay;
+        pointer-events: none;
         transition: filter 0.8s ease, transform 1.2s ease, opacity 0.5s ease;
+        z-index: 2;
       }
 
       .scenic-svg-wrap svg {
@@ -1193,12 +1208,15 @@
         display: block;
       }
 
-      /* Subtle perimeter vignette - keeps SVG landscape 100% visible, vibrant & crisp */
+      /* Perimeter vignette - softens outer frame with no white borders or seam lines */
       .scenic-overlay-scrim {
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.22) 100%);
+        background:
+          radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 36%, rgba(15, 23, 42, 0.26) 74%, rgba(15, 23, 42, 0.6) 100%),
+          linear-gradient(to bottom, rgba(15, 23, 42, 0.22) 0%, transparent 22%, transparent 78%, rgba(15, 23, 42, 0.38) 100%);
         pointer-events: none;
+        z-index: 2;
         transition: background 0.8s ease, opacity 0.8s ease;
       }
 
@@ -1209,7 +1227,7 @@
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.8s ease, background 0.8s ease;
-        z-index: 2;
+        z-index: 3;
       }
 
       /* Atmospheric scenic stage badge */
@@ -1294,6 +1312,9 @@
                     repeating-linear-gradient(105deg, transparent, transparent 18px, rgba(147, 197, 253, 0.22) 19px, transparent 20px);
         animation: rainShift 0.4s linear infinite;
       }
+      .bay-stage[data-weather-mood='rain'] .scenic-photo-layer {
+        filter: brightness(0.78) contrast(1.1) saturate(0.85);
+      }
       .bay-stage[data-weather-mood='rain'] .scenic-svg-wrap {
         filter: brightness(0.85) contrast(1.05) saturate(0.85);
       }
@@ -1304,6 +1325,9 @@
                     repeating-linear-gradient(115deg, transparent, transparent 14px, rgba(224, 242, 254, 0.3) 15px, transparent 16px);
         animation: stormPulse 2.8s ease-in-out infinite;
       }
+      .bay-stage[data-weather-mood='storm'] .scenic-photo-layer {
+        filter: brightness(0.62) contrast(1.25) saturate(0.7);
+      }
       .bay-stage[data-weather-mood='storm'] .scenic-svg-wrap {
         filter: brightness(0.65) contrast(1.2) saturate(0.7);
       }
@@ -1311,6 +1335,9 @@
       .bay-stage[data-weather-mood='sun'] .scenic-weather-overlay {
         opacity: 1;
         background: radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.3) 0%, rgba(245, 158, 11, 0.12) 50%, transparent 80%);
+      }
+      .bay-stage[data-weather-mood='sun'] .scenic-photo-layer {
+        filter: brightness(1.1) saturate(1.2);
       }
       .bay-stage[data-weather-mood='sun'] .scenic-svg-wrap {
         filter: brightness(1.08) saturate(1.15);
@@ -1325,6 +1352,9 @@
         background-size: 100% 100%, 120px 120px, 160px 160px, 90px 90px;
         animation: snowDrift 8s linear infinite;
       }
+      .bay-stage[data-weather-mood='snow'] .scenic-photo-layer {
+        filter: brightness(1.12) contrast(0.95) saturate(0.75);
+      }
       .bay-stage[data-weather-mood='snow'] .scenic-svg-wrap {
         filter: brightness(1.12) contrast(0.95) saturate(0.7);
       }
@@ -1334,6 +1364,9 @@
         background: radial-gradient(circle at 50% 85%, rgba(239, 68, 68, 0.35) 0%, rgba(185, 28, 28, 0.2) 60%, transparent 90%);
         animation: fireGlow 2.4s ease-in-out infinite alternate;
       }
+      .bay-stage[data-weather-mood='fire'] .scenic-photo-layer {
+        filter: brightness(0.88) contrast(1.3) saturate(1.4);
+      }
       .bay-stage[data-weather-mood='fire'] .scenic-svg-wrap {
         filter: brightness(0.85) contrast(1.25) saturate(1.4);
       }
@@ -1341,6 +1374,9 @@
       .bay-stage[data-weather-mood='night'] .scenic-weather-overlay {
         opacity: 1;
         background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0.5) 100%);
+      }
+      .bay-stage[data-weather-mood='night'] .scenic-photo-layer {
+        filter: brightness(0.7) contrast(1.15) saturate(0.9);
       }
       .bay-stage[data-weather-mood='night'] .scenic-svg-wrap {
         filter: brightness(0.68) contrast(1.15) saturate(0.85);
@@ -1419,26 +1455,26 @@
         background: var(--danger-bg);
       }
 
-      /* Campervan Frame */
+      /* Campervan Frame - Premium Frosted Glass */
       .camper-frame {
         width: 100%;
         max-width: 480px;
-        background: rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 2.5px solid rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.52);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 2px solid rgba(255, 255, 255, 0.88);
         border-radius: 22px 22px 16px 16px;
         padding: 16px 18px 18px;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.7);
         position: relative;
-        z-index: 2;
+        z-index: 3;
       }
 
       .camper-cab-bar {
-        background: rgba(255, 255, 255, 0.72);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.76);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
         border-radius: 12px;
         padding: 8px 14px;
         margin-bottom: 12px;
@@ -1447,7 +1483,7 @@
         justify-content: space-between;
         font-size: 13px;
         color: #0f172a;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       }
 
       .camper-cab-title {
@@ -1459,7 +1495,7 @@
         gap: 7px;
       }
 
-      /* Grid Container */
+      /* Grid Container - Frosted Glass Plate */
       .cargo-grid-wrap {
         position: relative;
         width: 100%;
@@ -1471,42 +1507,42 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 6px;
-        background: rgba(255, 255, 255, 0.22);
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         padding: 8px;
         border-radius: var(--radius-md);
-        border: 2px solid rgba(255, 255, 255, 0.7);
-        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.14);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.14);
         position: relative;
       }
 
       .grid-cell {
         aspect-ratio: 1 / 1;
         min-height: 48px;
-        background: rgba(255, 255, 255, 0.32);
-        border: 1.5px dashed rgba(15, 23, 42, 0.4);
+        background: rgba(255, 255, 255, 0.44);
+        border: 1.5px dashed rgba(15, 23, 42, 0.48);
         border-radius: 8px;
         position: relative;
         transition: background-color 110ms var(--ease-out), border-color 110ms var(--ease-out);
-        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6);
       }
 
       .grid-cell.pro-row {
-        background: rgba(230, 245, 235, 0.42);
-        border-color: rgba(16, 185, 129, 0.65);
+        background: rgba(230, 245, 235, 0.58);
+        border-color: rgba(16, 185, 129, 0.75);
       }
 
       .grid-cell.preview-valid {
-        background: rgba(215, 240, 223, 0.9) !important;
+        background: rgba(215, 240, 223, 0.92) !important;
         border-color: var(--brand-forest) !important;
-        box-shadow: inset 0 0 0 1px var(--brand-forest);
+        box-shadow: inset 0 0 0 1.5px var(--brand-forest);
       }
 
       .grid-cell.preview-invalid {
-        background: rgba(254, 226, 226, 0.9) !important;
+        background: rgba(254, 226, 226, 0.92) !important;
         border-color: var(--danger) !important;
-        box-shadow: inset 0 0 0 1px var(--danger);
+        box-shadow: inset 0 0 0 1.5px var(--danger);
       }
 
       /* Placed Items Overlay Layer */
@@ -1536,26 +1572,26 @@
         position: absolute;
         border-radius: 8px;
         border: 2px solid var(--brand-forest);
-        background: var(--brand-forest-soft);
-        box-shadow: 0 2px 6px rgba(21, 28, 23, 0.08);
+        background: rgba(240, 253, 244, 0.96);
+        box-shadow: 0 3px 8px rgba(21, 28, 23, 0.16);
         transition: box-shadow 140ms var(--ease-out), filter 140ms var(--ease-out);
       }
 
       .placed-item.cat-warmth .placed-cell-block {
-        background: var(--cat-warmth-bg);
-        border-color: var(--cat-warmth-bar);
+        background: rgba(254, 243, 199, 0.97);
+        border-color: #d97706;
       }
       .placed-item.cat-food .placed-cell-block {
-        background: var(--cat-food-bg);
-        border-color: var(--cat-food-bar);
+        background: rgba(220, 252, 231, 0.97);
+        border-color: #059669;
       }
       .placed-item.cat-shelter .placed-cell-block {
-        background: var(--cat-shelter-bg);
-        border-color: var(--cat-shelter-bar);
+        background: rgba(224, 242, 254, 0.97);
+        border-color: #0284c7;
       }
 
       .placed-item.selected .placed-cell-block {
-        box-shadow: 0 0 0 2px var(--brand-ink), 0 4px 12px rgba(21, 28, 23, 0.16);
+        box-shadow: 0 0 0 2px var(--brand-ink), 0 4px 14px rgba(21, 28, 23, 0.22);
       }
 
       .placed-label {
@@ -1568,6 +1604,7 @@
         text-align: center;
         padding: 2px;
         z-index: 2;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
       }
 
       .placed-emoji {
@@ -2045,12 +2082,26 @@
         margin-bottom: 14px;
       }
 
+      .sim-scenic-photo {
+        position: absolute;
+        inset: -2px;
+        background-image: url('/backgrounds/themes-grid.jpg');
+        background-size: 400% 200%;
+        background-repeat: no-repeat;
+        background-position: 0% 100%;
+        transition: background-position 0.5s ease, filter 0.6s ease;
+        z-index: 1;
+      }
+
       .sim-scenic-svg-wrap {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
+        opacity: 0.18;
+        mix-blend-mode: overlay;
         transition: filter 0.6s ease;
+        z-index: 2;
       }
 
       .sim-scenic-svg-wrap svg {
@@ -2064,6 +2115,7 @@
         inset: 0;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.65) 100%);
         pointer-events: none;
+        z-index: 3;
       }
 
       .sim-scenic-badge {
@@ -2075,7 +2127,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        z-index: 2;
+        z-index: 4;
         color: #ffffff;
       }
 
@@ -4233,6 +4285,7 @@
         <!-- INTERACTIVE CAMPERVAN GRID -->
         <div class="bay-stage" id="bayStage">
           <div class="scenic-backdrop" id="scenicBackdrop" aria-hidden="true">
+            <div class="scenic-photo-layer" id="scenicPhotoLayer"></div>
             <div class="scenic-svg-wrap" id="scenicSvgWrap"></div>
             <div class="scenic-overlay-scrim"></div>
             <div class="scenic-weather-overlay" id="scenicWeatherOverlay"></div>
@@ -8057,6 +8110,7 @@
           toast: document.getElementById('toast'),
           bayStage: document.getElementById('bayStage'),
           scenicBackdrop: document.getElementById('scenicBackdrop'),
+          scenicPhotoLayer: document.getElementById('scenicPhotoLayer'),
           scenicSvgWrap: document.getElementById('scenicSvgWrap'),
           scenicWeatherOverlay: document.getElementById('scenicWeatherOverlay'),
           scenicStageBadge: document.getElementById('scenicStageBadge'),
@@ -8603,10 +8657,15 @@
         function renderScenicBackdrop(dest, moodOverride = null) {
           if (!dest) return;
           const meta = scenic.getScenicMeta(dest);
+          const tile = scenic.getThemeGridTile(dest);
           const activeMood = moodOverride || meta.defaultMood || 'default';
 
           if (dom.bayStage) {
             dom.bayStage.setAttribute('data-weather-mood', activeMood);
+          }
+
+          if (dom.scenicPhotoLayer) {
+            dom.scenicPhotoLayer.style.backgroundPosition = tile.bgPosition;
           }
 
           if (dom.scenicSvgWrap) {
@@ -8614,7 +8673,7 @@
           }
 
           if (dom.scenicTagIcon) dom.scenicTagIcon.textContent = meta.icon;
-          if (dom.scenicTagLabel) dom.scenicTagLabel.textContent = meta.label;
+          if (dom.scenicTagLabel) dom.scenicTagLabel.textContent = `${meta.label} · ${tile.name}`;
 
           updateScenicWeatherPill(activeMood);
         }
@@ -9684,13 +9743,15 @@
             overweight && !(dest.specialRule && dest.specialRule.type === 'weightLimit');
 
           const meta = scenic.getScenicMeta(dest);
+          const tile = scenic.getThemeGridTile(dest);
           dom.simModalTitle.textContent = `Roadtrip: ${dest.name} · Seed #${runSeed}`;
           dom.simModalBody.innerHTML = `
             <div class="sim-scenic-viewport" id="simScenicViewport" data-sim-mood="${meta.defaultMood || 'default'}">
+              <div class="sim-scenic-photo" style="background-position: ${tile.bgPosition};"></div>
               <div class="sim-scenic-svg-wrap">${scenic.getScenicSVG(dest)}</div>
               <div class="sim-scenic-overlay"></div>
               <div class="sim-scenic-badge">
-                <span class="sim-scenic-title">${meta.icon} ${dest.name}</span>
+                <span class="sim-scenic-title">${meta.icon} ${dest.name} · ${tile.name}</span>
                 <span class="sim-scenic-mood-pill" id="simScenicMoodPill">☀️ Startar roadtrippen</span>
               </div>
             </div>

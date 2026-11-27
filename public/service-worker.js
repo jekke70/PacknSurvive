@@ -1,4 +1,4 @@
-const CACHE_NAME = 'packa-overlev-offline-v3';
+const CACHE_NAME = 'packa-overlev-offline-v4';
 const REQUIRED_ASSETS = ['./', './index.html', './manifest.json'];
 const OPTIONAL_ASSETS = [
   './icon.svg',
@@ -6,6 +6,7 @@ const OPTIONAL_ASSETS = [
   './pwa-192x192.png',
   './pwa-512x512.png',
   './pwa-maskable-512x512.png',
+  './backgrounds/themes-grid.jpg',
 ];
 
 self.addEventListener('install', (event) => {
