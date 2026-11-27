@@ -367,6 +367,147 @@
         box-shadow: 0 1px 3px rgba(21, 28, 23, 0.08);
       }
 
+      .dest-tier-tab.is-legendary {
+        color: #92400e;
+        background: rgba(254, 243, 199, 0.65);
+        border: 1px solid rgba(217, 119, 6, 0.28);
+      }
+
+      .dest-tier-tab.is-legendary:hover {
+        color: #78350f;
+        background: #fef3c7;
+      }
+
+      .dest-tier-tab.is-legendary.active {
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        color: #78350f;
+        border-color: #d97706;
+        box-shadow: 0 2px 6px rgba(180, 83, 9, 0.16);
+      }
+
+      .dest-tier-tab.is-legendary-locked {
+        color: #6b5b7b;
+        background: rgba(91, 61, 130, 0.07);
+        border: 1px dashed rgba(91, 61, 130, 0.34);
+      }
+
+      .dest-tier-tab.is-legendary-locked:hover {
+        color: #4c2e73;
+        background: rgba(91, 61, 130, 0.13);
+      }
+
+      /* Mysterious locked card for the 4th secret tier */
+      .legendary-mystery-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        padding: 13px 16px;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, #17231c 0%, #231a34 100%);
+        border: 1.5px dashed rgba(245, 196, 81, 0.58);
+        color: #f8f5ec;
+        box-shadow: 0 4px 14px rgba(23, 25, 36, 0.16);
+        cursor: pointer;
+        transition: transform 160ms var(--ease-out), border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+      }
+
+      .legendary-mystery-card:hover {
+        transform: translateY(-1px);
+        border-color: #f5c451;
+        box-shadow: 0 6px 18px rgba(23, 25, 36, 0.22);
+      }
+
+      .legendary-mystery-card[hidden] {
+        display: none;
+      }
+
+      .legendary-mystery-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1 1 320px;
+        min-width: 0;
+      }
+
+      .legendary-mystery-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(245, 196, 81, 0.15);
+        border: 1px solid rgba(245, 196, 81, 0.42);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .legendary-mystery-title {
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 800;
+        color: #fde68a;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+
+      .legendary-mystery-sub {
+        font-size: 12.5px;
+        color: rgba(248, 245, 236, 0.84);
+        margin-top: 2px;
+        line-height: 1.38;
+      }
+
+      .legendary-mystery-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        min-width: 170px;
+      }
+
+      .legendary-mystery-progress-text {
+        font-size: 12px;
+        font-weight: 700;
+        color: #fde68a;
+      }
+
+      .legendary-mystery-track {
+        width: 170px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        overflow: hidden;
+      }
+
+      .legendary-mystery-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #f59e0b 0%, #fde047 100%);
+        transition: width 260ms var(--ease-out);
+      }
+
+      @keyframes mysteryPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(245, 196, 81, 0.55);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(245, 196, 81, 0);
+        }
+        100% {
+          box-shadow: 0 4px 14px rgba(23, 25, 36, 0.16);
+        }
+      }
+
+      .legendary-mystery-card.is-pulsing {
+        animation: mysteryPulse 600ms ease-out;
+      }
+
+
       .dest-dropdown-row {
         display: flex;
         align-items: center;
@@ -2512,6 +2653,72 @@
         box-shadow: 0 2px 8px rgba(31, 74, 46, 0.08);
       }
 
+      .active-dest-showcase.is-legendary {
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        border-color: #d97706;
+        box-shadow: 0 4px 14px rgba(180, 83, 9, 0.12);
+      }
+
+      .active-dest-showcase.is-legendary .active-dest-step-tag {
+        color: #92400e;
+        border-color: #f59e0b;
+        background: #ffffff;
+      }
+
+      .legendary-congrats-hero {
+        padding: 20px 18px;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, #17231c 0%, #2b1d42 100%);
+        border: 1.5px solid rgba(245, 196, 81, 0.65);
+        color: #fffbeb;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .legendary-congrats-emoji {
+        font-size: 42px;
+        line-height: 1;
+        animation: starSpinPop 650ms var(--ease-out);
+      }
+
+      .legendary-congrats-heading {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 800;
+        color: #fde68a;
+      }
+
+      .legendary-congrats-sub {
+        margin: 0;
+        font-size: 13.5px;
+        color: rgba(255, 251, 235, 0.9);
+        line-height: 1.5;
+      }
+
+      .legendary-teaser-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .legendary-teaser-item {
+        padding: 9px 11px;
+        border-radius: var(--radius-sm);
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #78350f;
+      }
+
+
       .active-dest-showcase-top {
         display: flex;
         align-items: center;
@@ -3075,6 +3282,36 @@
             <button type="button" class="dest-tier-tab" data-tier="hard" id="tierTabHard" role="tab" aria-selected="false">
               Svår / Expert · Pro (0/20)
             </button>
+            <button type="button" class="dest-tier-tab is-legendary-locked" data-tier="legendary" id="tierTabLegendary" role="tab" aria-selected="false">
+              🔒 Legendariska (0/40)
+            </button>
+          </div>
+        </div>
+
+        <!-- MYSTERIOUS LOCKED CARD FOR SECRET 4TH TIER -->
+        <div
+          id="legendaryMysteryCard"
+          class="legendary-mystery-card"
+          role="button"
+          tabindex="0"
+          aria-label="Hemlig 4:e nivå: Legendariska & Påhittade Resmål"
+        >
+          <div class="legendary-mystery-left">
+            <span class="legendary-mystery-icon" aria-hidden="true">🔒</span>
+            <div>
+              <div class="legendary-mystery-title">
+                <span>✨ Hemlig 4:e nivå: Legendariska &amp; Påhittade Resmål</span>
+              </div>
+              <div class="legendary-mystery-sub">
+                🔒 Låses upp när du klarat alla 40 ordinarie resmål inklusive Pro — 20 hemliga fantasibanor väntar!
+              </div>
+            </div>
+          </div>
+          <div class="legendary-mystery-right tabular">
+            <span class="legendary-mystery-progress-text" id="legendaryMysteryProgressText">0 / 40 ordinarie klara</span>
+            <div class="legendary-mystery-track">
+              <div class="legendary-mystery-fill" id="legendaryMysteryProgressFill" style="width: 0%"></div>
+            </div>
           </div>
         </div>
 
@@ -3501,6 +3738,38 @@
       </div>
     </div>
 
+    <!-- LEGENDARY SECRET TIER UNLOCK CELEBRATION MODAL -->
+    <div class="modal-backdrop" id="legendaryCongratsModal" role="dialog" aria-modal="true" aria-labelledby="legendaryCongratsTitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3 class="modal-title" id="legendaryCongratsTitle">✨ Hemlig nivå upplåst!</h3>
+          <button type="button" class="modal-close" id="closeLegendaryCongratsBtn" aria-label="Stäng">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="legendary-congrats-hero">
+            <div class="legendary-congrats-emoji" aria-hidden="true">🌟🏆✨</div>
+            <h4 class="legendary-congrats-heading">Grattis, Mästerpackare!</h4>
+            <p class="legendary-congrats-sub">
+              Du har klarat alla <strong>40 ordinarie resmål inklusive Pro</strong>! Som belöning har du nu låst upp den hemliga 4:e svårighetsnivån: <strong>Legendariska &amp; Påhittade Resmål</strong> med 20 helt knasiga äventyrsbanor!
+            </p>
+          </div>
+
+          <ul class="legendary-teaser-list">
+            <li class="legendary-teaser-item">🤠 High Chaparral &amp; Wild West Town</li>
+            <li class="legendary-teaser-item">🪄 Hogwarts &amp; Förbjudna skogen</li>
+            <li class="legendary-teaser-item">🦖 Jurassic Park · Isla Nublar</li>
+            <li class="legendary-teaser-item">🌋 Mordor &amp; Domedagsberget</li>
+            <li class="legendary-teaser-item">🎅 Tomtens verkstad på Nordpolen</li>
+            <li class="legendary-teaser-item">🛸 Area 51, Atlantis &amp; Månbasen m.fl.</li>
+          </ul>
+
+          <button type="button" class="btn-primary" id="startLegendaryBtn" style="width: 100%; justify-content: center;">
+            ✨ Utforska Legendariska &amp; Påhittade Resmål!
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- HELP / RULES MODAL -->
     <div class="modal-backdrop" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle">
       <div class="modal-card">
@@ -3514,7 +3783,7 @@
               <span class="pro-perk-icon">1️⃣</span>
               <div>
                 <div class="pro-perk-title">Välj ett campingresmål</div>
-                <div class="pro-perk-desc">Varje bana har rekommenderade målvärden för Värme, Mat och Skydd baserat på klimat och väder.</div>
+                <div class="pro-perk-desc">Varje bana har rekommenderade målvärden för Värme, Mat och Skydd baserat på klimat, väder och en unik specialregel.</div>
               </div>
             </li>
             <li class="pro-perk-item">
@@ -3527,15 +3796,22 @@
             <li class="pro-perk-item">
               <span class="pro-perk-icon">3️⃣</span>
               <div>
-                <div class="pro-perk-title">Håll koll på vikten</div>
-                <div class="pro-perk-desc">Överlastar du husbilen får du ett avdrag på -2 i Skydd under svåra väg- och väderhändelser.</div>
+                <div class="pro-perk-title">Håll koll på vikten &amp; specialregler</div>
+                <div class="pro-perk-desc">Överlastar du husbilen får du -2 i Skydd under resan. Håll även koll på banans specialregel för extra bonusar eller krav.</div>
               </div>
             </li>
             <li class="pro-perk-item">
               <span class="pro-perk-icon">4️⃣</span>
               <div>
-                <div class="pro-perk-title">Ge dig ut på roadtrip</div>
-                <div class="pro-perk-desc">Tre slumpmässiga händelser testar din packning steg för steg. Klarar du alla tre vinner du resan!</div>
+                <div class="pro-perk-title">Ge dig ut på roadtrip &amp; hitta riktiga ställplatser</div>
+                <div class="pro-perk-desc">Tre slumpmässiga händelser testar din packning steg för steg. Klarar du alla tre vinner du resan och kan öppna verkliga ställplatser direkt på Campsite Swe (app.crazycamper.org)!</div>
+              </div>
+            </li>
+            <li class="pro-perk-item is-bonus">
+              <span class="pro-perk-icon">✨</span>
+              <div>
+                <div class="pro-perk-title">Hemlig 4:e nivå: Legendariska &amp; Påhittade Resmål</div>
+                <div class="pro-perk-desc">Spelet har 40 ordinarie resmål (10 Lätt, 10 Medel och 20 Svår/Expert i Pro). Klarar du alla 40 ordinarie resmål inklusive Pro låses automatiskt den hemliga 4:e nivån upp med 20 extra påhittade temabanor (t.ex. High Chaparral, Hogwarts, Jurassic Park, Mordor och Månbasen) och helt knasiga händelser!</div>
               </div>
             </li>
           </ul>
@@ -3636,7 +3912,10 @@
                 <strong>Crazy Camper: Packa &amp; Överlev</strong> är ett webbaserat packnings- och
                 överlevnadsspel för underhållning. Spelet erbjuder 20 kostnadsfria destinationer (Lätt &amp; Medel)
                 samt en frivillig uppgradering till <strong>Packa &amp; Överlev Pro</strong> med 20 extra
-                Europa- och extremvädersbanor samt utökat 6×5-lastutrymme.
+                Europa- och extremvädersbanor (Svår / Expert) samt utökat 6×5-lastutrymme. Spelare som klarar
+                samtliga 40 ordinarie resmål (inklusive Pro) låser dessutom automatiskt upp den hemliga
+                bonusnivån <strong>Legendariska &amp; Påhittade Resmål</strong> med 20 extra fantasibanor helt
+                utan extra kostnad.
               </p>
             </div>
 
@@ -3669,12 +3948,14 @@
             </div>
 
             <div class="legal-section">
-              <h4>3. Underhållning &amp; ansvarsbegränsning</h4>
+              <h4>3. Underhållning, påhittade resmål &amp; ansvarsbegränsning</h4>
               <p>
                 Väderhändelser, utrustningsvikter, poäng och packningstips i spelet är skapade enbart för
                 spelglädje och ersätter aldrig verklig reseplanering, fordonets tillåtna maxlast, trafikregler
-                eller officiella vädervarningar. Riktiga ställplatser och campingplatser utforskas via vår
-                externa webbapp på
+                eller officiella vädervarningar. Bonusnivån <em>Legendariska &amp; Påhittade Resmål</em>
+                innehåller helt fiktiva, sagoinspirerade och humoristiska fantasibanor utan verkliga
+                GPS-koordinater eller fysiska ställplatser. Riktiga ställplatser och campingplatser utforskas via
+                vår externa webbapp på
                 <a href="https://app.crazycamper.org" target="_blank" rel="noopener noreferrer">app.crazycamper.org</a>.
               </p>
             </div>
@@ -3691,9 +3972,11 @@
             <div class="legal-section">
               <h4>5. Immateriella rättigheter &amp; ändringar</h4>
               <p>
-                All speldesign, text, grafik och varumärket Crazy Camper tillhör Crazy Camper. Du får gärna dela
-                utmaningslänkar och skärmdumpar med vänner. Vi kan uppdatera spelet och dessa användarvillkor vid
-                behov; den senaste versionen finns alltid tillgänglig i sidfoten.
+                All speldesign, text, grafik och varumärket Crazy Camper tillhör Crazy Camper. Eventuella
+                referenser till myter, sagor, temaparker eller fiktiva världar i den hemliga bonusnivån är
+                humoristiska hyllningar och parodier utan koppling till eller godkännande från tredje part. Du
+                får gärna dela utmaningslänkar och skärmdumpar med vänner. Vi kan uppdatera spelet och dessa
+                användarvillkor vid behov; den senaste versionen finns alltid tillgänglig i sidfoten.
               </p>
             </div>
 
@@ -3864,6 +4147,19 @@
               </button>
             </div>
 
+            <!-- ADMIN TEST TOGGLE FOR SECRET LEGENDARY TIER -->
+            <div class="admin-pro-card" style="background: #fffbeb; border-color: #fde68a;">
+              <div class="admin-pro-card-info">
+                <span class="admin-pro-card-title" id="adminLegendaryStatusTitle">✨ Förhandstesta Legendariska Resmål (Admin)</span>
+                <span class="admin-pro-card-sub" id="adminLegendaryStatusSub">
+                  Lås upp den hemliga 4:e nivån (20 påhittade banor) tillfälligt för testning utan att först klara alla 40 ordinarie banor.
+                </span>
+              </div>
+              <button type="button" class="btn-secondary" id="adminToggleLegendaryBtn">
+                Lås upp för test (Admin)
+              </button>
+            </div>
+
             <!-- LIVE KPIS -->
             <div class="admin-kpi-grid tabular">
               <div class="admin-kpi-box">
@@ -3976,6 +4272,8 @@
         const STORAGE_PRO_KEY = 'crazycamper_pro_unlocked';
         const STORAGE_PROGRESS_KEY = 'crazycamper_completed_destinations';
         const STORAGE_RECORDS_KEY = 'crazycamper_local_records';
+        const STORAGE_LEGENDARY_CELEBRATED_KEY = 'crazycamper_legendary_celebrated';
+        const STORAGE_ADMIN_LEGENDARY_KEY = 'crazycamper_admin_legendary_preview';
 
         /* ===================== EQUIPMENT DATA (24 UNIQUE ITEMS) ===================== */
         const EQUIPMENT = [
@@ -5698,6 +5996,615 @@
               { icon: '🔥', title: 'Rå morgonkyla vid lägerelden', place: 'Ivalo', desc: 'Snabb eld och varm mat får igång kroppen inför dagens etapp norrut.', stat: 'warmth', req: 18, helpful: ['firesteel', 'axewood', 'coffeepot', 'stove'] },
             ],
           },
+
+          /* ---------- 20 LEGENDARISKA & PÅHITTADE RESMÅL (HEMLIG 4:E NIVÅ · LÅSES UPP VID 40/40) ---------- */
+          {
+            id: 'high_chaparral',
+            name: 'High Chaparral',
+            shortName: 'High Chaparral',
+            region: 'Småland · Vilda Västern',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Krutrök på huvudgatan, diligensrån och skenande prärievagnar',
+            description:
+              'Parkera husbilen bredvid saloonen mitt bland cowboys, ånglok och banditer i Sveriges mest legendariska Vilda Västern-stad.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'coffeepot',
+              stat: 'warmth',
+              bonus: 3,
+              label: '🤠 Cowboykaffe vid prärieelden: Kaffepanna ger +3 Värme',
+              detail: 'Inget imponerar på sheriffen som rykande svart kokkaffe vid husbilen.',
+            },
+            targets: { warmth: 16, food: 16, shelter: 19 },
+            events: [
+              { icon: '🔫', title: 'Krutrök och duell på huvudgatan i High Chaparral', place: 'Main Street', desc: 'Banditerna rider rakt förbi markisen i full galopp — du måste barrikadera lägret blixtsnabbt!', stat: 'shelter', req: 20, helpful: ['awning', 'tent', 'tarp', 'multitool'] },
+              { icon: '🚂', title: 'Rånarna stoppar ångloket vid proviantvagnen', place: 'Lucky Luke Station', desc: 'Hela stadens saloon stänger mitt i uppståndelsen — tur om du har eget krubb i husbilen.', stat: 'food', req: 17, helpful: ['cooler', 'stove', 'waterjug', 'coffeepot'] },
+              { icon: '🌵', title: 'Kylig prärienatt efter elduppvisningen', place: 'Old Mexico', desc: 'När krutröken lagt sig faller temperaturen över de småländska prärierna.', stat: 'warmth', req: 16, helpful: ['axewood', 'sleepingbag', 'heater', 'coffeepot'] },
+              { icon: '🐎', title: 'Skenande mustangflock genom campingen', place: 'Ranchen', desc: 'Tio vilda hästar dammar förbi ställplatsen och sliter i allt som inte är ordentligt förankrat.', stat: 'shelter', req: 19, helpful: ['tarp', 'awning', 'firstaid', 'chains'] },
+              { icon: '🤠', title: 'Sheriffen utmanar dig på chili-kokning', place: 'Saloonen', desc: 'Bara en riktig camper kan trolla fram rykande het präriegryta på nolltid.', stat: 'food', req: 16, helpful: ['stove', 'firesteel', 'cooler', 'waterjug'] },
+            ],
+          },
+          {
+            id: 'hogwarts',
+            name: 'Hogwarts & Förbjudna skogen',
+            shortName: 'Hogwarts',
+            region: 'Skotska högländerna · Magivärlden',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Isande dementorer, piskande pilträd och vilda trolldrycksstormar',
+            description:
+              'Fricampa i skuggan av magiskolans torn vid den mörka sjön — där uggleposten haglar och träden ibland slår tillbaka.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'heater',
+              penaltyStat: 'warmth',
+              penalty: 3,
+              bonus: 2,
+              label: '👻 Dementorvarning: Packa Gasolkamin (+2 / annars -3 Värme)',
+              detail: 'Utan rejäl värmekälla fryser både rutorna och humöret till is på sekunder.',
+            },
+            targets: { warmth: 20, food: 16, shelter: 18 },
+            events: [
+              { icon: '👻', title: 'Dementorer sänker temperaturen – kräver extra Värme', place: 'Svarta sjön', desc: 'En isande dimma rullar in över ställplatsen och frosten blommar på husbilsrutan mitt i sommaren.', stat: 'warmth', req: 21, helpful: ['heater', 'winterjacket', 'sleepingbag', 'coffeepot'] },
+              { icon: '🌳', title: 'Piskande pilträdet svingar mot husbilstaket', place: 'Slottsparken', desc: 'Du råkade backa lite för nära ett mycket surt träd som genast försöker platta till markisen.', stat: 'shelter', req: 19, helpful: ['tent', 'tarp', 'multitool', 'firstaid'] },
+              { icon: '🦉', title: 'Uggleposten välter hela frukostbordet', place: 'Hagrids stuga', desc: 'Trettio förvirrade ugglor landar samtidigt på kylväskan — dags för reservproviant!', stat: 'food', req: 16, helpful: ['cooler', 'stove', 'waterjug', 'chair'] },
+              { icon: '⚡', title: 'Quidditch-storm över slottstornen', place: 'Quidditch-planen', desc: 'Sidoregn, hagel och en förlupen dunkare testar ditt regn- och stormskydd till max.', stat: 'shelter', req: 18, helpful: ['raincoat', 'awning', 'tarp', 'headlamp'] },
+              { icon: '🕷️', title: 'Mörk kvällspromenad i Förbjudna skogen', place: 'Förbjudna skogen', desc: 'Ljus och värme är livsviktigt när jättespindlar och märkliga ljud hörs mellan granarna.', stat: 'warmth', req: 19, helpful: ['firesteel', 'headlamp', 'axewood', 'winterjacket'] },
+            ],
+          },
+          {
+            id: 'jurassic_park',
+            name: 'Jurassic Park · Isla Nublar',
+            shortName: 'Jurassic Park',
+            region: 'Stilla havet · Krita-perioden',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Stora fotsteg i vattenglaset, avstängda elstängsel och tropiska cykloner',
+            description:
+              'En fridfull natt i dinosaurieparken — ända tills backup-generatorn blinkar till och vattnet i kaffemuggen börjar skaka.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'powerbank',
+              penaltyStat: 'shelter',
+              penalty: 3,
+              bonus: 2,
+              label: '⚡ Elstängsel-backup: Packa Powerbank / Solcell (+2 / annars -3 Skydd)',
+              detail: 'När parkens ström går gäller det att kunna driva larm, lampor och nödsystem själv.',
+            },
+            targets: { warmth: 14, food: 17, shelter: 21 },
+            events: [
+              { icon: '🦖', title: 'T-Rex stampar vid husbilen – kräver maximalt Skydd', place: 'Paddock 9', desc: 'Vattenglaset vibrerar, elstängslet slocknar och ett enormt rytande ekar rakt utanför dörren!', stat: 'shelter', req: 22, helpful: ['tent', 'awning', 'tarp', 'powerbank'] },
+              { icon: '🦎', title: 'Velociraptorer testar dörrhandtaget', place: 'Besökscentret', desc: 'De är smartare än man tror — bara stadigt skydd, multiverktyg och is i magen håller dem ute.', stat: 'shelter', req: 20, helpful: ['multitool', 'firstaid', 'headlamp', 'tarp'] },
+              { icon: '🌀', title: 'Tropisk tyfon stänger båthamnen', place: 'East Dock', desc: 'Färjan kan inte lägga till på tre dagar så du får leva helt på din egen mat och ditt vatten.', stat: 'food', req: 18, helpful: ['waterjug', 'cooler', 'stove', 'fishingrod'] },
+              { icon: '🦟', title: 'Förhistoriska bärnstensmygg i djungeln', place: 'Lagunen', desc: 'Myggor stora som kolibrier svärmar runt husbilen så fort regnet avtar.', stat: 'shelter', req: 19, helpful: ['bugspray', 'raincoat', 'tarp', 'firstaid'] },
+              { icon: '🌧️', title: 'Fuktig djungelnatt utan generator', place: 'Södra stängslet', desc: 'Genomblöta kläder och strömavbrott gör att en varm sovsäck och het soppa räddar moralen.', stat: 'warmth', req: 14, helpful: ['sleepingbag', 'coffeepot', 'stove', 'firesteel'] },
+            ],
+          },
+          {
+            id: 'mordor',
+            name: 'Mordor & Domedagsberget',
+            shortName: 'Mordor',
+            region: 'Midgård · Skugglandet',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Glödande askregn, vattenbrist och skuggiga vakter vid Svarta Porten',
+            description:
+              'Man kör inte bara in i Mordor med husbil — men med rätt packning klarar du både svaveldimma och vandringen upp mot vulkanen.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'waterjug',
+              penaltyStat: 'food',
+              penalty: 3,
+              bonus: 2,
+              label: '🌋 Torr asköken: Packa Vattendunk (+2 / annars -3 Mat)',
+              detail: 'Inte en enda bäck är drickbar mellan Svarta Porten och Domedagsberget.',
+            },
+            targets: { warmth: 15, food: 20, shelter: 19 },
+            events: [
+              { icon: '🌋', title: 'Askregn och gnistor från Domedagsberget', place: 'Gorgoroth-slätten', desc: 'Het vulkanaska täcker solcellerna och piskar mot tältduken hela eftermiddagen.', stat: 'shelter', req: 20, helpful: ['tarp', 'awning', 'tent', 'snowshovel'] },
+              { icon: '💧', title: 'Hettan torkar ut hela skafferiet', place: 'Cirith Ungol', desc: 'Lembasbrödet är slut och luften är knastertorr — vatten och riktig mat är räddningen.', stat: 'food', req: 21, helpful: ['waterjug', 'cooler', 'stove', 'coffeepot'] },
+              { icon: '👁️', title: 'Det brinnande ögat sveper över ställplatsen', place: 'Barad-dûr', desc: 'Du måste kamouflera husbilen direkt och hålla dig utom synhåll under presenningen.', stat: 'shelter', req: 19, helpful: ['tarp', 'compass', 'headlamp', 'multitool'] },
+              { icon: '🥶', title: 'Skuggkyla i bergspasset vid midnatt', place: 'Ephel Dúath', desc: 'Trots vulkanen i fjärran drar en isande nattvind genom de svarta klipporna.', stat: 'warmth', req: 16, helpful: ['sleepingbag', 'winterjacket', 'sleepingpad', 'firesteel'] },
+              { icon: '🥾', title: 'Lång omväg runt orchernas patrull', place: 'Svarta Porten', desc: 'Två extra dagsetapper i karga berg kräver ordentligt med energi i magen.', stat: 'food', req: 19, helpful: ['cooler', 'stove', 'waterjug', 'fishingrod'] },
+            ],
+          },
+          {
+            id: 'north_pole',
+            name: 'Tomtens verkstad på Nordpolen',
+            shortName: 'Nordpolen',
+            region: 'Nordpolen · Tomteland',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Bitter julkyla (-40°C), bortsprungna renar och överfulla paketlass',
+            description:
+              'Ställplats 1B bredvid pepparkaksbageriet och renstallet. Här gäller vinterdäck, glögg och extrem köldisolering!',
+            specialRule: {
+              type: 'climatePenalty',
+              stat: 'warmth',
+              delta: -3,
+              label: '🎅 Polarkyla på Nordpolen: -3 Värme på hela resan',
+              detail: 'Även med norrsken över verkstaden biter kylan rakt genom husbilsväggarna.',
+            },
+            targets: { warmth: 20, food: 16, shelter: 18 },
+            events: [
+              { icon: '🥶', title: 'Polarkyla -40°C inför julaftonskvällen', place: 'Tomtebyn', desc: 'Termometern bottnar och istapparna växer på backspegeln — maximal värme krävs!', stat: 'warmth', req: 21, helpful: ['heater', 'winterjacket', 'sleepingbag', 'axewood'] },
+              { icon: '🦌', title: 'Rudolf och renarna snor din frukostgröt', place: 'Renstallet', desc: 'Hela spannet är utsultna inför nattens flygning och tömmer nästan ditt skafferi.', stat: 'food', req: 17, helpful: ['cooler', 'stove', 'coffeepot', 'waterjug'] },
+              { icon: '🌨️', title: 'Julaftonssnöstorm begraver husbilen', place: 'Paketbanan', desc: 'Två meter nysnö faller på en timme — snöskyffel och snökedjor är din bästa julklapp.', stat: 'shelter', req: 19, helpful: ['snowshovel', 'chains', 'tent', 'tarp'] },
+              { icon: '🔧', title: 'Nissarna lånar dina verktyg till släden', place: 'Verkstaden', desc: 'Medarna kärvar och bara en välutrustad camper kan rädda julklappsutdelningen.', stat: 'shelter', req: 18, helpful: ['multitool', 'headlamp', 'powerbank', 'chains'] },
+              { icon: '☕', title: 'Lång polarnatt utan soluppgång', place: 'Polcirkelns mitt', desc: 'Det är mörkt dygnet runt — het dryck, sprakande eld och varm sovsäck håller julstämningen uppe.', stat: 'warmth', req: 20, helpful: ['coffeepot', 'heater', 'firesteel', 'sleepingpad'] },
+            ],
+          },
+          {
+            id: 'area_51',
+            name: 'Area 51 · Nevadaöknen',
+            shortName: 'Area 51',
+            region: 'Nevada · Hemlig Sektor',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Hovrande tefat, EMP-pulser och stekhet öken som fryser på natten',
+            description:
+              'Fricamping precis vid den hemligstämplade gränslinjen i Groom Lake. Konstiga gröna ljus blinkar över markisen.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'compass',
+              penaltyStat: 'shelter',
+              penalty: 3,
+              bonus: 2,
+              label: '🛸 UFO-störning på GPS: Packa Kompass & Karta (+2 / annars -3 Skydd)',
+              detail: 'När rymdskeppen flyger förbi slutar all digital navigering att fungera.',
+            },
+            targets: { warmth: 15, food: 18, shelter: 19 },
+            events: [
+              { icon: '🛸', title: 'UFO hovrar tio meter över husbilstaket', place: 'Groom Lake', desc: 'En dragstråle försöker lyfta campingstolarna mot skyn — håll fast allt som går!', stat: 'shelter', req: 20, helpful: ['awning', 'chains', 'tarp', 'compass'] },
+              { icon: '⚡', title: 'Magnetpuls slår ut all elektronik', place: 'Hangar 18', desc: 'Husbilen blir helt svart och tyst mitt i natten — egen nödutrustning tar över.', stat: 'shelter', req: 19, helpful: ['compass', 'powerbank', 'headlamp', 'multitool'] },
+              { icon: '🌵', title: '45 grader i skuggan vid Extraterrestrial Highway', place: 'Rachel, Nevada', desc: 'Närmaste affär är "stängd för utomjordisk inventering" i femton mil.', stat: 'food', req: 19, helpful: ['waterjug', 'cooler', 'stove', 'coffeepot'] },
+              { icon: '🌙', title: 'Iskall ökennatt efter solnedgång', place: 'Saltslätten', desc: 'Från brännande hetta till nollgradigt på bara ett par timmar i Nevadaöknen.', stat: 'warmth', req: 16, helpful: ['sleepingbag', 'sleepingpad', 'winterjacket', 'heater'] },
+              { icon: '👽', title: 'Nyfikna gäster knackar på vid middagstid', place: 'Sektor 4', desc: 'De verkar fredliga men väldigt hungriga — bjuder du på stormköksmiddag går allt lugnt till.', stat: 'food', req: 18, helpful: ['stove', 'cooler', 'chair', 'coffeepot'] },
+            ],
+          },
+          {
+            id: 'sherwood',
+            name: 'Sherwoodskogen',
+            shortName: 'Sherwoodskogen',
+            region: 'Nottingham · Medeltiden',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Muntra stråtrövare vid kylväskan, dimmiga ekdungar och regniga skogsspår',
+            description:
+              'Ställ upp husbilen under Major Oak mitt bland bågskyttar, lägereldar och sheriffens skatteindrivare.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'fishingrod',
+              stat: 'food',
+              bonus: 3,
+              label: '🏹 Självhushåll i skogen: Fiskespö ger +3 Mat',
+              detail: 'Färsk fångst ur skogsbäcken räddar festen även om Robin Hood "lånar" ur skafferiet.',
+            },
+            targets: { warmth: 16, food: 19, shelter: 17 },
+            events: [
+              { icon: '🏹', title: 'Robin Hood "lånar" hälften ur ditt skafferi', place: 'Major Oak', desc: 'Han tackar artigt å de fattigas vägnar och försvinner upp i trädkronorna — hoppas du packade gott om mat!', stat: 'food', req: 20, helpful: ['cooler', 'fishingrod', 'stove', 'waterjug'] },
+              { icon: '🌧️', title: 'Medeltida ösregn och leriga hjulspår', place: 'Skogsgläntan', desc: 'Kärren svämmar över och husbilen hotar att sjunka ner i mossan.', stat: 'shelter', req: 18, helpful: ['raincoat', 'tarp', 'chains', 'snowshovel'] },
+              { icon: '🔥', title: 'Rå engelsk skogsdimma vid lägerelden', place: 'Lille Johns läger', desc: 'Fuktig nattkyla drar in mellan tusenåriga ekar — rejäl brasa och varm sovsäck krävs.', stat: 'warmth', req: 17, helpful: ['axewood', 'firesteel', 'sleepingbag', 'winterjacket'] },
+              { icon: '🛡️', title: 'Sheriffens vakter patrullerar stora vägen', place: 'Nottingham-stigen', desc: 'Du får ta en hemlig omväg genom snårskogen i beckmörker.', stat: 'shelter', req: 17, helpful: ['compass', 'headlamp', 'multitool', 'firstaid'] },
+              { icon: '🍗', title: 'Broder Tuck bjuder in till nattligt gille', place: 'Klostergläntan', desc: 'Alla förväntar sig en mästarkock vid husbilen när lägerelden tänds.', stat: 'food', req: 18, helpful: ['stove', 'coffeepot', 'cooler', 'fishingrod'] },
+            ],
+          },
+          {
+            id: 'atlantis',
+            name: 'Sjunkna Atlantis',
+            shortName: 'Atlantis',
+            region: 'Atlanten · Undervattensriket',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Gigantiskt vattentryck, korallstormar och bioluminiscent strömavbrott',
+            description:
+              'Kör in husbilen i den skimrande luftkupolen 3 000 meter under havsytan, omgiven av marmorpelare och nyfikna hajar.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'raincoat',
+              penaltyStat: 'shelter',
+              penalty: 3,
+              bonus: 2,
+              label: '🔱 Kondens & kupolläcka: Packa Regnjacka (+2 / annars -3 Skydd)',
+              detail: 'På havets botten droppar det ständigt från kristallvalven när trycket skiftar.',
+            },
+            targets: { warmth: 16, food: 17, shelter: 20 },
+            events: [
+              { icon: '🌊', title: 'Tryckvåg från Poseidons stadsport', place: 'Kristalltorget', desc: 'Kupolen knakar och en saltvattenskaskad sköljer över husbilens markis!', stat: 'shelter', req: 21, helpful: ['raincoat', 'tarp', 'tent', 'multitool'] },
+              { icon: '🐙', title: 'Jättebläckfisk kramar kupolglaset', place: 'Korallallén', desc: 'Hela ställplatsen gungar till och nödutrustningen sätts på hårda prov.', stat: 'shelter', req: 19, helpful: ['awning', 'firstaid', 'powerbank', 'headlamp'] },
+              { icon: '🐟', title: 'Färskvattenfontänen blir saltvatten', place: 'Tempelbrunnen', desc: 'Du kan inte dricka havsvatten — tur om du har med egen vattendunk och mat!', stat: 'food', req: 18, helpful: ['waterjug', 'fishingrod', 'cooler', 'stove'] },
+              { icon: '🥶', title: 'Djuphavskyla strömmar in genom ventilen', place: 'Avgrundsrännan', desc: 'Vattnet utanför är iskallt (+2°C) och kylan tränger snabbt in i husbilen.', stat: 'warmth', req: 17, helpful: ['heater', 'sleepingbag', 'winterjacket', 'sleepingpad'] },
+              { icon: '✨', title: 'Bioluminiscent strömavbrott i staden', place: 'Biblioteket', desc: 'Alla magiska kristaller slocknar samtidigt — pannlampa och varm dryck håller lugnet.', stat: 'warmth', req: 16, helpful: ['headlamp', 'powerbank', 'coffeepot', 'firesteel'] },
+            ],
+          },
+          {
+            id: 'moon_base',
+            name: 'Månbasen Tranquility',
+            shortName: 'Månbasen',
+            region: 'Månen · Stillhetens hav',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Kosmisk månnatt (-130°C), mikrometeorskur och strikt raketvikt',
+            description:
+              'Världens bästa utsikt över jordklotet — men varje extra kilo kostar bränsle och solstormarna skakar om husbilen.',
+            specialRule: {
+              type: 'weightLimit',
+              freeMaxWeight: 30,
+              proMaxWeight: 40,
+              label: '🚀 Raketlastgräns till Månen: Maxvikt 40 kg (annars -2 Skydd)',
+              detail: 'Varje kilo räknas i låg gravitation — packa smart, lätt och effektivt!',
+            },
+            targets: { warmth: 19, food: 16, shelter: 19 },
+            events: [
+              { icon: '🌑', title: '14 dygn lång månnatt i -130°C', place: 'Stillhetens hav', desc: 'Solen försvinner bakom kraterkanten och rymdkylan kräver maximal isolering och värme.', stat: 'warmth', req: 20, helpful: ['heater', 'winterjacket', 'sleepingbag', 'powerbank'] },
+              { icon: '☄️', title: 'Mikrometeorskur över kraterkanten', place: 'Krater Tycho', desc: 'Små rymdstenar smattrar mot husbilstaket och kräver förstärkt skydd och snabba lagningar.', stat: 'shelter', req: 20, helpful: ['tent', 'tarp', 'multitool', 'firstaid'] },
+              { icon: '☀️', title: 'Solstorm slår ut månroverns batteri', place: 'Landningszon Alfa', desc: 'Du blir fast ute vid kratern över natten och måste lita på din egen kraft och belysning.', stat: 'shelter', req: 18, helpful: ['powerbank', 'headlamp', 'compass', 'firstaid'] },
+              { icon: '🧃', title: 'Försörjningsraketen från jorden är försenad', place: 'Sluss 3', desc: 'Bara din egen medhavda mat och vattendunk håller besättningen mätt tills nästa skepp landar.', stat: 'food', req: 17, helpful: ['waterjug', 'cooler', 'stove', 'coffeepot'] },
+              { icon: '🥾', title: 'Måndamm sätter igen värmeventilen', place: 'Månbasen', desc: 'Fint, vasst damm letar sig in överallt — skotta, rengör och håll värmen uppe!', stat: 'warmth', req: 18, helpful: ['snowshovel', 'multitool', 'sleepingpad', 'heater'] },
+            ],
+          },
+          {
+            id: 'wild_west_town',
+            name: 'Wild West Town · Guldrush-dalen',
+            shortName: 'Wild West Town',
+            region: 'Gränslandet · Vilda Västern',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Röd ökenstorm, uttorkad guldgrävarbrunn och skenande diligens',
+            description:
+              'En dammig gränsstad från 1874 där tumbelweeds rullar över ställplatsen och varje guldsökare vaktar sin inmutning.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'snowshovel',
+              stat: 'shelter',
+              bonus: 3,
+              label: '⛏️ Guldgrävarens skyffel: Snöskyffel ger +3 Skydd',
+              detail: 'Perfekt för både sanddrivor, grävda eldstäder och en oväntad guldklimp!',
+            },
+            targets: { warmth: 15, food: 18, shelter: 19 },
+            events: [
+              { icon: '🌪️', title: 'Röd sandstorm sveper genom spökstaden', place: 'Canyon Road', desc: 'Sikten faller till noll och fin ökensand blåser rakt in mot campingen.', stat: 'shelter', req: 20, helpful: ['awning', 'tarp', 'tent', 'snowshovel'] },
+              { icon: '💧', title: 'Guldgrävarbrunnen har sinat helt', place: 'Dead Gulch', desc: 'Inte en droppe kvar i vattentornet — du klarar dig bara på egen försörjning.', stat: 'food', req: 19, helpful: ['waterjug', 'cooler', 'stove', 'coffeepot'] },
+              { icon: '🤠', title: 'Skenande diligens sladdar in på ställplatsen', place: 'Banktorget', desc: 'Hjulekrar och damm yr överallt — tur om lägret är stabilt och akutväskan redo.', stat: 'shelter', req: 18, helpful: ['firstaid', 'multitool', 'chains', 'tarp'] },
+              { icon: '🔥', title: 'Kylig kanjonnatt bland prärievargar', place: 'Rattlesnake Ridge', desc: 'Prärievargarna ylar i månskenet medan temperaturen rasar i dalen.', stat: 'warmth', req: 16, helpful: ['axewood', 'firesteel', 'sleepingbag', 'coffeepot'] },
+              { icon: '🥘', title: 'Böngryta för hela lägret efter guldvaskningen', place: 'Guldbäcken', desc: 'Trötta guldgrävare samlas kring husbilen och hoppas på rejäl husmanskost.', stat: 'food', req: 17, helpful: ['stove', 'cooler', 'chair', 'waterjug'] },
+            ],
+          },
+          {
+            id: 'narnia',
+            name: 'Narnia · Lyktstolpen i skogen',
+            shortName: 'Narnia',
+            region: 'Bortom garderoben · Narnia',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Vita Häxans eviga vinter, förtrollad snöstorm och vargpatruller',
+            description:
+              'Du backade in genom en ovanligt stor garderob och hamnade i en förtrollad vinterskog där det alltid är vinter men aldrig jul.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'winterjacket',
+              penaltyStat: 'warmth',
+              penalty: 3,
+              bonus: 2,
+              label: '🧥 Garderobens pälsregel: Packa Vinterjacka (+2 / annars -3 Värme)',
+              detail: 'Ingen går förbi lyktstolpen utan en riktigt tjock vinterjacka!',
+            },
+            targets: { warmth: 20, food: 16, shelter: 18 },
+            events: [
+              { icon: '❄️', title: 'Vita Häxans förtrollade snöstorm', place: 'Lyktstolpen', desc: 'Hennes släde dundrar förbi i fjärran och isvindar sliter i husbilen.', stat: 'warmth', req: 21, helpful: ['winterjacket', 'heater', 'sleepingbag', 'axewood'] },
+              { icon: '🦫', title: 'Herr och Fru Bäver bjuder på tedags – men skafferiet är tomt', place: 'Bäverdammen', desc: 'De talande bävrarna behöver hjälp att fixa varm mat och te innan mörkret faller.', stat: 'food', req: 17, helpful: ['coffeepot', 'stove', 'fishingrod', 'cooler'] },
+              { icon: '🐺', title: 'Vargpatrull ylar runt ställplatsen', place: 'Frusna floden', desc: 'Säkra lägret, skotta vallar och se till att ni har stadigt skydd hela natten.', stat: 'shelter', req: 19, helpful: ['tent', 'tarp', 'snowshovel', 'firesteel'] },
+              { icon: '🧊', title: 'Isen brister vid den frusna vattenfallet', place: 'Stenbordet', desc: 'Hal vinterväg och snabba väderomslag kräver snökedjor och säkert grepp.', stat: 'shelter', req: 18, helpful: ['chains', 'compass', 'firstaid', 'headlamp'] },
+              { icon: '🔥', title: 'Stjärnklar köldnatt vid Stenbordet', place: 'Aslans läger', desc: 'Kylan biter i kinderna men en god lägereld och varm sovsäck gör natten magisk.', stat: 'warmth', req: 19, helpful: ['axewood', 'sleepingbag', 'sleepingpad', 'heater'] },
+            ],
+          },
+          {
+            id: 'neverland',
+            name: 'Landet Ingenstans',
+            shortName: 'Landet Ingenstans',
+            region: 'Andra stjärnan till höger · Sagovärlden',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Piratkanoner från Jolly Roger, tickande krokodiler och älvstoftsvindar',
+            description:
+              'En magisk ö där ingen blir vuxen, men där din husbil ändå måste klara både Kapten Kroks hyss och vilda lagunstormar.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'tarp',
+              stat: 'shelter',
+              bonus: 3,
+              label: '🧚 Trädkroneläger: Tarp / Presenning ger +3 Skydd',
+              detail: 'Perfekt kamouflage både mot flygande pirater och tropiska regnskurar.',
+            },
+            targets: { warmth: 14, food: 18, shelter: 19 },
+            events: [
+              { icon: '🏴‍☠️', title: 'Kapten Krok skjuter varningsskott mot lagunen', place: 'Dödskalleklippan', desc: 'Jolly Roger seglar in i viken — du måste säkra lägret snabbt!', stat: 'shelter', req: 20, helpful: ['tarp', 'tent', 'awning', 'compass'] },
+              { icon: '🐊', title: 'Tick-tack! Krokodilen lurpassar utanför dörren', place: 'Sjöjungfrulagunen', desc: 'Du hör ett bekant väckarklocksljud i vassen — stanna säkert i skydd tills den simmar vidare.', stat: 'shelter', req: 19, helpful: ['awning', 'headlamp', 'firstaid', 'multitool'] },
+              { icon: '🧺', title: 'De bortkomna pojkarna är vrålhungriga', place: 'Hemliga gömstället', desc: 'De brukar bara "låtsasäta", men idag vill hela gänget ha riktig campingmat!', stat: 'food', req: 19, helpful: ['cooler', 'stove', 'fishingrod', 'waterjug'] },
+              { icon: '✨', title: 'Älvstoftsstorm lyfter allt som inte sitter fast', place: 'Älvdalen', desc: 'Tingeling nyser och plötsligt svävar halva campingen — förankra och skydda utrustningen!', stat: 'shelter', req: 18, helpful: ['chains', 'tarp', 'multitool', 'raincoat'] },
+              { icon: '🌙', title: 'Sval havsdimma över lagunen', place: 'Stjärnstranden', desc: 'Efter en lång dag i luften känns en varm sovsäck och het choklad helt oslagbart.', stat: 'warmth', req: 15, helpful: ['sleepingbag', 'coffeepot', 'axewood', 'sleepingpad'] },
+            ],
+          },
+          {
+            id: 'el_dorado',
+            name: 'El Dorado · Guldstaden',
+            shortName: 'El Dorado',
+            region: 'Djungelns hjärta · Sydamerika',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Skyfall över guldtemplet, täta djungelsnår och uråldriga fällor',
+            description:
+              'Du hittade den mytomspunna guldstaden djupt inne i regnskogen — men nu gäller det att överleva monsunen och hitta ut igen.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'bugspray',
+              penaltyStat: 'shelter',
+              penalty: 3,
+              bonus: 2,
+              label: '🦟 Regnskogssvärm: Packa Myggmedel (+2 / annars -3 Skydd)',
+              detail: 'Guldtemplets djungelmyggor har väntat i femhundra år på besök.',
+            },
+            targets: { warmth: 14, food: 18, shelter: 20 },
+            events: [
+              { icon: '🌧️', title: 'Tropiskt monsunskyfall över guldtemplet', place: 'Solpyramiden', desc: 'Regnet forsar ner längs guldtrapporna och förvandlar ställplatsen till en flod.', stat: 'shelter', req: 21, helpful: ['raincoat', 'tarp', 'tent', 'awning'] },
+              { icon: '🦟', title: 'Enorm djungelmyggsvärm i skymningen', place: 'Smaragdlagunen', desc: 'Hela träsket vaknar till liv så fort solen sjunker bakom pyramiderna.', stat: 'shelter', req: 19, helpful: ['bugspray', 'tarp', 'firstaid', 'headlamp'] },
+              { icon: '🧭', title: 'Övervuxen djungelstig blockerar utfarten', place: 'Lianbron', desc: 'Du kör vilse bland uråldriga ruiner — kompass, verktyg och proviant är räddningen.', stat: 'food', req: 18, helpful: ['waterjug', 'cooler', 'stove', 'compass'] },
+              { icon: '🪨', title: 'Rullande stenblock blockerar tempelporten', place: 'Skattkammaren', desc: 'En klassisk äventyrsfälla! Gräv runt, säkra fordonet och plåstra om skrubbsåren.', stat: 'shelter', req: 20, helpful: ['snowshovel', 'multitool', 'firstaid', 'chains'] },
+              { icon: '☕', title: 'Klibbig och rå natt i bergsregnskogen', place: 'Dimdalen', desc: 'Genomblöta kängor och sval höjddimma gör varm mat och tänd eld livsviktiga.', stat: 'warmth', req: 15, helpful: ['firesteel', 'stove', 'sleepingbag', 'coffeepot'] },
+            ],
+          },
+          {
+            id: 'bermuda_triangle',
+            name: 'Bermudatriangeln · Husbilsfärjan',
+            shortName: 'Bermudatriangeln',
+            region: 'Västra Atlanten · Mystiska zonen',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Snurrande kompasser, elektronisk dimma och plötsliga tidsglapp',
+            description:
+              'Din husbil står surrad på bildäck mitt i världens mest mystiska havsområde — där klockorna går baklänges och dimman glöder grönt.',
+            specialRule: {
+              type: 'compactBay',
+              freeMaxCells: 20,
+              proMaxCells: 26,
+              penaltyStat: 'shelter',
+              penalty: 3,
+              label: '🚢 Bildäcksbalans i storm: Max 26 rutor packade (annars -3 Skydd)',
+              detail: 'I monstervågorna måste husbilen ha luft och låg tyngdpunkt för att inte kränga.',
+            },
+            targets: { warmth: 15, food: 18, shelter: 19 },
+            events: [
+              { icon: '🧭', title: 'Kompassen snurrar som en propeller i grön dimma', place: 'Zon X', desc: 'Kaptenen ropar ut radiotystnad medan färjan driver i en märklig dimbank.', stat: 'shelter', req: 20, helpful: ['compass', 'powerbank', 'headlamp', 'tarp'] },
+              { icon: '🌊', title: 'Monstervåg sköljer rakt över bildäck', place: 'Öppna Atlanten', desc: 'Husbilen kränger kraftigt — bara ordentliga surrningar och vattentätt skydd håller.', stat: 'shelter', req: 19, helpful: ['chains', 'raincoat', 'awning', 'multitool'] },
+              { icon: '⏳', title: 'Tidsglapp! Färjeresan tar tre dagar istället för tre timmar', place: 'Sargassohavet', desc: 'Skeppets cafeteria har slut på allt — nu lever du helt på din egen mat och vattendunk.', stat: 'food', req: 19, helpful: ['waterjug', 'cooler', 'stove', 'fishingrod'] },
+              { icon: '🌫️', title: 'Spöklik kyla sveper över däck vid midnatt', place: 'Spökskeppets vik', desc: 'Ett gammalt segelfartyg glider förbi i dimman och temperaturen dyker direkt.', stat: 'warmth', req: 16, helpful: ['sleepingbag', 'winterjacket', 'heater', 'coffeepot'] },
+              { icon: '🔋', title: 'Färjans elsystem blinkar och dör', place: 'Bildäck B', desc: 'Ingen landström och bäckmörkt på däck — solcell, pannlampa och stormkök räddar natten.', stat: 'food', req: 17, helpful: ['powerbank', 'stove', 'coffeepot', 'waterjug'] },
+            ],
+          },
+          {
+            id: 'transylvania',
+            name: 'Draculas slott · Transsylvanien',
+            shortName: 'Transsylvanien',
+            region: 'Karpaterna · Skräckriket',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Fladdermussvärmar, vargylande dimma och isande slottsdrag',
+            description:
+              'En dimmig bergsställplats nedanför ett gotiskt slott med gnisslande portar. Bonuspoäng om du gillar vitlök till middag!',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'headlamp',
+              penaltyStat: 'shelter',
+              penalty: 3,
+              bonus: 2,
+              label: '🦇 Mörkrets slott: Packa Pannlampa (+2 / annars -3 Skydd)',
+              detail: 'Greven gillar inte starkt LED-ljus — pannlampan håller nattens skuggor på avstånd!',
+            },
+            targets: { warmth: 18, food: 16, shelter: 19 },
+            events: [
+              { icon: '🦇', title: 'Fladdermussvärm störtar ner mot markisen', place: 'Slottstornet', desc: 'Hundratals fladdermöss cirklar runt husbilen precis när fullmånen går upp.', stat: 'shelter', req: 20, helpful: ['headlamp', 'tarp', 'tent', 'awning'] },
+              { icon: '🌫️', title: 'Isande källardrag från kryptan', place: 'Borgo-passet', desc: 'En onaturlig frostkyla kryper längs marken genom bergsdimman.', stat: 'warmth', req: 19, helpful: ['heater', 'sleepingbag', 'winterjacket', 'axewood'] },
+              { icon: '🧄', title: 'Byn låser sina portar före skymning', place: 'Karpaterbyn', desc: 'Inga värdshus vågar öppna efter solnedgången — du får laga egen vitlökspasta på stormköket!', stat: 'food', req: 17, helpful: ['stove', 'cooler', 'waterjug', 'coffeepot'] },
+              { icon: '🐺', title: 'Vargar omringar den dimmiga bergsvägen', place: 'Skuggskogen', desc: 'Gnistrande ögon i mörkret — eld, ljus och stadigt skydd håller dig trygg till gryningen.', stat: 'warmth', req: 18, helpful: ['firesteel', 'axewood', 'headlamp', 'firstaid'] },
+              { icon: '⛈️', title: 'Dramatiskt gotiskt åskväder över slottet', place: 'Slottsgården', desc: 'Blixtarna lyser upp tornspirorna medan regnet vräker ner över campingen.', stat: 'shelter', req: 19, helpful: ['raincoat', 'tarp', 'awning', 'powerbank'] },
+            ],
+          },
+          {
+            id: 'nangijala',
+            name: 'Körsbärsdalen & Törnrosdalen',
+            shortName: 'Nangijala',
+            region: 'Nangijala · Sagolandet',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Karmas vattenfall, bergspasset till Karmanjaka och Katlas mörka skugga',
+            description:
+              'Fridfullt läger bland blommande körsbärsträd — ända tills du ska ta dig över de karga bergen bortom Törnrosdalen.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'axewood',
+              stat: 'warmth',
+              bonus: 3,
+              label: '🔥 Lägereldarnas tid: Yxa & Ved ger +3 Värme',
+              detail: 'I sagornas och lägereldarnas land ger sprakande björkved mod och värme till hela dalen.',
+            },
+            targets: { warmth: 18, food: 17, shelter: 19 },
+            events: [
+              { icon: '🐉', title: 'Katlas skugga och svavelrök vid bergspasset', place: 'Karmanjaka', desc: 'Marken skakar vid Karmas vattenfall — göm husbilen och maximera ditt skydd!', stat: 'shelter', req: 20, helpful: ['tarp', 'tent', 'awning', 'firstaid'] },
+              { icon: '🌊', title: 'Vild vårflod sköljer över träbron', place: 'De uråldriga bergens älv', desc: 'Starkt strömmande vatten och branta stigar kräver stadigt grepp och smarta verktyg.', stat: 'shelter', req: 19, helpful: ['chains', 'compass', 'multitool', 'raincoat'] },
+              { icon: '❄️', title: 'Kylig natt uppe i bergsgrottan', place: 'Varggrottan', desc: 'Vinden viner över de svarta bergen mellan Törnrosdalen och Karmanjaka.', stat: 'warmth', req: 19, helpful: ['axewood', 'sleepingbag', 'winterjacket', 'firesteel'] },
+              { icon: '🍒', title: 'Lång marsch utan värdshus på bergskammen', place: 'Törnrosmuren', desc: 'Körsbären är slut och du behöver rejäl mat och färskt vatten för att orka vidare.', stat: 'food', req: 18, helpful: ['cooler', 'waterjug', 'stove', 'fishingrod'] },
+              { icon: '☕', title: 'Sena sagor runt lägerelden i Körsbärsdalen', place: 'Ryttargården', desc: 'En sprakande brasa och rykande varm dryck samlar hela dalen under stjärnorna.', stat: 'warmth', req: 17, helpful: ['coffeepot', 'axewood', 'chair', 'sleepingpad'] },
+            ],
+          },
+          {
+            id: 'mars_colony',
+            name: 'Marskolonin Olympus Mons',
+            shortName: 'Marskolonin',
+            region: 'Mars · Röda Planeten',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Global marsiansk dammstorm, -70°C nattkyla och potatisbrist i växthuset',
+            description:
+              'Campare på solsystemets högsta vulkan! Röda dammvirvlar yr utanför luftslussen och varje vattendroppe återvinns.',
+            specialRule: {
+              type: 'climatePenalty',
+              stat: 'food',
+              delta: -2,
+              label: '🥔 Marsiansk ransonering: -2 Mat under hela expeditionen',
+              detail: 'Växthusets potatisskörd är försenad — ta med ordentligt med egen proviant!',
+            },
+            targets: { warmth: 19, food: 18, shelter: 19 },
+            events: [
+              { icon: '🌪️', title: 'Global marsiansk dammstorm i tre dygn', place: 'Olympus Mons', desc: 'Rött damm täcker himlen och piskar mot din lufttäta husbilsmodul i orkanstyrka.', stat: 'shelter', req: 20, helpful: ['tent', 'tarp', 'awning', 'snowshovel'] },
+              { icon: '🥶', title: 'Tunn atmosfär – natten dyker till -70°C', place: 'Valles Marineris', desc: 'Utan tjock luft försvinner all värme ögonblickligen när solen går ner.', stat: 'warmth', req: 20, helpful: ['heater', 'sleepingbag', 'winterjacket', 'powerbank'] },
+              { icon: '🥔', title: 'Slut på frystorkade potatisar i basen', place: 'Hab-modul 4', desc: 'Kolonin har slut på mat — bara din kylväska, vattendunk och stormkök räddar besättningen.', stat: 'food', req: 19, helpful: ['cooler', 'waterjug', 'stove', 'coffeepot'] },
+              { icon: '🔧', title: 'Solpanelen begravd i röd sand', place: 'Kraterslätten', desc: 'Gräv fram panelerna och laga kabeln innan batterierna laddar ur helt.', stat: 'shelter', req: 19, helpful: ['snowshovel', 'multitool', 'powerbank', 'headlamp'] },
+              { icon: '🌡️', title: 'Tryckfall i förvärmaren vid gryningen', place: 'Röda kammen', desc: 'Extra isolering och reservvärme behövs tills solstrålarna når kraterkanten.', stat: 'warmth', req: 18, helpful: ['sleepingpad', 'heater', 'winterjacket', 'firstaid'] },
+            ],
+          },
+          {
+            id: 'pirate_cove',
+            name: 'Tortuga & Skattkammarön',
+            shortName: 'Skattkammarön',
+            region: 'Karibiska havet · Piratbukten',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Tropisk piratorkan, matglada papegojor och hemliga skattkartor',
+            description:
+              'Palmsus, gyllene sand och en gömd sjörövarskatt bakom husbilen — men se upp när svarta segel dyker upp vid horisonten.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'compass',
+              stat: 'shelter',
+              bonus: 3,
+              label: '🗺️ Skattkarta & pejling: Kompass & Karta ger +3 Skydd',
+              detail: 'Hittar säkraste viken i lä och leder dig rakt förbi piraternas bakhåll.',
+            },
+            targets: { warmth: 14, food: 19, shelter: 19 },
+            events: [
+              { icon: '🌀', title: 'Tropisk karibisk piratorkan', place: 'Tortuga-bukten', desc: 'Palmerna böjer sig till marken och havet dundrar in över strandställplatsen!', stat: 'shelter', req: 20, helpful: ['tarp', 'awning', 'tent', 'raincoat'] },
+              { icon: '🦜', title: 'Pratglada papegojor och apor länsar frukosten', place: 'Skattviken', desc: 'Hela frukostbordet försvinner upp i palmerna — dags att fiska och laga nytt!', stat: 'food', req: 20, helpful: ['fishingrod', 'cooler', 'waterjug', 'stove'] },
+              { icon: '🔦', title: 'Skattjakt i bäckmörk sjörövargrotta', place: 'Dödskallegrottan', desc: 'Kartan visar X under klippan — du behöver ljus, verktyg och kompass för att komma helskinnad ut.', stat: 'shelter', req: 19, helpful: ['headlamp', 'compass', 'multitool', 'firstaid'] },
+              { icon: '🦟', title: 'Sandflugor och tropisk kvällshetta', place: 'Mangroveviken', desc: 'Fuktigt kustklimat och miljoner små bitare kräver både myggmedel och kallt vatten.', stat: 'food', req: 18, helpful: ['waterjug', 'bugspray', 'cooler', 'chair'] },
+              { icon: '🔥', title: 'Blöt stormnatt efter regnskuren', place: 'Kapten Flints udde', desc: 'Kläderna är sjöblöta efter skattjakten — en varm brasa och torr sovsäck räddar kvällen.', stat: 'warmth', req: 15, helpful: ['firesteel', 'axewood', 'sleepingbag', 'coffeepot'] },
+            ],
+          },
+          {
+            id: 'mount_olympus',
+            name: 'Gudarnas berg · Olympen',
+            shortName: 'Olympen',
+            region: 'Grekland · Mytologin',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Zeus åskviggar, tunn höghöjdsluft och gudomliga kastvindar över molnen',
+            description:
+              'Ställplats ovanför molntäcket på 2 917 meters höjd med utsikt över marmorpelare och mycket temperamentsfulla vädergudar.',
+            specialRule: {
+              type: 'requiredItem',
+              itemId: 'awning',
+              penaltyStat: 'shelter',
+              penalty: 3,
+              bonus: 2,
+              label: '⚡ Zeus blixtskydd: Packa Vindskydd & Markis (+2 / annars -3 Skydd)',
+              detail: 'Vindarna ovanför molnen sliter i allt — ett rejält vindskydd imponerar på självaste Zeus.',
+            },
+            targets: { warmth: 17, food: 17, shelter: 20 },
+            events: [
+              { icon: '⚡', title: 'Zeus kastar blixtar tio meter från markisen', place: 'Tronsalen', desc: 'Åskan dånar så marmorpelarna skakar och skyfall vräker ner över lägret!', stat: 'shelter', req: 21, helpful: ['awning', 'tarp', 'raincoat', 'tent'] },
+              { icon: '🌬️', title: 'Boreas isande nordanvind över molntäcket', place: 'Mytikas-toppen', desc: 'Vindguden blåser kallt rakt över bergskammen så termometern störtar.', stat: 'warmth', req: 18, helpful: ['winterjacket', 'heater', 'sleepingbag', 'sleepingpad'] },
+              { icon: '🍇', title: 'Gudarna glömde ambrosia – nu vill alla ha campingmat', place: 'Marmorplatsen', desc: 'Ingen elstolpe och fem mil ner till byn — bjud på egen gryta och nykokt kaffe!', stat: 'food', req: 18, helpful: ['stove', 'cooler', 'waterjug', 'coffeepot'] },
+              { icon: '🦉', title: 'Athenas kluriga navigationsprov i bergsdimman', place: 'Molnstigen', desc: 'Slingrande serpentinvägar i tjock molndimma kräver skarp navigering och säkert grepp.', stat: 'shelter', req: 19, helpful: ['compass', 'chains', 'headlamp', 'multitool'] },
+              { icon: '🔥', title: 'Prometheus delar ut gnistor – tänd lägerelden!', place: 'Eldaltaret', desc: 'En kylig kväll på nästan 3 000 meters höjd kräver ordentlig värme för att klara natten.', stat: 'warmth', req: 17, helpful: ['firesteel', 'axewood', 'heater', 'coffeepot'] },
+            ],
+          },
+          {
+            id: 'cyberpunk_2099',
+            name: 'Neon City 2099 · Takställplatsen',
+            shortName: 'Neon City 2099',
+            region: 'Framtiden · Megastaden',
+            tier: 'legendary',
+            difficulty: 'Legendarisk',
+            proOnly: true,
+            legendaryOnly: true,
+            fictional: true,
+            riskSummary: 'Surt neonregn, EMP-pulser från svävartrafiken och hackade kiosker',
+            description:
+              'Parkera din retro-husbil på skyskrapans tak 140 våningar upp mitt bland hologram, flygande bilar och blinkande neonskyltar.',
+            specialRule: {
+              type: 'bonusItem',
+              itemId: 'multitool',
+              stat: 'shelter',
+              bonus: 3,
+              label: '🤖 Cyber-mekaniker: Multiverktyg ger +3 Skydd',
+              detail: 'Analogt svenskt stål slår alltid buggig framtidsteknik när drönarna krånglar.',
+            },
+            targets: { warmth: 16, food: 18, shelter: 20 },
+            events: [
+              { icon: '☔', title: 'Surt neonregn över takcampingen', place: 'Sektor 99 · Våning 140', desc: 'Lysande regndroppar fräser mot husbilstaket och vindbyarna mellan skyskraporna är brutala.', stat: 'shelter', req: 21, helpful: ['raincoat', 'tarp', 'awning', 'tent'] },
+              { icon: '⚡', title: 'EMP-puls från svävartrafiken slår ut taket', place: 'Hologramtorget', desc: 'Alla neonlampor dör på en sekund — bara din egen powerbank och ditt multiverktyg fungerar.', stat: 'shelter', req: 20, helpful: ['powerbank', 'multitool', 'headlamp', 'firstaid'] },
+              { icon: '🍜', title: 'Nudelautomaten är hackad och vägrar sälja mat', place: 'Cyber-basaren', desc: 'Dina krediter är låsta i molnet — tur att du har eget stormkök, kylväska och vatten!', stat: 'food', req: 19, helpful: ['stove', 'cooler', 'waterjug', 'coffeepot'] },
+              { icon: '🌬️', title: 'Iskalla fallvindar 500 meter ovanför gatan', place: 'Helikopterplattan', desc: 'Uppe bland molnen och skyskrapetopparna biter nattkylan ordentligt.', stat: 'warmth', req: 17, helpful: ['heater', 'winterjacket', 'sleepingbag', 'sleepingpad'] },
+              { icon: '🚁', title: 'Förrymda leveransdrönare kraschar nära lägret', place: 'Takträdgården', desc: 'Säkra utrustningen, plåstra om småskador och håll huvudet kallt i kaoset!', stat: 'shelter', req: 19, helpful: ['firstaid', 'multitool', 'tarp', 'compass'] },
+            ],
+          },
         ];
 
         /* ===================== STATE ===================== */
@@ -5705,8 +6612,10 @@
           isPro: loadProStatus(),
           completed: loadCompleted(),
           records: loadRecords(),
+          legendaryCelebrated: loadLegendaryCelebrated(),
+          adminLegendaryPreview: loadAdminLegendaryPreview(),
           activeDestId: 'oland',
-          destTierFilter: 'all', // 'all' | 'easy' | 'medium' | 'hard'
+          destTierFilter: 'all', // 'all' | 'easy' | 'medium' | 'hard' | 'legendary'
           destSearchQuery: '',
           destListExpanded: false,
           activeChallenge: null, // { destId, seed, targetScore }
@@ -5836,6 +6745,34 @@
         function saveRecords(obj) {
           try {
             localStorage.setItem(STORAGE_RECORDS_KEY, JSON.stringify(obj));
+          } catch (_) {}
+        }
+
+        function loadLegendaryCelebrated() {
+          try {
+            return localStorage.getItem(STORAGE_LEGENDARY_CELEBRATED_KEY) === 'true';
+          } catch (_) {
+            return false;
+          }
+        }
+
+        function saveLegendaryCelebrated(val) {
+          try {
+            localStorage.setItem(STORAGE_LEGENDARY_CELEBRATED_KEY, val ? 'true' : 'false');
+          } catch (_) {}
+        }
+
+        function loadAdminLegendaryPreview() {
+          try {
+            return localStorage.getItem(STORAGE_ADMIN_LEGENDARY_KEY) === 'true';
+          } catch (_) {
+            return false;
+          }
+        }
+
+        function saveAdminLegendaryPreview(val) {
+          try {
+            localStorage.setItem(STORAGE_ADMIN_LEGENDARY_KEY, val ? 'true' : 'false');
           } catch (_) {}
         }
 
@@ -5974,15 +6911,48 @@
           let easy = 0;
           let medium = 0;
           let hard = 0;
+          let legendary = 0;
+          let regularCount = 0;
+          let legendaryCount = 0;
           for (const d of DESTINATIONS) {
+            if (d.tier === 'legendary') legendaryCount++;
+            else regularCount++;
             if (state.completed[d.id]) {
               total++;
               if (d.tier === 'easy') easy++;
               else if (d.tier === 'medium') medium++;
-              else hard++;
+              else if (d.tier === 'hard') hard++;
+              else if (d.tier === 'legendary') legendary++;
             }
           }
-          return { total, easy, medium, hard, allCount: DESTINATIONS.length };
+          const regularTotal = easy + medium + hard;
+          return {
+            total,
+            easy,
+            medium,
+            hard,
+            legendary,
+            regularTotal,
+            regularCount,
+            legendaryCount,
+            allCount: DESTINATIONS.length,
+          };
+        }
+
+        function isLegendaryUnlocked() {
+          if (state.isAdminAuth && state.adminLegendaryPreview) return true;
+          const counts = getCompletionCounts();
+          return counts.regularTotal >= counts.regularCount && counts.regularCount > 0;
+        }
+
+        function isDestinationLocked(d) {
+          if (!d) return false;
+          const isChallengedDest =
+            state.activeChallenge && state.activeChallenge.destId === d.id;
+          if (isChallengedDest) return false;
+          if (d.legendaryOnly) return !isLegendaryUnlocked();
+          if (d.proOnly) return !state.isPro;
+          return false;
         }
 
         function evaluatePackForDestination(dest) {
@@ -6117,6 +7087,12 @@
             { tier: 'medium', label: 'Medel · Gratis (Norden & Nordeuropa)' },
             { tier: 'hard', label: 'Svår / Expert · Pro (Europa & Extremväder)' },
           ];
+          if (isLegendaryUnlocked()) {
+            groups.push({
+              tier: 'legendary',
+              label: '✨ Legendariska & Påhittade Resmål (Hemlig nivå)',
+            });
+          }
           for (const g of groups) {
             const og = document.createElement('optgroup');
             og.label = g.label;
@@ -6286,6 +7262,11 @@
         const tierTabEasyEl = document.getElementById('tierTabEasy');
         const tierTabMediumEl = document.getElementById('tierTabMedium');
         const tierTabHardEl = document.getElementById('tierTabHard');
+        const tierTabLegendaryEl = document.getElementById('tierTabLegendary');
+        const legendaryMysteryCardEl = document.getElementById('legendaryMysteryCard');
+        const legendaryMysteryProgressTextEl = document.getElementById('legendaryMysteryProgressText');
+        const legendaryMysteryProgressFillEl = document.getElementById('legendaryMysteryProgressFill');
+        const legendaryCongratsModalEl = document.getElementById('legendaryCongratsModal');
         const prevDestBtnEl = document.getElementById('prevDestBtn');
         const nextDestBtnEl = document.getElementById('nextDestBtn');
         const activeDestDescEl = document.getElementById('activeDestDesc');
@@ -6389,7 +7370,9 @@
         function renderRecordsModal() {
           populateGroupedDestSelect(recordsDestSelectEl, state.recordsTabDestId);
           const counts = getCompletionCounts();
-          recordsProgressLabelEl.textContent = `${counts.total}/${counts.allCount} avklarade`;
+          const denom = isLegendaryUnlocked() ? counts.allCount : counts.regularCount;
+          const numer = isLegendaryUnlocked() ? counts.total : counts.regularTotal;
+          recordsProgressLabelEl.textContent = `${numer}/${denom} avklarade`;
           recordsModalContentEl.innerHTML = renderRecordsTableHTML(state.recordsTabDestId);
           bindRecordChallengeButtons(recordsModalContentEl);
         }
@@ -6443,7 +7426,7 @@
         }
 
         function getNextUncompletedDest(fromDestId = null) {
-          const unlocked = DESTINATIONS.filter((d) => !d.proOnly || state.isPro);
+          const unlocked = DESTINATIONS.filter((d) => !isDestinationLocked(d));
           if (unlocked.length === 0) return null;
           if (fromDestId) {
             const startIdx = unlocked.findIndex((d) => d.id === fromDestId);
@@ -6463,16 +7446,30 @@
           return list.find((d) => !state.completed[d.id]) || list[0];
         }
 
+        function pulseLegendaryMysteryCard() {
+          if (!legendaryMysteryCardEl || legendaryMysteryCardEl.hidden) return;
+          legendaryMysteryCardEl.classList.remove('is-pulsing');
+          void legendaryMysteryCardEl.offsetWidth;
+          legendaryMysteryCardEl.classList.add('is-pulsing');
+        }
+
         function selectDestinationById(destId) {
           const d = DESTINATIONS.find((x) => x.id === destId);
           if (!d) return false;
-          const isChallengedDest =
-            state.activeChallenge && state.activeChallenge.destId === d.id;
-          const isLocked = d.proOnly && !state.isPro && !isChallengedDest;
+          const isLocked = isDestinationLocked(d);
 
           if (isLocked) {
-            openProModal();
-            showToast('Lås upp Packa & Överlev Pro för att spela de 20 Pro-banorna i Europa.');
+            if (d.legendaryOnly) {
+              const counts = getCompletionCounts();
+              const remaining = Math.max(0, counts.regularCount - counts.regularTotal);
+              pulseLegendaryMysteryCard();
+              showToast(
+                `🔒 Legendariska & Påhittade Resmål låses upp när du klarat alla 40 ordinarie resmål inklusive Pro (${remaining} kvar)!`
+              );
+            } else {
+              openProModal();
+              showToast('Lås upp Packa & Överlev Pro för att spela de 20 Pro-banorna i Europa.');
+            }
             renderDestinations();
             return false;
           }
@@ -6495,10 +7492,44 @@
           const easyTotal = DESTINATIONS.filter((d) => d.tier === 'easy').length;
           const mediumTotal = DESTINATIONS.filter((d) => d.tier === 'medium').length;
           const hardTotal = DESTINATIONS.filter((d) => d.tier === 'hard').length;
-          tierTabAllEl.textContent = `Alla destinationer (${counts.total}/${counts.allCount} avklarade)`;
+          const legendaryTotal = counts.legendaryCount;
+          const legendaryOpen = isLegendaryUnlocked();
+
+          if (!legendaryOpen && state.destTierFilter === 'legendary') {
+            state.destTierFilter = 'all';
+          }
+
+          tierTabAllEl.textContent = legendaryOpen
+            ? `Alla destinationer (${counts.total}/${counts.allCount} avklarade)`
+            : `Alla destinationer (${counts.regularTotal}/${counts.regularCount} avklarade)`;
           tierTabEasyEl.textContent = `Lätt · Gratis (${counts.easy}/${easyTotal})`;
           tierTabMediumEl.textContent = `Medel · Gratis (${counts.medium}/${mediumTotal})`;
           tierTabHardEl.textContent = `Svår / Expert · Pro (${counts.hard}/${hardTotal})`;
+
+          if (tierTabLegendaryEl) {
+            if (legendaryOpen) {
+              tierTabLegendaryEl.textContent = `✨ Legendariska (${counts.legendary}/${legendaryTotal})`;
+              tierTabLegendaryEl.classList.remove('is-legendary-locked');
+              tierTabLegendaryEl.classList.add('is-legendary');
+            } else {
+              tierTabLegendaryEl.textContent = `🔒 Legendariska (${counts.regularTotal}/${counts.regularCount})`;
+              tierTabLegendaryEl.classList.add('is-legendary-locked');
+              tierTabLegendaryEl.classList.remove('is-legendary');
+            }
+          }
+
+          if (legendaryMysteryCardEl) {
+            legendaryMysteryCardEl.hidden = legendaryOpen;
+            if (!legendaryOpen) {
+              const pct = Math.min(100, Math.round((counts.regularTotal / counts.regularCount) * 100));
+              if (legendaryMysteryProgressTextEl) {
+                legendaryMysteryProgressTextEl.textContent = `${counts.regularTotal} / ${counts.regularCount} ordinarie klara`;
+              }
+              if (legendaryMysteryProgressFillEl) {
+                legendaryMysteryProgressFillEl.style.width = `${pct}%`;
+              }
+            }
+          }
 
           document.querySelectorAll('.dest-tier-tab').forEach((tab) => {
             const isSel = tab.dataset.tier === state.destTierFilter;
@@ -6515,6 +7546,12 @@
             { tier: 'medium', label: `Medel · Gratis – Norden & Nordeuropa (${counts.medium}/${mediumTotal})` },
             { tier: 'hard', label: `Svår / Expert · Pro – Europa & Extremväder (${counts.hard}/${hardTotal})` },
           ];
+          if (legendaryOpen) {
+            tierGroups.push({
+              tier: 'legendary',
+              label: `✨ Legendariska & Påhittade Resmål (${counts.legendary}/${legendaryTotal})`,
+            });
+          }
 
           const visibleGroups =
             state.destTierFilter === 'all'
@@ -6524,7 +7561,9 @@
           const activeDest = getDestById(state.activeDestId);
           const navMapLinkEl = document.getElementById('navMapLink');
           if (navMapLinkEl && activeDest) {
-            navMapLinkEl.href = `${CAMPSITE_APP_URL}/?lat=${activeDest.lat}&lng=${activeDest.lng}&zoom=${activeDest.zoom}`;
+            navMapLinkEl.href = activeDest.fictional
+              ? CAMPSITE_APP_URL
+              : `${CAMPSITE_APP_URL}/?lat=${activeDest.lat}&lng=${activeDest.lng}&zoom=${activeDest.zoom}`;
           }
           const activeInFiltered = visibleGroups.some((g) => g.tier === activeDest.tier);
           const previewDest =
@@ -6539,7 +7578,7 @@
             for (const d of DESTINATIONS.filter((x) => x.tier === g.tier)) {
               const isChallengedDest =
                 state.activeChallenge && state.activeChallenge.destId === d.id;
-              const isLocked = d.proOnly && !state.isPro && !isChallengedDest;
+              const isLocked = isDestinationLocked(d);
               const done = state.completed[d.id];
               const bestRec =
                 Array.isArray(state.records[d.id]) && state.records[d.id].length > 0
@@ -6555,9 +7594,13 @@
                   ? '🏆 '
                   : done
                     ? '✓ '
-                    : '';
+                    : d.tier === 'legendary'
+                      ? '✨ '
+                      : '';
               const suffix = isLocked
-                ? ' · Pro'
+                ? d.legendaryOnly
+                  ? ' · Hemlig nivå'
+                  : ' · Pro'
                 : bestRec
                   ? ` (★ ${bestRec.score} p)`
                   : '';
@@ -6569,13 +7612,22 @@
             selectEl.appendChild(og);
           }
 
+          if (!legendaryOpen && state.destTierFilter === 'all') {
+            const lockedOg = document.createElement('optgroup');
+            lockedOg.label = `🔒 Legendariska & Påhittade Resmål (Låses upp vid 40/40)`;
+            const teaserOpt = document.createElement('option');
+            teaserOpt.value = '__legendary_locked__';
+            teaserOpt.textContent = `🔒 Låses upp när du klarat alla 40 ordinarie resmål inklusive Pro (${counts.regularTotal}/40)`;
+            lockedOg.appendChild(teaserOpt);
+            selectEl.appendChild(lockedOg);
+          }
+
           selectEl.value = displayId;
 
           const showcaseDest = previewDest;
           const isChallengedShowcase =
             state.activeChallenge && state.activeChallenge.destId === showcaseDest.id;
-          const isShowcaseLocked =
-            showcaseDest.proOnly && !state.isPro && !isChallengedShowcase;
+          const isShowcaseLocked = isDestinationLocked(showcaseDest);
           const doneShowcase = Boolean(state.completed[showcaseDest.id]);
           const bestShowcase =
             Array.isArray(state.records[showcaseDest.id]) &&
@@ -6587,7 +7639,7 @@
           if (dom.destDropdownSummary) {
             let statusLabel = showcaseDest.difficulty;
             if (isShowcaseLocked) {
-              statusLabel = '🔒 Pro-bana';
+              statusLabel = showcaseDest.legendaryOnly ? '🔒 Hemlig nivå' : '🔒 Pro-bana';
             } else if (isChallengedShowcase) {
               statusLabel = '🏆 Utmaning';
             } else if (doneShowcase && bestShowcase) {
@@ -6596,6 +7648,8 @@
               statusLabel = `★ ${bestShowcase.score} p`;
             } else if (doneShowcase) {
               statusLabel = '✓ Klarad';
+            } else if (showcaseDest.tier === 'legendary') {
+              statusLabel = '✨ Legendarisk';
             }
             dom.destDropdownSummary.innerHTML = `
               <span class="dest-summary-status">${statusLabel}</span>
@@ -6610,10 +7664,11 @@
           if (dom.activeDestShowcase) {
             const destIdx = DESTINATIONS.findIndex((d) => d.id === showcaseDest.id);
             const nextQueued = getNextUncompletedDest(showcaseDest.id);
+            const totalVisibleCount = legendaryOpen ? counts.allCount : counts.regularCount;
 
-            let badgeText = 'Aktuell bana';
+            let badgeText = showcaseDest.tier === 'legendary' ? '✨ Hemlig bana' : 'Aktuell bana';
             if (isShowcaseLocked) {
-              badgeText = '🔒 Packa & Överlev Pro';
+              badgeText = showcaseDest.legendaryOnly ? '🔒 Hemlig nivå' : '🔒 Packa & Överlev Pro';
             } else if (isChallengedShowcase) {
               badgeText = '🏆 Aktiv utmaning';
             } else if (doneShowcase && bestShowcase) {
@@ -6658,19 +7713,32 @@
                   </button>
                 </span>
               `;
+            } else if (counts.total >= counts.allCount) {
+              progressFooterHtml = `
+                <span class="active-dest-progress-hint">
+                  🌟 Otroligt! Alla ${counts.allCount} destinationer inklusive Legendariska Resmål är avklarade!
+                </span>
+              `;
             } else {
               progressFooterHtml = `
                 <span class="active-dest-progress-hint">
-                  🏆 Fantastiskt! Alla 40 destinationer är avklarade!
+                  🏆 Alla ordinarie banor klara — utforska Legendariska &amp; Påhittade Resmål!
                 </span>
               `;
             }
 
+            dom.activeDestShowcase.classList.toggle('is-legendary', showcaseDest.tier === 'legendary');
             dom.activeDestShowcase.style.borderStyle = isShowcaseLocked ? 'dashed' : 'solid';
             dom.activeDestShowcase.innerHTML = `
               <div class="active-dest-showcase-top">
                 <div class="active-dest-showcase-heading">
-                  <span class="active-dest-step-tag tabular">Destination ${destIdx + 1} av ${DESTINATIONS.length}</span>
+                  <span class="active-dest-step-tag tabular">
+                    ${
+                      showcaseDest.tier === 'legendary'
+                        ? `✨ Legendarisk ${destIdx - counts.regularCount + 1} av ${legendaryTotal}`
+                        : `Destination ${destIdx + 1} av ${totalVisibleCount}`
+                    }
+                  </span>
                   <h2 class="active-dest-showcase-name">${showcaseDest.name}</h2>
                 </div>
                 <span class="dest-status-text tabular">${badgeText}</span>
@@ -7643,13 +8711,15 @@
             else if (weight <= maxW) score += 8;
 
             const diffBonus =
-              dest.difficulty === 'Expert'
-                ? 60
-                : dest.difficulty === 'Svår'
-                  ? 40
-                  : dest.difficulty === 'Medel'
-                    ? 20
-                    : 0;
+              dest.difficulty === 'Legendarisk'
+                ? 80
+                : dest.difficulty === 'Expert'
+                  ? 60
+                  : dest.difficulty === 'Svår'
+                    ? 40
+                    : dest.difficulty === 'Medel'
+                      ? 20
+                      : 0;
             score += diffBonus;
           }
 
@@ -7814,10 +8884,22 @@
                     ts: Date.now(),
                   });
 
+                  const wasAllRegularBefore =
+                    getCompletionCounts().regularTotal >= getCompletionCounts().regularCount;
                   if (won) {
                     SFX.fanfare();
                     state.completed[dest.id] = true;
                     saveCompleted(state.completed);
+                  }
+                  const countsAfterWin = getCompletionCounts();
+                  const justUnlockedLegendary =
+                    won &&
+                    !wasAllRegularBefore &&
+                    countsAfterWin.regularTotal >= countsAfterWin.regularCount &&
+                    !state.legendaryCelebrated;
+                  if (justUnlockedLegendary) {
+                    state.legendaryCelebrated = true;
+                    saveLegendaryCelebrated(true);
                   }
 
                   const nextDest = getNextUncompletedDest(dest.id);
@@ -7831,6 +8913,13 @@
                   } else {
                     renderDestinations();
                   }
+
+                  const campsiteUrl = dest.fictional
+                    ? 'https://app.crazycamper.org'
+                    : `https://app.crazycamper.org/?lat=${dest.lat}&lng=${dest.lng}&zoom=${dest.zoom}`;
+                  const campsiteLabel = dest.fictional
+                    ? 'Inga ställplatser hittades här – utforska verkliga platser på Campsite Swe ↗'
+                    : `🗺️ Hitta riktiga ställplatser i ${dest.shortName} (app.crazycamper.org) ↗`;
 
                   let challengeResultHtml = '';
                   if (activeChallenge) {
@@ -7863,9 +8952,11 @@
                         }
                       </p>
                       ${
-                        autoAdvanced && nextDest
-                          ? `<div class="next-dest-unlocked-banner">✨ Ny destination framme: ${nextDest.name} (${nextDest.region})!</div>`
-                          : ''
+                        justUnlockedLegendary
+                          ? `<div class="next-dest-unlocked-banner" style="background: #fffbeb; border-color: #f59e0b; color: #92400e;">✨ HEMLIG NIVÅ UPPLÅST: Legendariska &amp; Påhittade Resmål (20 banor)!</div>`
+                          : autoAdvanced && nextDest
+                            ? `<div class="next-dest-unlocked-banner">✨ Ny destination framme: ${nextDest.name} (${nextDest.region})!</div>`
+                            : ''
                       }
 
                       <div class="score-summary-strip tabular">
@@ -7894,14 +8985,14 @@
                         </div>
                         <div class="copy-confirm-inline" id="simCopyConfirm" role="status"></div>
                         <a
-                          href="https://app.crazycamper.org/?lat=${dest.lat}&lng=${dest.lng}&zoom=${dest.zoom}"
+                          href="${campsiteUrl}"
                           target="_blank"
                           rel="noopener noreferrer"
                           class="btn-primary js-online-only-link"
-                          data-online-label="🗺️ Hitta riktiga ställplatser i ${dest.shortName} (app.crazycamper.org) ↗"
-                          style="justify-content: center; text-decoration: none;"
+                          data-online-label="${campsiteLabel}"
+                          style="justify-content: center; text-decoration: none; text-align: center;"
                         >
-                          🗺️ Hitta riktiga ställplatser i ${dest.shortName} (app.crazycamper.org) ↗
+                          ${campsiteLabel}
                         </a>
                         <div class="sim-secondary-row">
                           <button type="button" class="btn-secondary" id="simRetryBtn" style="justify-content: center;">
@@ -7977,6 +9068,13 @@
                         .scrollIntoView({ behavior: 'smooth' });
                     }
                   });
+                  if (justUnlockedLegendary && legendaryCongratsModalEl) {
+                    const celebTimer = setTimeout(() => {
+                      SFX.fanfare();
+                      openModal(legendaryCongratsModalEl);
+                    }, 900);
+                    state.simTimers.push(celebTimer);
+                  }
                 }, 550);
                 state.simTimers.push(outcomeTimer);
               }
@@ -8119,19 +9217,26 @@
           renderRecordsModal();
         });
 
-        // Destination submenu tier tabs, dropdown & prev/next steppers
+        // Destination submenu tier tabs, mystery card, dropdown & prev/next steppers
         document.querySelectorAll('.dest-tier-tab').forEach((tab) => {
           tab.addEventListener('click', () => {
             const tier = tab.dataset.tier || 'all';
+            if (tier === 'legendary' && !isLegendaryUnlocked()) {
+              const counts = getCompletionCounts();
+              const remaining = Math.max(0, counts.regularCount - counts.regularTotal);
+              SFX.error();
+              pulseLegendaryMysteryCard();
+              showToast(
+                `🔒 Låses upp när du klarat alla 40 ordinarie resmål inklusive Pro (${remaining} kvar)!`
+              );
+              return;
+            }
             state.destTierFilter = tier;
 
             if (tier !== 'all') {
               const target = getFirstUncompletedInTier(tier);
               if (target) {
-                const isChallengedTarget =
-                  state.activeChallenge && state.activeChallenge.destId === target.id;
-                const isLockedTarget = target.proOnly && !state.isPro && !isChallengedTarget;
-                if (!isLockedTarget && state.activeDestId !== target.id) {
+                if (!isDestinationLocked(target) && state.activeDestId !== target.id) {
                   selectDestinationById(target.id);
                   return;
                 }
@@ -8143,8 +9248,58 @@
           });
         });
 
+        if (legendaryMysteryCardEl) {
+          const handleMysteryClick = () => {
+            const counts = getCompletionCounts();
+            const remaining = Math.max(0, counts.regularCount - counts.regularTotal);
+            SFX.rotate();
+            pulseLegendaryMysteryCard();
+            if (!state.isPro && counts.easy + counts.medium >= 20) {
+              openProModal();
+              showToast('Du har klarat alla 20 gratisbanor! Lås upp Pro och klara 20 till för den hemliga nivån.');
+            } else {
+              showToast(
+                `🔒 Legendariska & Påhittade Resmål låses upp när alla 40 ordinarie resmål inklusive Pro är avklarade (${remaining} kvar)!`
+              );
+            }
+          };
+          legendaryMysteryCardEl.addEventListener('click', handleMysteryClick);
+          legendaryMysteryCardEl.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' || ev.key === ' ') {
+              ev.preventDefault();
+              handleMysteryClick();
+            }
+          });
+        }
+
+        document.getElementById('closeLegendaryCongratsBtn')?.addEventListener('click', () => {
+          closeModal(legendaryCongratsModalEl);
+        });
+        document.getElementById('startLegendaryBtn')?.addEventListener('click', () => {
+          closeModal(legendaryCongratsModalEl);
+          closeModal(dom.simModal);
+          state.destTierFilter = 'legendary';
+          const firstLeg = getFirstUncompletedInTier('legendary');
+          if (firstLeg) {
+            selectDestinationById(firstLeg.id);
+          } else {
+            renderDestinations();
+          }
+          document.getElementById('destinationsSection')?.scrollIntoView({ behavior: 'smooth' });
+        });
+
         if (dom.destinationSelect) {
           dom.destinationSelect.addEventListener('change', () => {
+            if (dom.destinationSelect.value === '__legendary_locked__') {
+              const counts = getCompletionCounts();
+              const remaining = Math.max(0, counts.regularCount - counts.regularTotal);
+              pulseLegendaryMysteryCard();
+              showToast(
+                `🔒 Låses upp när du klarat alla 40 ordinarie resmål inklusive Pro (${remaining} kvar)!`
+              );
+              renderDestinations();
+              return;
+            }
             if (dom.destinationSelect.value) {
               selectDestinationById(dom.destinationSelect.value);
             }
@@ -8154,9 +9309,7 @@
         function stepDestination(delta) {
           const pool = DESTINATIONS.filter((d) => {
             if (state.destTierFilter !== 'all' && d.tier !== state.destTierFilter) return false;
-            const isChallengedDest =
-              state.activeChallenge && state.activeChallenge.destId === d.id;
-            return !d.proOnly || state.isPro || isChallengedDest;
+            return !isDestinationLocked(d);
           });
           if (pool.length === 0) {
             openProModal();
@@ -8178,7 +9331,7 @@
         document.getElementById('exitChallengeBtn').addEventListener('click', () => {
           state.activeChallenge = null;
           clearChallengeUrlParams();
-          if (getDestById(state.activeDestId).proOnly && !state.isPro) {
+          if (isDestinationLocked(getDestById(state.activeDestId))) {
             state.activeDestId = 'oland';
           }
           renderAll();
@@ -8392,20 +9545,40 @@
           return `${y}-${m}-${day} ${hh}:${mm}`;
         }
 
+        const adminLegendaryStatusTitleEl = document.getElementById('adminLegendaryStatusTitle');
+        const adminLegendaryStatusSubEl = document.getElementById('adminLegendaryStatusSub');
+        const adminToggleLegendaryBtnEl = document.getElementById('adminToggleLegendaryBtn');
+
         function renderAdminProToggleCard() {
-          if (!adminToggleProBtnEl) return;
-          if (state.isPro) {
-            adminProStatusTitleEl.textContent = '✓ Pro-versionen är aktiv (Gratis admin-åtkomst)';
-            adminProStatusSubEl.textContent =
-              'Du har tillgång till alla 20 Europa-banor och 6×5 lastutrymme utan kostnad.';
-            adminToggleProBtnEl.textContent = 'Byt till Gratis-läge (testa)';
-            adminToggleProBtnEl.className = 'btn-secondary';
-          } else {
-            adminProStatusTitleEl.textContent = 'Gratis-läge aktivt';
-            adminProStatusSubEl.textContent =
-              'Aktivera Pro-versionen direkt utan att betala (alla 20 Europa-banor & 6×5 lastutrymme).';
-            adminToggleProBtnEl.textContent = 'Aktivera Pro gratis (Admin)';
-            adminToggleProBtnEl.className = 'btn-primary';
+          if (adminToggleProBtnEl) {
+            if (state.isPro) {
+              adminProStatusTitleEl.textContent = '✓ Pro-versionen är aktiv (Gratis admin-åtkomst)';
+              adminProStatusSubEl.textContent =
+                'Du har tillgång till alla 20 Europa-banor och 6×5 lastutrymme utan kostnad.';
+              adminToggleProBtnEl.textContent = 'Byt till Gratis-läge (testa)';
+              adminToggleProBtnEl.className = 'btn-secondary';
+            } else {
+              adminProStatusTitleEl.textContent = 'Gratis-läge aktivt';
+              adminProStatusSubEl.textContent =
+                'Aktivera Pro-versionen direkt utan att betala (alla 20 Europa-banor & 6×5 lastutrymme).';
+              adminToggleProBtnEl.textContent = 'Aktivera Pro gratis (Admin)';
+              adminToggleProBtnEl.className = 'btn-primary';
+            }
+          }
+          if (adminToggleLegendaryBtnEl) {
+            if (state.adminLegendaryPreview) {
+              adminLegendaryStatusTitleEl.textContent = '✓ Legendariska Resmål är upplåsta för test (Admin)';
+              adminLegendaryStatusSubEl.textContent =
+                'Alla 20 påhittade resmål är tillgängliga i menyn för dig just nu.';
+              adminToggleLegendaryBtnEl.textContent = 'Återgå till låst vy (40/40)';
+              adminToggleLegendaryBtnEl.className = 'btn-secondary';
+            } else {
+              adminLegendaryStatusTitleEl.textContent = '✨ Förhandstesta Legendariska Resmål (Admin)';
+              adminLegendaryStatusSubEl.textContent =
+                'Lås upp den hemliga 4:e nivån (20 påhittade banor) tillfälligt för testning utan att först klara alla 40 ordinarie banor.';
+              adminToggleLegendaryBtnEl.textContent = 'Lås upp för test (Admin)';
+              adminToggleLegendaryBtnEl.className = 'btn-primary';
+            }
           }
         }
 
@@ -8681,7 +9854,7 @@
             if (!state.isAdminAuth) return;
             state.isPro = !state.isPro;
             saveProStatus(state.isPro);
-            if (!state.isPro && getDestById(state.activeDestId).proOnly) {
+            if (!state.isPro && isDestinationLocked(getDestById(state.activeDestId))) {
               state.activeDestId = 'oland';
             }
             renderAll();
@@ -8690,6 +9863,25 @@
               state.isPro
                 ? '🛡️ Pro-versionen aktiverad gratis (Admin-åtkomst)!'
                 : 'Bytte tillbaka till Gratis-läge för testning.'
+            );
+          });
+        }
+
+        if (adminToggleLegendaryBtnEl) {
+          adminToggleLegendaryBtnEl.addEventListener('click', () => {
+            if (!state.isAdminAuth) return;
+            state.adminLegendaryPreview = !state.adminLegendaryPreview;
+            saveAdminLegendaryPreview(state.adminLegendaryPreview);
+            if (!isLegendaryUnlocked() && getDestById(state.activeDestId).legendaryOnly) {
+              state.activeDestId = 'oland';
+              state.destTierFilter = 'all';
+            }
+            renderAll();
+            renderAdminProToggleCard();
+            showToast(
+              state.adminLegendaryPreview
+                ? '✨ Legendariska & Påhittade Resmål upplåsta för testning (Admin)!'
+                : 'Återgick till normal 40/40-låsningsvy.'
             );
           });
         }
@@ -8776,6 +9968,7 @@
           recordsModalEl,
           iosInstallModalEl,
           proCongratsModalEl,
+          legendaryCongratsModalEl,
           termsModalEl,
           privacyModalEl,
           adminModalEl,
@@ -8837,6 +10030,7 @@
             closeModal(recordsModalEl);
             closeModal(iosInstallModalEl);
             closeModal(proCongratsModalEl);
+            closeModal(legendaryCongratsModalEl);
             closeModal(termsModalEl);
             closeModal(privacyModalEl);
             closeModal(adminModalEl);
