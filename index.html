@@ -300,6 +300,7 @@
         flex-shrink: 0;
       }
 
+      .header-auth-wrap[hidden],
       .header-auth-user[hidden] {
         display: none !important;
       }
@@ -440,10 +441,24 @@
         max-width: 1440px;
         margin: 0 auto;
         padding: 16px 20px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .workspace-top-bar {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-hairline);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        overflow: hidden;
+      }
+
+      .app-content-grid {
         display: grid;
         grid-template-columns: minmax(0, 1.15fr) minmax(360px, 1fr);
         gap: 20px;
-        align-items: stretch;
+        align-items: start;
       }
 
       /* ===================== DESTINATION BAR ===================== */
@@ -2338,6 +2353,137 @@
         gap: 10px;
       }
 
+      /* Postcard Fact Box on Victory Screen */
+      .postcard-fact-box {
+        width: 100%;
+        margin: 6px 0 4px;
+        position: relative;
+        background: #fffdf9;
+        background-image:
+          radial-gradient(circle at 100% 0%, rgba(245, 158, 11, 0.1) 0%, transparent 60%),
+          linear-gradient(135deg, rgba(254, 243, 199, 0.45) 0%, rgba(255, 255, 255, 0.98) 100%);
+        border: 1.5px solid #e7ded1;
+        border-radius: 12px;
+        padding: 13px 15px;
+        box-shadow:
+          0 4px 14px rgba(0, 0, 0, 0.05),
+          0 1px 3px rgba(0, 0, 0, 0.04),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+        text-align: left;
+        transform: rotate(-0.35deg);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .postcard-fact-box:hover {
+        transform: rotate(0deg);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .postcard-inner {
+        position: relative;
+      }
+
+      .postcard-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 8px;
+        border-bottom: 1.5px dashed #e2d9c8;
+        padding-bottom: 6px;
+      }
+
+      .postcard-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .postcard-pin {
+        font-size: 16px;
+        line-height: 1;
+        flex-shrink: 0;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+      }
+
+      .postcard-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 14.5px;
+        font-weight: 800;
+        color: #78350f;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .postcard-stamp {
+        font-size: 20px;
+        line-height: 1;
+        opacity: 0.85;
+        flex-shrink: 0;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+      }
+
+      .postcard-badge-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      .postcard-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fde68a;
+        padding: 2px 7px;
+        border-radius: 4px;
+      }
+
+      .postcard-tag {
+        font-size: 11px;
+        font-weight: 600;
+        color: #6b7280;
+      }
+
+      .postcard-text {
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.52;
+        color: #374151;
+      }
+
+      .postcard-campsite-hook {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(240, 253, 244, 0.85);
+        border: 1px solid rgba(187, 247, 208, 0.95);
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #166534;
+      }
+
+      .postcard-hook-icon {
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .postcard-hook-text {
+        line-height: 1.35;
+      }
+
       /* Pro Modal Form */
       .pro-perks {
         display: flex;
@@ -3952,9 +4098,169 @@
           transition-duration: 0.01ms !important;
         }
       }
+
+      /* Rotate Device Overlay for Mobile Portrait */
+      .rotate-device-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.94);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 99999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+
+      @media (max-width: 767px) and (orientation: portrait) {
+        body:not(.allow-portrait) .rotate-device-overlay {
+          display: flex;
+        }
+      }
+
+      .rotate-device-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 28px 22px;
+        max-width: 320px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        animation: rotatePopupIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes rotatePopupIn {
+        from { opacity: 0; transform: scale(0.9) translateY(10px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+
+      .rotate-phone-anim {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        background: var(--brand-forest-soft);
+        border: 2px solid var(--brand-forest-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--brand-forest);
+      }
+
+      .rotate-phone-svg {
+        animation: phonePulseRotate 2s ease-in-out infinite;
+      }
+
+      @keyframes phonePulseRotate {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(90deg); }
+      }
+
+      .rotate-device-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--text-primary);
+        letter-spacing: -0.01em;
+      }
+
+      .rotate-device-desc {
+        margin: 0;
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.45;
+      }
+
+      .rotate-dismiss-btn {
+        margin-top: 4px;
+        width: 100%;
+        font-size: 12.5px;
+        padding: 10px 14px;
+        background: var(--bg-subtle) !important;
+        color: var(--text-secondary) !important;
+        border: 1px solid var(--border-hairline) !important;
+      }
+
+      .rotate-dismiss-btn:hover {
+        background: var(--bg-hover) !important;
+        color: var(--text-primary) !important;
+      }
+
+      /* Mobile Landscape Height Optimization */
+      @media (max-width: 900px) and (orientation: landscape) {
+        .topbar {
+          height: 42px;
+        }
+        .app-shell {
+          padding: 6px 12px 16px;
+          gap: 8px;
+        }
+        .dest-strip {
+          padding: 6px 12px;
+          gap: 4px;
+        }
+        .workspace-top-bar {
+          padding: 4px;
+        }
+        .workspace-header {
+          padding: 4px 8px;
+        }
+        .active-dest-brief {
+          padding: 2px 8px;
+        }
+        .meters-bar {
+          padding: 4px 8px;
+          gap: 8px;
+        }
+        .bay-stage {
+          min-height: auto;
+          padding: 6px;
+        }
+        .camper-frame {
+          padding: 6px 10px;
+        }
+        .cargo-grid {
+          gap: 3px;
+        }
+        .grid-cell {
+          min-height: 30px;
+          height: 30px;
+        }
+        .catalog-panel {
+          padding: 8px 12px;
+          max-height: calc(100vh - 75px);
+          overflow-y: auto;
+        }
+        .equipment-list {
+          max-height: calc(100vh - 145px);
+          overflow-y: auto;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- PORTRAIT ROTATE WARNING OVERLAY -->
+    <div class="rotate-device-overlay" id="rotateDeviceOverlay" role="dialog" aria-modal="true" aria-label="Vrid enheten">
+      <div class="rotate-device-card">
+        <div class="rotate-phone-anim">
+          <svg class="rotate-phone-svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+            <path d="M12 18h.01"></path>
+          </svg>
+        </div>
+        <h3 class="rotate-device-title">Vrid telefonen till liggande läge</h3>
+        <p class="rotate-device-desc">För den bästa upplevelsen och för att enkelt se både husbilen och campingutrustningen rekommenderar vi att du vrider mobilen i liggande läge.</p>
+        <button type="button" class="btn-primary rotate-dismiss-btn" id="rotateDismissBtn">
+          Fortsätt i stående läge ändå
+        </button>
+      </div>
+    </div>
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -4205,8 +4511,8 @@
         <div id="activeDestShowcase" class="active-dest-showcase" aria-live="polite"></div>
       </section>
 
-      <!-- LEFT COLUMN: CAMPERVAN CARGO GRID & METERS -->
-      <section class="workspace-panel" aria-label="Husbilens lastutrymme">
+      <!-- FULL WIDTH WORKSPACE TOP BAR (TITLE, DESC, METERS) -->
+      <section class="workspace-top-bar" aria-label="Resmål &amp; Mätare">
         <div class="workspace-header">
           <div class="workspace-title-group">
             <h2 class="workspace-title" id="activeDestHeading">Helg på Öland</h2>
@@ -4281,93 +4587,99 @@
             <div class="meter-foot tabular" id="footWeight">0 / 25 rutor packade</div>
           </div>
         </div>
-
-        <!-- INTERACTIVE CAMPERVAN GRID -->
-        <div class="bay-stage" id="bayStage">
-          <div class="scenic-backdrop" id="scenicBackdrop" aria-hidden="true">
-            <div class="scenic-photo-layer" id="scenicPhotoLayer"></div>
-            <div class="scenic-svg-wrap" id="scenicSvgWrap"></div>
-            <div class="scenic-overlay-scrim"></div>
-            <div class="scenic-weather-overlay" id="scenicWeatherOverlay"></div>
-            <div class="scenic-stage-badge" id="scenicStageBadge">
-              <span id="scenicTagIcon">🌲</span>
-              <span class="scenic-tag-label" id="scenicTagLabel">Svensk skog</span>
-              <span class="scenic-weather-pill" id="scenicWeatherPill">☀️ Klart väder</span>
-            </div>
-          </div>
-
-          <div class="selection-hint" id="selectionHint">
-            <span>Välj utrustning i listan eller dra direkt in i husbilen.</span>
-          </div>
-
-          <div class="camper-frame">
-            <div class="camper-cab-bar">
-              <span class="camper-cab-title">
-                <span>🚐</span>
-                <span>Husbilens lastutrymme</span>
-              </span>
-              <span class="tabular" id="gridDimensionsLabel">5 × 5 rutor · Gratis</span>
-            </div>
-
-            <div class="cargo-grid-wrap" id="cargoGridWrap">
-              <div class="cargo-grid" id="cargoGrid" role="grid" aria-label="Lastutrymme"></div>
-              <div class="placed-layer" id="placedLayer"></div>
-            </div>
-
-            <div class="camper-rear-bar">
-              <span>Baklucka · Klicka eller dra för att packa</span>
-              <span id="proRowHint"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- LAUNCH ROADTRIP BAR -->
-        <div class="workspace-footer">
-          <div class="readiness-summary" id="readinessSummary">
-            Packa utrustning i rutnätet för att starta din roadtrip.
-          </div>
-          <button type="button" class="btn-primary" id="startTripBtn" disabled>
-            🚐 Ge dig ut på roadtrip
-          </button>
-        </div>
       </section>
 
-      <!-- RIGHT COLUMN: EQUIPMENT INVENTORY -->
-      <aside class="catalog-panel" aria-label="Campingutrustning">
-        <div class="catalog-head">
-          <h2 class="catalog-title">Campingutrustning</h2>
-          <span class="catalog-count tabular" id="catalogCount">0 / 24 packade</span>
-        </div>
+      <!-- TWO COLUMN LAYOUT DIRECTLY UNDER METERS -->
+      <div class="app-content-grid">
+        <!-- LEFT COLUMN: CAMPERVAN CARGO GRID -->
+        <section class="workspace-panel" aria-label="Husbilens lastutrymme">
+          <!-- INTERACTIVE CAMPERVAN GRID -->
+          <div class="bay-stage" id="bayStage">
+            <div class="scenic-backdrop" id="scenicBackdrop" aria-hidden="true">
+              <div class="scenic-photo-layer" id="scenicPhotoLayer"></div>
+              <div class="scenic-svg-wrap" id="scenicSvgWrap"></div>
+              <div class="scenic-overlay-scrim"></div>
+              <div class="scenic-weather-overlay" id="scenicWeatherOverlay"></div>
+              <div class="scenic-stage-badge" id="scenicStageBadge">
+                <span id="scenicTagIcon">🌲</span>
+                <span class="scenic-tag-label" id="scenicTagLabel">Svensk skog</span>
+                <span class="scenic-weather-pill" id="scenicWeatherPill">☀️ Klart väder</span>
+              </div>
+            </div>
 
-        <div class="catalog-mode-bar">
-          <div class="catalog-mode-left">
-            <button type="button" class="btn-draft-toggle" id="draftModeBtn" aria-pressed="false">
-              🎲 Slumpa 12 prylar
-            </button>
-            <button type="button" class="btn-draft-reroll" id="draftRerollBtn" hidden>
-              🔄 Nytt urval
+            <div class="selection-hint" id="selectionHint">
+              <span>Välj utrustning i listan eller dra direkt in i husbilen.</span>
+            </div>
+
+            <div class="camper-frame">
+              <div class="camper-cab-bar">
+                <span class="camper-cab-title">
+                  <span>🚐</span>
+                  <span>Husbilens lastutrymme</span>
+                </span>
+                <span class="tabular" id="gridDimensionsLabel">5 × 5 rutor · Gratis</span>
+              </div>
+
+              <div class="cargo-grid-wrap" id="cargoGridWrap">
+                <div class="cargo-grid" id="cargoGrid" role="grid" aria-label="Lastutrymme"></div>
+                <div class="placed-layer" id="placedLayer"></div>
+              </div>
+
+              <div class="camper-rear-bar">
+                <span>Baklucka · Klicka eller dra för att packa</span>
+                <span id="proRowHint"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- LAUNCH ROADTRIP BAR -->
+          <div class="workspace-footer">
+            <div class="readiness-summary" id="readinessSummary">
+              Packa utrustning i rutnätet för att starta din roadtrip.
+            </div>
+            <button type="button" class="btn-primary" id="startTripBtn" disabled>
+              🚐 Ge dig ut på roadtrip
             </button>
           </div>
-          <span class="catalog-mode-hint tabular" id="catalogModeHint">24 prylar · 3 kategorier</span>
-        </div>
+        </section>
 
-        <div class="segmented-bar" role="tablist" aria-label="Filtrera utrustning">
-          <button type="button" class="seg-btn active" data-filter="stay" role="tab" aria-selected="true">
-            Boende &amp; Värme
-          </button>
-          <button type="button" class="seg-btn" data-filter="food" role="tab" aria-selected="false">
-            Mat &amp; Vatten
-          </button>
-          <button type="button" class="seg-btn" data-filter="tools" role="tab" aria-selected="false">
-            Verktyg
-          </button>
-          <button type="button" class="seg-btn" data-filter="all" role="tab" aria-selected="false">
-            Alla
-          </button>
-        </div>
+        <!-- RIGHT COLUMN: EQUIPMENT INVENTORY -->
+        <aside class="catalog-panel" aria-label="Campingutrustning">
+          <div class="catalog-head">
+            <h2 class="catalog-title">Campingutrustning</h2>
+            <span class="catalog-count tabular" id="catalogCount">0 / 24 packade</span>
+          </div>
 
-        <div class="equipment-list" id="equipmentList"></div>
-      </aside>
+          <div class="catalog-mode-bar">
+            <div class="catalog-mode-left">
+              <button type="button" class="btn-draft-toggle" id="draftModeBtn" aria-pressed="false">
+                🎲 Slumpa 12 prylar
+              </button>
+              <button type="button" class="btn-draft-reroll" id="draftRerollBtn" hidden>
+                🔄 Nytt urval
+              </button>
+            </div>
+            <span class="catalog-mode-hint tabular" id="catalogModeHint">24 prylar · 3 kategorier</span>
+          </div>
+
+          <div class="segmented-bar" role="tablist" aria-label="Filtrera utrustning">
+            <button type="button" class="seg-btn active" data-filter="stay" role="tab" aria-selected="true">
+              Boende &amp; Värme
+            </button>
+            <button type="button" class="seg-btn" data-filter="food" role="tab" aria-selected="false">
+              Mat &amp; Vatten
+            </button>
+            <button type="button" class="seg-btn" data-filter="tools" role="tab" aria-selected="false">
+              Verktyg
+            </button>
+            <button type="button" class="seg-btn" data-filter="all" role="tab" aria-selected="false">
+              Alla
+            </button>
+          </div>
+
+          <div class="equipment-list" id="equipmentList"></div>
+        </aside>
+      </div>
     </main>
 
     <!-- FOOTER -->
@@ -5131,6 +5443,7 @@
     <script type="module">
       import * as fb from './src/firebase.ts';
       import * as scenic from './src/scenicBackdrops.ts';
+      import * as destFacts from './src/destinationFacts.ts';
 
       (function () {
         'use strict';
@@ -9898,6 +10211,7 @@
                     renderDestinations();
                   }
 
+                  const factData = destFacts.getDestinationFact(dest.id);
                   const campsiteUrl = dest.fictional
                     ? 'https://app.crazycamper.org'
                     : `https://app.crazycamper.org/?lat=${dest.lat}&lng=${dest.lng}&zoom=${dest.zoom}`;
@@ -9968,6 +10282,40 @@
                           Du är offline. Länken kopieras nu så du kan klistra in och skicka den via SMS/chatt när du får täckning.
                         </div>
                         <div class="copy-confirm-inline" id="simCopyConfirm" role="status"></div>
+                        ${
+                          won
+                            ? `
+                        <div class="postcard-fact-box" id="simPostcardFactBox">
+                          <div class="postcard-inner">
+                            <div class="postcard-header">
+                              <div class="postcard-title-wrap">
+                                <span class="postcard-pin">📍</span>
+                                <h5 class="postcard-title">Resefakta: ${escapeHtml(dest.name)}</h5>
+                              </div>
+                              <span class="postcard-stamp" aria-hidden="true">📮</span>
+                            </div>
+                            <div class="postcard-body">
+                              <div class="postcard-badge-row">
+                                <span class="postcard-badge">${escapeHtml(factData.badge || '💡 Visste du att?')}</span>
+                                ${factData.tag ? `<span class="postcard-tag">${escapeHtml(factData.tag)}</span>` : ''}
+                              </div>
+                              <p class="postcard-text">${escapeHtml(factData.fact)}</p>
+                            </div>
+                            <div class="postcard-campsite-hook">
+                              <span class="postcard-hook-icon">🚐</span>
+                              <span class="postcard-hook-text">
+                                ${
+                                  dest.fictional
+                                    ? 'Sugen på verkliga campingäventyr? Hitta tusentals riktiga ställplatser på Campsite Swe:'
+                                    : `Upptäck ställplatser med el, vatten och havsutsikt i och runt ${escapeHtml(dest.shortName)}:`
+                                }
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        `
+                            : ''
+                        }
                         <a
                           href="${campsiteUrl}"
                           target="_blank"
@@ -10811,11 +11159,18 @@
           const isAdmin = fb.isAdminUser(user);
           if (headerAdminBtnEl) {
             headerAdminBtnEl.hidden = !isAdmin;
+            headerAdminBtnEl.style.display = isAdmin ? 'inline-flex' : 'none';
           }
 
           if (user) {
-            if (headerSignedOutWrapEl) headerSignedOutWrapEl.hidden = true;
-            if (headerSignedInWrapEl) headerSignedInWrapEl.hidden = false;
+            if (headerSignedOutWrapEl) {
+              headerSignedOutWrapEl.hidden = true;
+              headerSignedOutWrapEl.style.display = 'none';
+            }
+            if (headerSignedInWrapEl) {
+              headerSignedInWrapEl.hidden = false;
+              headerSignedInWrapEl.style.display = 'inline-flex';
+            }
 
             const displayName = (user.displayName || user.email?.split('@')[0] || 'Spelare').trim();
             if (headerUserNameEl) headerUserNameEl.textContent = displayName;
@@ -10837,8 +11192,14 @@
               headerUserInitialEl.textContent = (displayName.charAt(0) || 'U').toUpperCase();
             }
           } else {
-            if (headerSignedOutWrapEl) headerSignedOutWrapEl.hidden = false;
-            if (headerSignedInWrapEl) headerSignedInWrapEl.hidden = true;
+            if (headerSignedOutWrapEl) {
+              headerSignedOutWrapEl.hidden = false;
+              headerSignedOutWrapEl.style.display = 'inline-flex';
+            }
+            if (headerSignedInWrapEl) {
+              headerSignedInWrapEl.hidden = true;
+              headerSignedInWrapEl.style.display = 'none';
+            }
           }
         }
 
@@ -11142,6 +11503,17 @@
         if (unlockedFromUrl) {
           openModal(proCongratsModalEl);
           showToast('✓ Tack för ditt köp! Packa & Överlev Pro och din Campsite Swe-bonus är upplåsta.');
+        }
+
+        const rotateDismissBtnEl = document.getElementById('rotateDismissBtn');
+        const rotateDeviceOverlayEl = document.getElementById('rotateDeviceOverlay');
+        if (rotateDismissBtnEl) {
+          rotateDismissBtnEl.addEventListener('click', () => {
+            document.body.classList.add('allow-portrait');
+            if (rotateDeviceOverlayEl) {
+              rotateDeviceOverlayEl.style.display = 'none';
+            }
+          });
         }
       })();
     </script>

@@ -6,7 +6,7 @@
   "start_url": "https://packnsurvive.crazycamper.org/",
   "scope": "https://packnsurvive.crazycamper.org/",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "landscape",
   "background_color": "#163e24",
   "theme_color": "#163e24",
   "lang": "sv",
