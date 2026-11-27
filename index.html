@@ -1246,36 +1246,56 @@
       }
 
       /* ===================== TUTORIAL STYLES ===================== */
-      @keyframes tutorialPulse {
-        0% { box-shadow: 0 0 0 0 rgba(31, 74, 46, 0.7); border-color: var(--brand-forest); }
-        70% { box-shadow: 0 0 0 10px rgba(31, 74, 46, 0); border-color: #2a8554; }
-        100% { box-shadow: 0 0 0 0 rgba(31, 74, 46, 0); }
+      @keyframes guideBlink {
+        0% {
+          border-color: #facc15;
+          box-shadow: 0 0 20px #facc15, inset 0 0 10px #facc15;
+          transform: scale(1.03);
+        }
+        50% {
+          border-color: #22c55e;
+          box-shadow: 0 0 25px #22c55e, inset 0 0 15px #22c55e;
+          transform: scale(1.03);
+        }
+        100% {
+          border-color: #facc15;
+          box-shadow: 0 0 20px #facc15, inset 0 0 10px #facc15;
+          transform: scale(1.03);
+        }
+      }
+      .guide-blink-target {
+        animation: guideBlink 0.6s infinite ease-in-out !important;
+        position: relative;
+        z-index: 50;
       }
       @keyframes handBounce {
         0%, 100% { transform: translateY(0) scale(1); }
         50% { transform: translateY(-6px) scale(1.1); }
       }
       .tutorial-highlight-card {
-        animation: tutorialPulse 1.4s infinite ease-in-out;
-        border: 2px solid var(--brand-forest) !important;
+        border: 2px solid #facc15 !important;
         position: relative;
       }
       .tutorial-cell-highlight {
-        animation: tutorialPulse 1.4s infinite ease-in-out;
-        border: 2.5px solid var(--brand-forest) !important;
-        background-color: rgba(31, 74, 46, 0.18) !important;
+        border: 2.5px solid #facc15 !important;
+        background-color: rgba(250, 204, 21, 0.22) !important;
         position: relative;
       }
       .tutorial-hand-icon {
+        font-size: 32px;
+        animation: handBounce 1s infinite ease-in-out;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+      }
+      .tutorial-hand-wrap {
         position: absolute;
-        right: 12px;
+        right: 14px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 22px;
-        animation: handBounce 1s infinite ease-in-out;
-        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 55;
         pointer-events: none;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
       }
       .tutorial-cell-hand {
         position: absolute;
@@ -1283,31 +1303,34 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
-        animation: handBounce 1s infinite ease-in-out;
-        z-index: 10;
+        z-index: 55;
         pointer-events: none;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
       }
-      @keyframes tutorialBlinkStrong {
-        0% {
-          background-color: #fef08a;
-          border-color: #eab308;
-          box-shadow: 0 0 25px rgba(234, 179, 8, 0.85), inset 0 0 12px rgba(250, 204, 21, 0.6);
-        }
-        50% {
-          background-color: #dcfce7;
-          border-color: #22c55e;
-          box-shadow: 0 0 25px rgba(34, 197, 94, 0.95), inset 0 0 15px rgba(34, 197, 94, 0.7);
-        }
-        100% {
-          background-color: #fef08a;
-          border-color: #eab308;
-          box-shadow: 0 0 25px rgba(234, 179, 8, 0.85), inset 0 0 12px rgba(250, 204, 21, 0.6);
-        }
+      .tutorial-bubble {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 8px);
+        transform: translateX(-50%);
+        background: #151c17;
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        font-weight: 700;
+        white-space: nowrap;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        pointer-events: none;
+        z-index: 60;
       }
-      .tutorial-blink-target {
-        animation: tutorialBlinkStrong 1.0s infinite ease-in-out !important;
+      .tutorial-bubble::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #151c17 transparent transparent transparent;
       }
       .tutorial-banner {
         background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
@@ -4622,7 +4645,7 @@
             <button type="button" class="btn-secondary" id="clearGridBtn">
               Töm lastutrymme
             </button>
-            <button type="button" class="btn-secondary" id="replayGuideBtn" hidden>
+            <button type="button" class="btn-secondary" id="replayGuideBtn">
               💡 Kör packguide igen
             </button>
             <button type="button" class="btn-secondary" id="soundToggleBtn" aria-pressed="true">
@@ -8674,15 +8697,31 @@
         }
 
         /* ===================== RENDERING & TUTORIAL ===================== */
+        function isTentItem(item) {
+          if (!item) return false;
+          return item.id === 'tent' || item.name.toLowerCase().includes('tält');
+        }
+
+        function isWaterItem(item) {
+          if (!item) return false;
+          return item.id === 'waterjug' || item.name.toLowerCase().includes('vattendunk') || item.name.toLowerCase().includes('vatten');
+        }
+
         function getTutorialStep() {
           if (state.activeDestId !== 'oland') return 0;
           if (state.completed['oland']) return 0;
           if (localStorage.getItem('crazycamper_tutorial_done') === 'true') return 0;
 
-          const hasTent = state.placed.some((p) => p.itemId === 'tent');
-          const hasWater = state.placed.some((p) => p.itemId === 'waterjug');
-          const selectedTent = state.selectedCatalogId === 'tent';
-          const selectedWater = state.selectedCatalogId === 'waterjug';
+          const hasTent = state.placed.some((p) => {
+            const item = getItemById(p.itemId);
+            return isTentItem(item);
+          });
+          const hasWater = state.placed.some((p) => {
+            const item = getItemById(p.itemId);
+            return isWaterItem(item);
+          });
+          const selectedTent = state.selectedCatalogId && isTentItem(getItemById(state.selectedCatalogId));
+          const selectedWater = state.selectedCatalogId && isWaterItem(getItemById(state.selectedCatalogId));
 
           if (!hasTent) {
             return selectedTent ? 2 : 1;
@@ -8698,11 +8737,11 @@
           if (!container) return;
           const step = getTutorialStep();
           if (dom.startTripBtn) {
-            dom.startTripBtn.classList.toggle('tutorial-blink-target', step === 5);
+            dom.startTripBtn.classList.toggle('guide-blink-target', step === 5);
           }
           if (step === 0) {
             container.style.display = 'none';
-            if (dom.startTripBtn) dom.startTripBtn.classList.remove('tutorial-blink-target');
+            if (dom.startTripBtn) dom.startTripBtn.classList.remove('guide-blink-target');
             return;
           }
 
@@ -9385,7 +9424,10 @@
           const cols = getGridCols();
           dom.cargoGrid.innerHTML = '';
           const tutorialStep = getTutorialStep();
-          const tentPlaced = state.placed.find((p) => p.itemId === 'tent');
+          const tentPlaced = state.placed.find((p) => {
+            const item = getItemById(p.itemId);
+            return isTentItem(item);
+          });
 
           for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
@@ -9402,7 +9444,7 @@
               cell.className =
                 'grid-cell' +
                 (r === 5 ? ' pro-row' : '') +
-                (isCellHighlight ? ' tutorial-cell-highlight tutorial-blink-target' : '');
+                (isCellHighlight ? ' tutorial-cell-highlight guide-blink-target' : '');
               cell.dataset.row = String(r);
               cell.dataset.col = String(c);
               cell.setAttribute('role', 'gridcell');
@@ -9750,14 +9792,26 @@
             const allowed = new Set(state.draftIds);
             list = EQUIPMENT.filter((item) => allowed.has(item.id));
           }
-          if (state.activeDestId === 'oland') {
-            const forcedIds = ['tent', 'waterjug'];
-            for (const fid of forcedIds) {
-              if (!list.some((i) => i.id === fid)) {
-                const item = EQUIPMENT.find((i) => i.id === fid);
-                if (item) list.unshift(item);
+          if (state.activeDestId === 'oland' || getTutorialStep() > 0) {
+            const forcedItems = [];
+            const otherItems = [];
+            for (const item of list) {
+              if (isTentItem(item) || isWaterItem(item)) {
+                forcedItems.push(item);
+              } else {
+                otherItems.push(item);
               }
             }
+            forcedItems.sort((a, b) => (isTentItem(a) ? -1 : 1));
+            if (!forcedItems.some(isTentItem)) {
+              const t = EQUIPMENT.find(isTentItem);
+              if (t) forcedItems.unshift(t);
+            }
+            if (!forcedItems.some(isWaterItem)) {
+              const w = EQUIPMENT.find(isWaterItem);
+              if (w) forcedItems.push(w);
+            }
+            list = [...forcedItems, ...otherItems];
           }
           return list;
         }
@@ -9822,8 +9876,8 @@
             const isPacked = packedIds.has(item.id);
             const isSelected = state.selectedCatalogId === item.id;
             const rot = isSelected ? state.selectedRotation : 0;
-            const isHighlightTent = tutorialStep === 1 && item.id === 'tent';
-            const isHighlightWater = tutorialStep === 3 && item.id === 'waterjug';
+            const isHighlightTent = tutorialStep === 1 && isTentItem(item);
+            const isHighlightWater = tutorialStep === 3 && isWaterItem(item);
             const isHighlight = isHighlightTent || isHighlightWater;
 
             const card = document.createElement('button');
@@ -9832,7 +9886,7 @@
               'equip-card' +
               (isPacked ? ' is-packed' : '') +
               (isSelected ? ' selected' : '') +
-              (isHighlight ? ' tutorial-highlight-card tutorial-blink-target' : '');
+              (isHighlight ? ' tutorial-highlight-card guide-blink-target' : '');
             card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
 
             const statParts = [];
