@@ -8722,14 +8722,18 @@
           });
           const selectedTent = state.selectedCatalogId && isTentItem(getItemById(state.selectedCatalogId));
           const selectedWater = state.selectedCatalogId && isWaterItem(getItemById(state.selectedCatalogId));
+          const isFoodFilter = state.filter === 'food';
 
           if (!hasTent) {
             return selectedTent ? 2 : 1;
           }
-          if (!hasWater) {
-            return selectedWater ? 4 : 3;
+          if (!isFoodFilter) {
+            return 3;
           }
-          return 5;
+          if (!hasWater) {
+            return selectedWater ? 5 : 4;
+          }
+          return 6;
         }
 
         function renderTutorial() {
@@ -8737,7 +8741,14 @@
           if (!container) return;
           const step = getTutorialStep();
           if (dom.startTripBtn) {
-            dom.startTripBtn.classList.toggle('guide-blink-target', step === 5);
+            const dest = getDestById(state.activeDestId);
+            const evalRes = evaluatePackForDestination(dest);
+            const allMet =
+              evalRes.effective.warmth >= dest.targets.warmth &&
+              evalRes.effective.food >= dest.targets.food &&
+              evalRes.effective.shelter >= dest.targets.shelter &&
+              !evalRes.overweight;
+            dom.startTripBtn.classList.toggle('guide-blink-target', step === 6 && allMet);
           }
           if (step === 0) {
             container.style.display = 'none';
@@ -8747,21 +8758,22 @@
 
           container.style.display = 'block';
           let text = '';
-          if (step === 1) text = 'Steg 1/4: 1. Klicka på Tält!';
-          else if (step === 2) text = 'Steg 2/4: 2. Klicka här i hörnet för att lägga in tältet!';
-          else if (step === 3) text = 'Steg 3/4: 3. Snyggt! Klicka på Vattendunk!';
-          else if (step === 4) text = 'Steg 4/4: 4. Placera vattendunken bredvid tältet!';
-          else if (step === 5) text = '🎉 Grymt! Nu kan du tekniken – packa klart resten och tryck på Ge dig ut på roadtrip!';
+          if (step === 1) text = 'Steg 1/6: 1. Klicka på Tält!';
+          else if (step === 2) text = 'Steg 2/6: 2. Välj plats i hörnet på brädet!';
+          else if (step === 3) text = 'Steg 3/6: 3. Klicka på filtret Mat & Vatten!';
+          else if (step === 4) text = 'Steg 4/6: 4. Klicka på Vattendunk!';
+          else if (step === 5) text = 'Steg 5/6: 5. Placera vattendunken bredvid tältet!';
+          else if (step === 6) text = '🎉 Snyggt! Nu kan du grunderna — prova själv att fylla på med mer värme, mat & skydd!';
 
           container.innerHTML = `
-            <div class="tutorial-banner ${step === 5 ? 'celebrate' : ''}">
+            <div class="tutorial-banner ${step === 6 ? 'celebrate' : ''}">
               <div class="tutorial-banner-content">
-                <span style="font-size: 24px;">${step === 5 ? '🌟' : '👆'}</span>
+                <span style="font-size: 24px;">${step === 6 ? '🌟' : '👆'}</span>
                 <span>${text}</span>
               </div>
               <div class="tutorial-banner-actions">
                 ${
-                  step === 5
+                  step === 6
                     ? `<button type="button" class="btn-mini" id="finishTutorialBtn" style="background: #16a34a; color: #fff; border-color: #15803d;">Kör igång! 🚐</button>`
                     : ''
                 }
@@ -9435,7 +9447,7 @@
               let isCellHighlight = false;
               if (tutorialStep === 2 && r >= rows - 2 && c < 2) {
                 isCellHighlight = true;
-              } else if (tutorialStep === 4 && tentPlaced) {
+              } else if (tutorialStep === 5 && tentPlaced) {
                 if (r >= tentPlaced.row && r < tentPlaced.row + 2 && c === tentPlaced.col + 2) {
                   isCellHighlight = true;
                 }
@@ -9453,12 +9465,12 @@
               if (
                 isCellHighlight &&
                 ((tutorialStep === 2 && r === rows - 2 && c === 0) ||
-                  (tutorialStep === 4 && tentPlaced && r === tentPlaced.row && c === tentPlaced.col + 2))
+                  (tutorialStep === 5 && tentPlaced && r === tentPlaced.row && c === tentPlaced.col + 2))
               ) {
-                const bubbleText = tutorialStep === 2 ? '2. Klicka här i hörnet!' : '4. Klicka här bredvid!';
+                const bubbleText = tutorialStep === 2 ? '2. Välj plats i hörnet på brädet!' : '5. Placera vattendunken bredvid tältet!';
                 const handWrap = document.createElement('div');
                 handWrap.className = 'tutorial-cell-hand';
-                handWrap.innerHTML = `<div class="tutorial-bubble" style="bottom: calc(100% + 6px);">${bubbleText}</div><span class="tutorial-hand-icon">👆</span>`;
+                handWrap.innerHTML = `<div class="tutorial-bubble">${bubbleText}</div><span class="tutorial-hand-icon">👆</span>`;
                 cell.appendChild(handWrap);
               }
 
@@ -9842,6 +9854,8 @@
               : `${EQUIPMENT.length} prylar · 3 kategorier`;
           }
 
+          const tutorialStep = getTutorialStep();
+
           // Update segmented tab labels with live item counts
           const countsByGroup = {
             stay: available.filter((i) => i.group === 'stay').length,
@@ -9861,6 +9875,20 @@
             const active = f === state.filter;
             b.classList.toggle('active', active);
             b.setAttribute('aria-selected', active ? 'true' : 'false');
+
+            const isHighlightFilter = tutorialStep === 3 && f === 'food';
+            b.classList.toggle('guide-blink-target', isHighlightFilter);
+
+            const existingHand = b.querySelector('.tutorial-filter-hand');
+            if (existingHand) existingHand.remove();
+
+            if (isHighlightFilter) {
+              const handWrap = document.createElement('span');
+              handWrap.className = 'tutorial-filter-hand';
+              handWrap.style.cssText = 'position: relative; display: inline-flex; margin-left: 6px;';
+              handWrap.innerHTML = `<div class="tutorial-bubble" style="bottom: calc(100% + 8px);">3. Klicka på filtret Mat & Vatten!</div><span class="tutorial-hand-icon" style="font-size: 24px;">👆</span>`;
+              b.appendChild(handWrap);
+            }
           });
 
           const filtered = available.filter((item) => {
@@ -9870,14 +9898,12 @@
 
           dom.equipmentList.innerHTML = '';
 
-          const tutorialStep = getTutorialStep();
-
           for (const item of filtered) {
             const isPacked = packedIds.has(item.id);
             const isSelected = state.selectedCatalogId === item.id;
             const rot = isSelected ? state.selectedRotation : 0;
             const isHighlightTent = tutorialStep === 1 && isTentItem(item);
-            const isHighlightWater = tutorialStep === 3 && isWaterItem(item);
+            const isHighlightWater = tutorialStep === 4 && isWaterItem(item);
             const isHighlight = isHighlightTent || isHighlightWater;
 
             const card = document.createElement('button');
@@ -9897,7 +9923,7 @@
             if (item.stats.shelter > 0)
               statParts.push(`<span class="stat-s">🛡️ +${item.stats.shelter}</span>`);
 
-            const bubbleText = tutorialStep === 1 ? '1. Klicka på Tält!' : '3. Snyggt! Klicka på Vattendunk!';
+            const bubbleText = tutorialStep === 1 ? '1. Klicka på Tält!' : '4. Klicka på Vattendunk!';
             card.innerHTML = `
               <div class="equip-icon-box cat-${item.category}">${item.emoji}</div>
               <div class="equip-info">
