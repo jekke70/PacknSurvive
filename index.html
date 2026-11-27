@@ -1245,6 +1245,100 @@
         z-index: 3;
       }
 
+      /* ===================== TUTORIAL STYLES ===================== */
+      @keyframes tutorialPulse {
+        0% { box-shadow: 0 0 0 0 rgba(31, 74, 46, 0.7); border-color: var(--brand-forest); }
+        70% { box-shadow: 0 0 0 10px rgba(31, 74, 46, 0); border-color: #2a8554; }
+        100% { box-shadow: 0 0 0 0 rgba(31, 74, 46, 0); }
+      }
+      @keyframes handBounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-6px) scale(1.1); }
+      }
+      .tutorial-highlight-card {
+        animation: tutorialPulse 1.4s infinite ease-in-out;
+        border: 2px solid var(--brand-forest) !important;
+        position: relative;
+      }
+      .tutorial-cell-highlight {
+        animation: tutorialPulse 1.4s infinite ease-in-out;
+        border: 2.5px solid var(--brand-forest) !important;
+        background-color: rgba(31, 74, 46, 0.18) !important;
+        position: relative;
+      }
+      .tutorial-hand-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        animation: handBounce 1s infinite ease-in-out;
+        z-index: 10;
+        pointer-events: none;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      }
+      .tutorial-cell-hand {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        animation: handBounce 1s infinite ease-in-out;
+        z-index: 10;
+        pointer-events: none;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      }
+      @keyframes tutorialBlinkStrong {
+        0% {
+          background-color: #fef08a;
+          border-color: #eab308;
+          box-shadow: 0 0 25px rgba(234, 179, 8, 0.85), inset 0 0 12px rgba(250, 204, 21, 0.6);
+        }
+        50% {
+          background-color: #dcfce7;
+          border-color: #22c55e;
+          box-shadow: 0 0 25px rgba(34, 197, 94, 0.95), inset 0 0 15px rgba(34, 197, 94, 0.7);
+        }
+        100% {
+          background-color: #fef08a;
+          border-color: #eab308;
+          box-shadow: 0 0 25px rgba(234, 179, 8, 0.85), inset 0 0 12px rgba(250, 204, 21, 0.6);
+        }
+      }
+      .tutorial-blink-target {
+        animation: tutorialBlinkStrong 1.0s infinite ease-in-out !important;
+      }
+      .tutorial-banner {
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        border: 1.5px solid #16a34a;
+        border-radius: var(--radius-md);
+        padding: 12px 18px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        box-shadow: 0 4px 16px rgba(22, 163, 74, 0.15);
+        animation: fadeIn 0.3s ease;
+        position: relative;
+        z-index: 10;
+      }
+      .tutorial-banner-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #166534;
+      }
+      .tutorial-banner-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
       /* Atmospheric scenic stage badge */
       .scenic-stage-badge {
         position: absolute;
@@ -4511,6 +4605,8 @@
         <div id="activeDestShowcase" class="active-dest-showcase" aria-live="polite"></div>
       </section>
 
+      <div id="tutorialBannerContainer"></div>
+
       <!-- FULL WIDTH WORKSPACE TOP BAR (TITLE, DESC, METERS) -->
       <section class="workspace-top-bar" aria-label="Resmål &amp; Mätare">
         <div class="workspace-header">
@@ -4525,6 +4621,9 @@
             </button>
             <button type="button" class="btn-secondary" id="clearGridBtn">
               Töm lastutrymme
+            </button>
+            <button type="button" class="btn-secondary" id="replayGuideBtn" hidden>
+              💡 Kör packguide igen
             </button>
             <button type="button" class="btn-secondary" id="soundToggleBtn" aria-pressed="true">
               🔊 Ljud på
@@ -8574,12 +8673,89 @@
           openModal(recordsModalEl);
         }
 
-        /* ===================== RENDERING ===================== */
+        /* ===================== RENDERING & TUTORIAL ===================== */
+        function getTutorialStep() {
+          if (state.activeDestId !== 'oland') return 0;
+          if (state.completed['oland']) return 0;
+          if (localStorage.getItem('crazycamper_tutorial_done') === 'true') return 0;
+
+          const hasTent = state.placed.some((p) => p.itemId === 'tent');
+          const hasWater = state.placed.some((p) => p.itemId === 'waterjug');
+          const selectedTent = state.selectedCatalogId === 'tent';
+          const selectedWater = state.selectedCatalogId === 'waterjug';
+
+          if (!hasTent) {
+            return selectedTent ? 2 : 1;
+          }
+          if (!hasWater) {
+            return selectedWater ? 4 : 3;
+          }
+          return 5;
+        }
+
+        function renderTutorial() {
+          const container = document.getElementById('tutorialBannerContainer');
+          if (!container) return;
+          const step = getTutorialStep();
+          if (dom.startTripBtn) {
+            dom.startTripBtn.classList.toggle('tutorial-blink-target', step === 5);
+          }
+          if (step === 0) {
+            container.style.display = 'none';
+            if (dom.startTripBtn) dom.startTripBtn.classList.remove('tutorial-blink-target');
+            return;
+          }
+
+          container.style.display = 'block';
+          let text = '';
+          if (step === 1) text = 'Steg 1/4: 1. Klicka här på Tältet!';
+          else if (step === 2) text = 'Steg 2/4: 2. Klicka här i hörnet för att lasta in tältet!';
+          else if (step === 3) text = 'Steg 3/4: 3. Snyggt! Klicka nu på Vattendunk';
+          else if (step === 4) text = 'Steg 4/4: 4. Klicka här bredvid tältet för att placera vattendunken!';
+          else if (step === 5) text = '🎉 Grymt! Nu kan du tekniken – packa klart resten och tryck på Ge dig ut på roadtrip!';
+
+          container.innerHTML = `
+            <div class="tutorial-banner ${step === 5 ? 'celebrate' : ''}">
+              <div class="tutorial-banner-content">
+                <span style="font-size: 24px;">${step === 5 ? '🌟' : '👆'}</span>
+                <span>${text}</span>
+              </div>
+              <div class="tutorial-banner-actions">
+                ${
+                  step === 5
+                    ? `<button type="button" class="btn-mini" id="finishTutorialBtn" style="background: #16a34a; color: #fff; border-color: #15803d;">Kör igång! 🚐</button>`
+                    : ''
+                }
+                <button type="button" class="btn-mini danger" id="skipTutorialBtn">Hoppa över guide</button>
+              </div>
+            </div>
+          `;
+
+          const skipBtn = container.querySelector('#skipTutorialBtn');
+          if (skipBtn) {
+            skipBtn.addEventListener('click', () => {
+              localStorage.setItem('crazycamper_tutorial_done', 'true');
+              renderAll();
+              showToast('Packguiden hoppades över.');
+            });
+          }
+
+          const finishBtn = container.querySelector('#finishTutorialBtn');
+          if (finishBtn) {
+            finishBtn.addEventListener('click', () => {
+              localStorage.setItem('crazycamper_tutorial_done', 'true');
+              renderAll();
+              showToast('Packguiden avslutad. Lycka till på resan!');
+            });
+          }
+        }
+
         function renderAll() {
           renderProHeader();
           renderChallengeBanner();
           renderDestinations();
           renderWorkspaceHeader();
+          renderTutorial();
           renderMeters();
           renderGridCells();
           renderPlacedItems();
@@ -9059,7 +9235,22 @@
           renderScenicBackdrop(dest);
           const evalRes = evaluatePackForDestination(dest);
 
-          dom.activeDestHeading.textContent = dest.name;
+          dom.activeDestHeading.innerHTML =
+            dest.name +
+            (dest.id === 'oland'
+              ? ' <button type="button" id="replayTutorialBtn" class="btn-mini" style="margin-left: 10px; font-weight: 600; font-size: 11.5px; vertical-align: middle;">💡 Visa packguide</button>'
+              : '');
+          const replayBtn = document.getElementById('replayTutorialBtn');
+          if (replayBtn) {
+            replayBtn.onclick = () => {
+              localStorage.removeItem('crazycamper_tutorial_done');
+              state.placed = [];
+              state.selectedCatalogId = 'tent';
+              renderAll();
+              showToast('Packguiden har startats om på Öland!');
+            };
+          }
+
           dom.activeDestMeta.innerHTML = `
             <span>${dest.difficulty}</span>
             <span aria-hidden="true">·</span>
@@ -9193,15 +9384,41 @@
           const rows = getGridRows();
           const cols = getGridCols();
           dom.cargoGrid.innerHTML = '';
+          const tutorialStep = getTutorialStep();
+          const tentPlaced = state.placed.find((p) => p.itemId === 'tent');
 
           for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
               const cell = document.createElement('div');
-              cell.className = 'grid-cell' + (r === 5 ? ' pro-row' : '');
+              let isCellHighlight = false;
+              if (tutorialStep === 2 && r >= rows - 2 && c < 2) {
+                isCellHighlight = true;
+              } else if (tutorialStep === 4 && tentPlaced) {
+                if (r >= tentPlaced.row && r < tentPlaced.row + 2 && c === tentPlaced.col + 2) {
+                  isCellHighlight = true;
+                }
+              }
+
+              cell.className =
+                'grid-cell' +
+                (r === 5 ? ' pro-row' : '') +
+                (isCellHighlight ? ' tutorial-cell-highlight tutorial-blink-target' : '');
               cell.dataset.row = String(r);
               cell.dataset.col = String(c);
               cell.setAttribute('role', 'gridcell');
               cell.setAttribute('aria-label', `Rad ${r + 1}, kolumn ${c + 1}`);
+
+              if (
+                isCellHighlight &&
+                ((tutorialStep === 2 && r === rows - 2 && c === 0) ||
+                  (tutorialStep === 4 && tentPlaced && r === tentPlaced.row && c === tentPlaced.col + 2))
+              ) {
+                const bubbleText = tutorialStep === 2 ? '2. Klicka här i hörnet!' : '4. Klicka här bredvid!';
+                const handWrap = document.createElement('div');
+                handWrap.className = 'tutorial-cell-hand';
+                handWrap.innerHTML = `<div class="tutorial-bubble" style="bottom: calc(100% + 6px);">${bubbleText}</div><span class="tutorial-hand-icon">👆</span>`;
+                cell.appendChild(handWrap);
+              }
 
               cell.addEventListener('pointerenter', () => {
                 if (!state.drag && state.selectedCatalogId) {
@@ -9525,12 +9742,24 @@
         }
 
         function getAvailableEquipment() {
-          if (!state.draftMode) return EQUIPMENT;
-          if (!Array.isArray(state.draftIds) || state.draftIds.length === 0) {
-            generateDraftSelection(getDestById(state.activeDestId), false);
+          let list = EQUIPMENT;
+          if (state.draftMode) {
+            if (!Array.isArray(state.draftIds) || state.draftIds.length === 0) {
+              generateDraftSelection(getDestById(state.activeDestId), false);
+            }
+            const allowed = new Set(state.draftIds);
+            list = EQUIPMENT.filter((item) => allowed.has(item.id));
           }
-          const allowed = new Set(state.draftIds);
-          return EQUIPMENT.filter((item) => allowed.has(item.id));
+          if (state.activeDestId === 'oland') {
+            const forcedIds = ['tent', 'waterjug'];
+            for (const fid of forcedIds) {
+              if (!list.some((i) => i.id === fid)) {
+                const item = EQUIPMENT.find((i) => i.id === fid);
+                if (item) list.unshift(item);
+              }
+            }
+          }
+          return list;
         }
 
         const draftModeBtnEl = document.getElementById('draftModeBtn');
@@ -9587,15 +9816,23 @@
 
           dom.equipmentList.innerHTML = '';
 
+          const tutorialStep = getTutorialStep();
+
           for (const item of filtered) {
             const isPacked = packedIds.has(item.id);
             const isSelected = state.selectedCatalogId === item.id;
             const rot = isSelected ? state.selectedRotation : 0;
+            const isHighlightTent = tutorialStep === 1 && item.id === 'tent';
+            const isHighlightWater = tutorialStep === 3 && item.id === 'waterjug';
+            const isHighlight = isHighlightTent || isHighlightWater;
 
             const card = document.createElement('button');
             card.type = 'button';
             card.className =
-              'equip-card' + (isPacked ? ' is-packed' : '') + (isSelected ? ' selected' : '');
+              'equip-card' +
+              (isPacked ? ' is-packed' : '') +
+              (isSelected ? ' selected' : '') +
+              (isHighlight ? ' tutorial-highlight-card tutorial-blink-target' : '');
             card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
 
             const statParts = [];
@@ -9606,6 +9843,7 @@
             if (item.stats.shelter > 0)
               statParts.push(`<span class="stat-s">🛡️ +${item.stats.shelter}</span>`);
 
+            const bubbleText = tutorialStep === 1 ? '1. Klicka här på Tältet!' : '3. Snyggt! Klicka nu på Vattendunk';
             card.innerHTML = `
               <div class="equip-icon-box cat-${item.category}">${item.emoji}</div>
               <div class="equip-info">
@@ -9619,6 +9857,7 @@
                 <div class="equip-stats tabular">${statParts.join('')}</div>
               </div>
               ${buildMiniShapeHTML(item, rot)}
+              ${isHighlight ? `<div class="tutorial-bubble">${bubbleText}</div><span class="tutorial-hand-wrap"><span class="tutorial-hand-icon">👆</span></span>` : ''}
             `;
 
             card.addEventListener('pointerdown', (ev) => {
@@ -10523,6 +10762,13 @@
         /* ===================== GLOBAL EVENT BINDINGS ===================== */
         dom.rotateBtn.addEventListener('click', rotateActiveSelection);
         dom.clearGridBtn.addEventListener('click', clearGrid);
+        document.getElementById('replayGuideBtn')?.addEventListener('click', () => {
+          localStorage.removeItem('crazycamper_tutorial_done');
+          state.placed = [];
+          state.selectedCatalogId = 'tent';
+          renderAll();
+          showToast('Packguiden startad på Öland!');
+        });
         dom.startTripBtn.addEventListener('click', startRoadtripSimulation);
 
         dom.soundToggleBtn.addEventListener('click', () => {
