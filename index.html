@@ -8747,10 +8747,10 @@
 
           container.style.display = 'block';
           let text = '';
-          if (step === 1) text = 'Steg 1/4: 1. Klicka här på Tältet!';
-          else if (step === 2) text = 'Steg 2/4: 2. Klicka här i hörnet för att lasta in tältet!';
-          else if (step === 3) text = 'Steg 3/4: 3. Snyggt! Klicka nu på Vattendunk';
-          else if (step === 4) text = 'Steg 4/4: 4. Klicka här bredvid tältet för att placera vattendunken!';
+          if (step === 1) text = 'Steg 1/4: 1. Klicka på Tält!';
+          else if (step === 2) text = 'Steg 2/4: 2. Klicka här i hörnet för att lägga in tältet!';
+          else if (step === 3) text = 'Steg 3/4: 3. Snyggt! Klicka på Vattendunk!';
+          else if (step === 4) text = 'Steg 4/4: 4. Placera vattendunken bredvid tältet!';
           else if (step === 5) text = '🎉 Grymt! Nu kan du tekniken – packa klart resten och tryck på Ge dig ut på roadtrip!';
 
           container.innerHTML = `
@@ -9897,7 +9897,7 @@
             if (item.stats.shelter > 0)
               statParts.push(`<span class="stat-s">🛡️ +${item.stats.shelter}</span>`);
 
-            const bubbleText = tutorialStep === 1 ? '1. Klicka här på Tältet!' : '3. Snyggt! Klicka nu på Vattendunk';
+            const bubbleText = tutorialStep === 1 ? '1. Klicka på Tält!' : '3. Snyggt! Klicka på Vattendunk!';
             card.innerHTML = `
               <div class="equip-icon-box cat-${item.category}">${item.emoji}</div>
               <div class="equip-info">
