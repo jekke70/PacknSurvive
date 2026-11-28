@@ -436,6 +436,248 @@
         background: #dcece1;
       }
 
+      /* ===================== CRAZY CAMPER UNIVERSE BUTTON & MODAL ===================== */
+      .btn-universe-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        color: #78350f;
+        border: 1px solid #f59e0b;
+        font-size: 12.5px;
+        font-weight: 700;
+        white-space: nowrap;
+        flex-shrink: 0;
+        box-shadow: 0 1px 3px rgba(180, 83, 9, 0.12);
+      }
+
+      .btn-universe-nav:hover {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border-color: #d97706;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(180, 83, 9, 0.18);
+      }
+
+      .btn-universe-nav .universe-label-short {
+        display: none;
+      }
+
+      @media (max-width: 1280px) {
+        .topnav {
+          gap: 14px;
+        }
+        .btn-universe-nav .universe-label-long {
+          display: none;
+        }
+        .btn-universe-nav .universe-label-short {
+          display: inline;
+        }
+      }
+
+      .btn-universe-mobile {
+        display: none;
+      }
+
+      @media (max-width: 767px) {
+        .btn-universe-mobile {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 4px 8px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+          color: #78350f;
+          border: 1px solid #f59e0b;
+          font-size: 11px;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+      }
+
+      .modal-card.universe-modal-card {
+        max-width: 820px;
+      }
+
+      .universe-modal-head {
+        background: linear-gradient(135deg, #f0fdf4 0%, #fffbeb 100%);
+      }
+
+      .universe-intro {
+        margin: 0;
+        font-size: 13.5px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .universe-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      @media (max-width: 640px) {
+        .universe-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .universe-card {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: var(--bg-surface);
+        border: 1.5px solid var(--border-hairline);
+        text-decoration: none;
+        color: inherit;
+        transition:
+          transform 160ms var(--ease-out),
+          border-color 160ms var(--ease-out),
+          box-shadow 160ms var(--ease-out),
+          background-color 160ms var(--ease-out);
+      }
+
+      .universe-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--brand-forest);
+        box-shadow: 0 8px 20px rgba(21, 28, 23, 0.08);
+        background: #fafcfa;
+      }
+
+      .universe-card.is-current {
+        border-color: #16a34a;
+        background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+        box-shadow: 0 2px 10px rgba(22, 163, 74, 0.08);
+      }
+
+      .universe-card.is-current:hover {
+        border-color: #15803d;
+        background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%);
+      }
+
+      .universe-card-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .universe-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-hairline);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+
+      .universe-card.is-current .universe-icon {
+        background: #dcfce7;
+        border-color: #86efac;
+      }
+
+      .universe-title-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .universe-title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 14.5px;
+        font-weight: 800;
+        color: var(--text-primary);
+        line-height: 1.25;
+      }
+
+      .universe-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .universe-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        background: var(--bg-subtle);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-hairline);
+      }
+
+      .universe-here-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+        background: #16a34a;
+        color: #ffffff;
+        box-shadow: 0 1px 3px rgba(22, 163, 74, 0.25);
+      }
+
+      .universe-desc {
+        margin: 0;
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.45;
+        flex: 1;
+      }
+
+      .universe-card-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(21, 28, 23, 0.07);
+      }
+
+      .universe-domain {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--text-muted);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .universe-open-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 11px;
+        border-radius: 8px;
+        background: var(--brand-forest-soft);
+        color: var(--brand-forest);
+        border: 1px solid var(--brand-forest-border);
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: background-color 150ms ease, color 150ms ease;
+      }
+
+      .universe-card:hover .universe-open-cta {
+        background: var(--brand-forest);
+        color: #ffffff;
+        border-color: var(--brand-forest);
+      }
+
       /* ===================== MAIN SHELL ===================== */
       .app-shell {
         max-width: 1440px;
@@ -4415,6 +4657,11 @@
             Ställplatskarta ↗
           </a>
           <button type="button" class="nav-btn" id="navHelpBtn">Så spelar du</button>
+          <button type="button" class="btn-universe-nav" id="navUniverseBtn" title="Se alla appar och spel i Crazy Camper-familjen">
+            <span aria-hidden="true">🎪</span>
+            <span class="universe-label-long">Crazy Camper – Fler appar &amp; spel</span>
+            <span class="universe-label-short">Fler appar &amp; spel</span>
+          </button>
         </nav>
 
         <div class="topbar-action">
@@ -4545,6 +4792,9 @@
             </button>
             <button type="button" class="btn-secondary" id="mobileHelpBtn">
               Regler &amp; tips
+            </button>
+            <button type="button" class="btn-universe-mobile" id="mobileUniverseBtn">
+              🎪 Crazy Camper – Fler appar &amp; spel
             </button>
           </div>
         </div>
@@ -4822,6 +5072,9 @@
         >
           Öppna app.crazycamper.org ↗
         </a>
+        <button type="button" class="footer-link" id="footerUniverseLink">
+          🎪 Crazy Camper – Fler appar &amp; spel
+        </button>
         <button type="button" class="footer-link" id="footerProLink">
           Packa &amp; Överlev Pro
         </button>
@@ -5121,6 +5374,29 @@
           <button type="button" class="btn-primary" id="closeHelpDoneBtn" style="width: 100%;">
             Förstått, dags att packa!
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRAZY CAMPER UNIVERSE MODAL (FLER APPAR & SPEL) -->
+    <div class="modal-backdrop" id="universeModal" role="dialog" aria-modal="true" aria-labelledby="universeModalTitle">
+      <div class="modal-card universe-modal-card">
+        <div class="modal-head universe-modal-head">
+          <h3 class="modal-title" id="universeModalTitle">
+            🎪 Upptäck hela Crazy Camper-familjen – Spel &amp; verktyg för livet på vägarna
+          </h3>
+          <button type="button" class="modal-close" id="closeUniverseModalBtn" aria-label="Stäng">×</button>
+        </div>
+        <div class="modal-body">
+          <p class="universe-intro">
+            Alla appar och spel från Crazy Camper samlade på ett ställe. Klicka på valfritt kort för att öppna i en ny flik utan att tappa din pågående packning!
+          </p>
+          <div class="universe-grid" id="universeGrid"></div>
+          <div style="display: flex; justify-content: flex-end; padding-top: 2px;">
+            <button type="button" class="btn-secondary" id="closeUniverseDoneBtn">
+              Stäng
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -8722,18 +8998,14 @@
           });
           const selectedTent = state.selectedCatalogId && isTentItem(getItemById(state.selectedCatalogId));
           const selectedWater = state.selectedCatalogId && isWaterItem(getItemById(state.selectedCatalogId));
-          const isFoodFilter = state.filter === 'food';
 
           if (!hasTent) {
             return selectedTent ? 2 : 1;
           }
-          if (!isFoodFilter) {
-            return 3;
-          }
           if (!hasWater) {
-            return selectedWater ? 5 : 4;
+            return selectedWater ? 4 : 3;
           }
-          return 6;
+          return 5;
         }
 
         function renderTutorial() {
@@ -8741,14 +9013,7 @@
           if (!container) return;
           const step = getTutorialStep();
           if (dom.startTripBtn) {
-            const dest = getDestById(state.activeDestId);
-            const evalRes = evaluatePackForDestination(dest);
-            const allMet =
-              evalRes.effective.warmth >= dest.targets.warmth &&
-              evalRes.effective.food >= dest.targets.food &&
-              evalRes.effective.shelter >= dest.targets.shelter &&
-              !evalRes.overweight;
-            dom.startTripBtn.classList.toggle('guide-blink-target', step === 6 && allMet);
+            dom.startTripBtn.classList.toggle('guide-blink-target', step === 5);
           }
           if (step === 0) {
             container.style.display = 'none';
@@ -8758,22 +9023,21 @@
 
           container.style.display = 'block';
           let text = '';
-          if (step === 1) text = 'Steg 1/6: 1. Klicka på Tält!';
-          else if (step === 2) text = 'Steg 2/6: 2. Välj plats i hörnet på brädet!';
-          else if (step === 3) text = 'Steg 3/6: 3. Klicka på filtret Mat & Vatten!';
-          else if (step === 4) text = 'Steg 4/6: 4. Klicka på Vattendunk!';
-          else if (step === 5) text = 'Steg 5/6: 5. Placera vattendunken bredvid tältet!';
-          else if (step === 6) text = '🎉 Snyggt! Nu kan du grunderna — prova själv att fylla på med mer värme, mat & skydd!';
+          if (step === 1) text = 'Steg 1/4: 1. Klicka på Tält!';
+          else if (step === 2) text = 'Steg 2/4: 2. Klicka här i hörnet för att lägga in tältet!';
+          else if (step === 3) text = 'Steg 3/4: 3. Snyggt! Klicka på Vattendunk!';
+          else if (step === 4) text = 'Steg 4/4: 4. Placera vattendunken bredvid tältet!';
+          else if (step === 5) text = '🎉 Grymt! Nu kan du tekniken – packa klart resten och tryck på Ge dig ut på roadtrip!';
 
           container.innerHTML = `
-            <div class="tutorial-banner ${step === 6 ? 'celebrate' : ''}">
+            <div class="tutorial-banner ${step === 5 ? 'celebrate' : ''}">
               <div class="tutorial-banner-content">
-                <span style="font-size: 24px;">${step === 6 ? '🌟' : '👆'}</span>
+                <span style="font-size: 24px;">${step === 5 ? '🌟' : '👆'}</span>
                 <span>${text}</span>
               </div>
               <div class="tutorial-banner-actions">
                 ${
-                  step === 6
+                  step === 5
                     ? `<button type="button" class="btn-mini" id="finishTutorialBtn" style="background: #16a34a; color: #fff; border-color: #15803d;">Kör igång! 🚐</button>`
                     : ''
                 }
@@ -9447,7 +9711,7 @@
               let isCellHighlight = false;
               if (tutorialStep === 2 && r >= rows - 2 && c < 2) {
                 isCellHighlight = true;
-              } else if (tutorialStep === 5 && tentPlaced) {
+              } else if (tutorialStep === 4 && tentPlaced) {
                 if (r >= tentPlaced.row && r < tentPlaced.row + 2 && c === tentPlaced.col + 2) {
                   isCellHighlight = true;
                 }
@@ -9465,12 +9729,12 @@
               if (
                 isCellHighlight &&
                 ((tutorialStep === 2 && r === rows - 2 && c === 0) ||
-                  (tutorialStep === 5 && tentPlaced && r === tentPlaced.row && c === tentPlaced.col + 2))
+                  (tutorialStep === 4 && tentPlaced && r === tentPlaced.row && c === tentPlaced.col + 2))
               ) {
-                const bubbleText = tutorialStep === 2 ? '2. Välj plats i hörnet på brädet!' : '5. Placera vattendunken bredvid tältet!';
+                const bubbleText = tutorialStep === 2 ? '2. Klicka här i hörnet!' : '4. Klicka här bredvid!';
                 const handWrap = document.createElement('div');
                 handWrap.className = 'tutorial-cell-hand';
-                handWrap.innerHTML = `<div class="tutorial-bubble">${bubbleText}</div><span class="tutorial-hand-icon">👆</span>`;
+                handWrap.innerHTML = `<div class="tutorial-bubble" style="bottom: calc(100% + 6px);">${bubbleText}</div><span class="tutorial-hand-icon">👆</span>`;
                 cell.appendChild(handWrap);
               }
 
@@ -9854,8 +10118,6 @@
               : `${EQUIPMENT.length} prylar · 3 kategorier`;
           }
 
-          const tutorialStep = getTutorialStep();
-
           // Update segmented tab labels with live item counts
           const countsByGroup = {
             stay: available.filter((i) => i.group === 'stay').length,
@@ -9875,20 +10137,6 @@
             const active = f === state.filter;
             b.classList.toggle('active', active);
             b.setAttribute('aria-selected', active ? 'true' : 'false');
-
-            const isHighlightFilter = tutorialStep === 3 && f === 'food';
-            b.classList.toggle('guide-blink-target', isHighlightFilter);
-
-            const existingHand = b.querySelector('.tutorial-filter-hand');
-            if (existingHand) existingHand.remove();
-
-            if (isHighlightFilter) {
-              const handWrap = document.createElement('span');
-              handWrap.className = 'tutorial-filter-hand';
-              handWrap.style.cssText = 'position: relative; display: inline-flex; margin-left: 6px;';
-              handWrap.innerHTML = `<div class="tutorial-bubble" style="bottom: calc(100% + 8px);">3. Klicka på filtret Mat & Vatten!</div><span class="tutorial-hand-icon" style="font-size: 24px;">👆</span>`;
-              b.appendChild(handWrap);
-            }
           });
 
           const filtered = available.filter((item) => {
@@ -9898,12 +10146,14 @@
 
           dom.equipmentList.innerHTML = '';
 
+          const tutorialStep = getTutorialStep();
+
           for (const item of filtered) {
             const isPacked = packedIds.has(item.id);
             const isSelected = state.selectedCatalogId === item.id;
             const rot = isSelected ? state.selectedRotation : 0;
             const isHighlightTent = tutorialStep === 1 && isTentItem(item);
-            const isHighlightWater = tutorialStep === 4 && isWaterItem(item);
+            const isHighlightWater = tutorialStep === 3 && isWaterItem(item);
             const isHighlight = isHighlightTent || isHighlightWater;
 
             const card = document.createElement('button');
@@ -9923,7 +10173,7 @@
             if (item.stats.shelter > 0)
               statParts.push(`<span class="stat-s">🛡️ +${item.stats.shelter}</span>`);
 
-            const bubbleText = tutorialStep === 1 ? '1. Klicka på Tält!' : '4. Klicka på Vattendunk!';
+            const bubbleText = tutorialStep === 1 ? '1. Klicka på Tält!' : '3. Snyggt! Klicka på Vattendunk!';
             card.innerHTML = `
               <div class="equip-icon-box cat-${item.category}">${item.emoji}</div>
               <div class="equip-info">
@@ -10868,6 +11118,108 @@
         document.getElementById('closeHelpModalBtn').addEventListener('click', () => closeModal(dom.helpModal));
         document.getElementById('closeHelpDoneBtn').addEventListener('click', () => closeModal(dom.helpModal));
 
+        // Crazy Camper Universe modal
+        const universeModalEl = document.getElementById('universeModal');
+        const universeGridEl = document.getElementById('universeGrid');
+        const CRAZY_CAMPER_UNIVERSE_APPS = [
+          {
+            icon: '🗺',
+            title: 'Campsite Swe (Huvudappen)',
+            desc: 'Hitta tusentals svenska ställplatser, campingar, tömningsstationer och guldkorn på kartan.',
+            badge: 'Gratis / Karta',
+            url: 'https://app.crazycamper.org',
+            host: 'app.crazycamper.org',
+          },
+          {
+            icon: '✅',
+            title: 'CampingCheck (Checklista & Slalom)',
+            desc: 'Smart pack- och avresechecklista för sommar & vinter, karta samt minispelet Camping Slalom på 6 språk.',
+            badge: '100 % Gratis',
+            url: 'https://campingcheck.crazycamper.org',
+            host: 'campingcheck.crazycamper.org',
+          },
+          {
+            icon: '🎲',
+            title: 'Vart ska vi åka i helgen? (Resmålsslumparen)',
+            desc: 'Snurra fram helgens perfekta campingmål utifrån din position, körtid och live-väder.',
+            badge: '100 % Gratis',
+            url: 'https://helgtips.crazycamper.org',
+            host: 'helgtips.crazycamper.org',
+          },
+          {
+            icon: '🧠',
+            title: 'Stora Camping- & Husbilsquizet',
+            desc: '550+ frågor på 7 språk, lagspel & månadstävling där vinnaren får en personligt lasergraverad touchpenna!',
+            badge: 'Gratis + Månadstävling',
+            url: 'https://quiz.crazycamper.org',
+            host: 'quiz.crazycamper.org',
+          },
+          {
+            icon: '🏕',
+            title: 'Crazy Camper: Campingchefen',
+            desc: 'Ta över och rusta upp svenska campingplatser från Dals Långed till Piteå i ett mysigt tycoon-spel.',
+            badge: 'Gratis att prova',
+            url: 'https://campingchefen.crazycamper.org',
+            host: 'campingchefen.crazycamper.org',
+          },
+          {
+            icon: '🚐',
+            title: 'Packa & Överlev',
+            desc: 'Pussla ihop packningen i husbilen och klara oväntade väder- och vägäventyr runt om i Sverige.',
+            badge: 'Gratis att prova',
+            url: 'https://packnsurvive.crazycamper.org',
+            host: 'packnsurvive.crazycamper.org',
+          },
+        ];
+
+        function renderUniverseModal() {
+          if (!universeGridEl) return;
+          const currentHost = (window.location.hostname || '').toLowerCase();
+          const hasExactHostMatch = CRAZY_CAMPER_UNIVERSE_APPS.some(
+            (app) => app.host === currentHost
+          );
+          const activeHost = hasExactHostMatch ? currentHost : 'packnsurvive.crazycamper.org';
+
+          universeGridEl.innerHTML = CRAZY_CAMPER_UNIVERSE_APPS.map((app) => {
+            const isCurrent = app.host === activeHost;
+            return `
+              <a
+                href="${app.url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="universe-card${isCurrent ? ' is-current' : ''}"
+              >
+                <div class="universe-card-top">
+                  <div class="universe-icon" aria-hidden="true">${app.icon}</div>
+                  <div class="universe-title-wrap">
+                    <h4 class="universe-title">${app.title}</h4>
+                    <div class="universe-badges">
+                      <span class="universe-badge">${app.badge}</span>
+                      ${isCurrent ? '<span class="universe-here-badge">✓ Du är här</span>' : ''}
+                    </div>
+                  </div>
+                </div>
+                <p class="universe-desc">${app.desc}</p>
+                <div class="universe-card-foot">
+                  <span class="universe-domain">${app.host}</span>
+                  <span class="universe-open-cta">Öppna ↗</span>
+                </div>
+              </a>
+            `;
+          }).join('');
+        }
+
+        function openUniverseModal() {
+          renderUniverseModal();
+          openModal(universeModalEl);
+        }
+
+        document.getElementById('navUniverseBtn')?.addEventListener('click', openUniverseModal);
+        document.getElementById('mobileUniverseBtn')?.addEventListener('click', openUniverseModal);
+        document.getElementById('footerUniverseLink')?.addEventListener('click', openUniverseModal);
+        document.getElementById('closeUniverseModalBtn')?.addEventListener('click', () => closeModal(universeModalEl));
+        document.getElementById('closeUniverseDoneBtn')?.addEventListener('click', () => closeModal(universeModalEl));
+
         document.getElementById('navRecordsBtn').addEventListener('click', () => openRecordsModal(state.activeDestId));
         document.getElementById('openRecordsStripBtn').addEventListener('click', () => openRecordsModal(state.activeDestId));
         document.getElementById('closeRecordsModalBtn').addEventListener('click', () => closeModal(recordsModalEl));
@@ -11729,6 +12081,7 @@
           dom.simModal,
           dom.proModal,
           dom.helpModal,
+          universeModalEl,
           recordsModalEl,
           iosInstallModalEl,
           proCongratsModalEl,
@@ -11791,6 +12144,7 @@
             closeModal(dom.simModal);
             closeModal(dom.proModal);
             closeModal(dom.helpModal);
+            closeModal(universeModalEl);
             closeModal(recordsModalEl);
             closeModal(iosInstallModalEl);
             closeModal(proCongratsModalEl);
